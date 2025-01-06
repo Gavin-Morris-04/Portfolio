@@ -3,6 +3,7 @@
 * {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
 body {
@@ -209,6 +210,8 @@ section {
 .icon {
   cursor: pointer;
   height: 2rem;
+  max-width: 50px; /* Adjust icon size */
+  margin-bottom: 10px; /* Space below the icon */
 }
 
 /* BUTTONS */
@@ -292,6 +295,10 @@ section {
 }
 
 .details-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
   padding: 1.5rem;
   flex: 1;
   background: white;
@@ -376,6 +383,36 @@ article .icon {
 .project-btn {
   color: black;
   border-color: rgb(163, 163, 163);
+}
+
+/*certifications*/
+#certifications {
+  display: flex;
+  flex-direction: column; /* Stack items vertically */
+  justify-content: center; /* Center vertically */
+  align-items: center; /* Center horizontally */
+  padding: 20px;
+}
+.certifications-containers {
+    gap: 2rem;
+    margin-bottom: 2rem;
+    margin-top: 2rem;
+}
+  
+.certifications-details-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px; /* Space between certification blocks */
+}
+  
+.certifications-containers,
+.certifications-details-container {
+    display: flex;
+}
+  
+.certifications-pic {
+    border-radius: 2rem;
 }
 
 /* CONTACT */
