@@ -1,349 +1,1902 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>My Portfolio</title>
-    <link rel="stylesheet" href="style.css" />
-    <link rel="stylesheet" href="mediaqueries.css" />
-    <link rel="icon" type="image/x-icon" href="/assets/earth.png">
-  </head>
-  <body>
-    <nav id="desktop-nav">
-      <div class="logo">Gavin Morris</div>
-      <div>
-        <ul class="nav-links">
-          <li><a href="#about">About</a></li>
-          <li><a href="#experience">Experience</a></li>
-          <li><a href="#projects">Projects</a></li>
-          <li><a href="#contact">Contact</a></li>
-          <li><a href="#certifications">Certifications</a></li>
-        </ul>
-      </div>
-    </nav>
-    <nav id="hamburger-nav">
-      <div class="logo">Gavin Morris</div>
-      <div class="hamburger-menu">
-        <div class="hamburger-icon" onclick="toggleMenu()">
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
-        <div class="menu-links">
-          <li><a href="#about" onclick="toggleMenu()">About</a></li>
-          <li><a href="#experience" onclick="toggleMenu()">Experience</a></li>
-          <li><a href="#projects" onclick="toggleMenu()">Projects</a></li>
-          <li><a href="#contact" onclick="toggleMenu()">Contact</a></li>
-        </div>
-      </div>
-    </nav>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gavin Morris - Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    <section id="profile">
-      <div class="section__pic-container">
-        <img src="./assets/profile-pic.png" alt="Gavin Morris profile picture" />
-      </div>
-      <div class="section__text">
-        <p class="section__text__p1">Hello, I'm</p>
-        <h1 class="title">Gavin Morris</h1>
-        <p class="section__text__p2">Software <span class="animated-text"></span></p>
-        <div class="btn-container">
-          <button class="btn btn-color-2" onclick="window.open('./assets/resume.pdf')"> Download Resume </button>
-        </div>
-        <div id="socials-container">
-          <img src="./assets/linkedin.png" alt="My LinkedIn profile" class="icon" onclick="location.href='https://www.linkedin.com/in/gavin-morris-73a22a242/'"/>
-          <img src="./assets/github.png" alt="My Github profile" class="icon" onclick="location.href='https://github.com/Gavin-Morris-04'"/>
-        </div>
-      </div>
-    </section>
-    <section id="about">
-      <p class="section__text__p1">Get To Know More</p>
-      <h1 class="title">About Me</h1>
-      <div class="section-container">
-        <div class="section__pic-container">
-          <img src="./assets/about-pic.png" alt="Profile picture" class="about-pic"/>
-        </div>
-        <div class="about-details-container">
-          <div class="about-containers">
-            <div class="details-container">
-              <img src="./assets/experience.png" alt="Experience icon" class="icon"/>
-              <h3>Experience</h3>
-              <p>4+ years <br />Software Developer</p>
-            </div>
-            <div class="details-container">
-              <img src="./assets/education.png" alt="Education icon" class="icon"/>
-              <h3>Education</h3>
-              <p>
-                B.S. Computer Science - 3.52 gpa
-              </br>
-                Mathematics Minor
-              </p>
-            </div>
-          </div>
-          <div class="text-container">
-            <p>
-              I began my coding journey in high school using Codecademy, where I gained hands-on experience through their interactive courses and workspaces. 
-              Currently, I am a sophomore at Louisiana State University pursuing a Bachelor of Science in Computer Science with a 3.52 GPA. 
-              In addition to my studies, I am a Software Developer Intern at LSU CARTS, where I contribute to innovative projects and gain real-world experience. 
-              Outside of school and work, I have completed multiple certificates and projects to enhance my skills and continue to work on new certifications and projects to further expand my knowledge. 
-              I am passionate about improving my expertise and applying it to real-world challenges as I advance in my career.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: #050810;
+            color: white;
+            overflow-x: hidden;
+        }
 
-    <section id="experience">
-      <p class="section__text__p1">Explore My</p>
-      <h1 class="title">Experience</h1>
-      <div class="experience-details-container">
-        <div class="about-containers">
-          <div class="details-container">
-            <h2 class="experience-sub-title">Frontend Development</h2>
-            <div class="article-container">
-              <article>
-                <img src="./assets/checkmark.png" alt="Experience icon" class="icon"/>
-                <div>
-                  <h3>HTML</h3>
-                  <p>Experienced</p>
-                </div>
-              </article>
-              <article>
-                <img src="./assets/checkmark.png" alt="Experience icon" class="icon"/>
-                <div>
-                  <h3>CSS</h3>
-                  <p>Experienced</p>
-                </div>
-              </article>
-              <article>
-                <img src="./assets/checkmark.png" alt="Experience icon" class="icon"/>
-                <div>
-                  <h3>SASS</h3>
-                  <p>Intermediate</p>
-                </div>
-              </article>
-              <article>
-                <img src="./assets/checkmark.png" alt="Experience icon" class="icon"/>
-                <div>
-                  <h3>JavaScript</h3>
-                  <p>Basic</p>
-                </div>
-              </article>
-              <article>
-                <img src="./assets/checkmark.png" alt="Experience icon" class="icon"/>
-                <div>
-                  <h3>TypeScript</h3>
-                  <p>Basic</p>
-                </div>
-              </article>
-              <article>
-                <img src="./assets/checkmark.png" alt="Experience icon" class="icon"/>
-                <div>
-                  <h3>MySQL</h3>
-                  <p>Intermediate</p>
-                </div>
-              </article>
-              <article>
-                <img src="./assets/checkmark.png" alt="Experience icon" class="icon"/>
-                <div>
-                  <h3>Git</h3>
-                  <p>Intermediate</p>
-                </div>
-              </article>
-              <article>
-                <img src="./assets/checkmark.png" alt="Experience icon" class="icon"/>
-                <div>
-                  <h3>Python</h3>
-                  <p>Intermediate</p>
-                </div>
-              </article>
-              <article>
-                <img src="./assets/checkmark.png" alt="Experience icon" class="icon"/>
-                <div>
-                  <h3>React.js</h3>
-                  <p>Intermediate</p>
-                </div>
-              </article>
-              <article>
-                <img src="./assets/checkmark.png" alt="Experience icon" class="icon"/>
-                <div>
-                  <h3>AI Prompt</h3>
-                  <p>Basic</p>
-                </div>
-              </article>
-              <article>
-                <img src="./assets/checkmark.png" alt="Experience icon" class="icon"/>
-                <div>
-                  <h3>Flask</h3>
-                  <p>Intermediate</p>
-                </div>
-              </article>
-              <article>
-                <img src="./assets/checkmark.png" alt="Experience icon" class="icon"/>
-                <div>
-                  <h3>Express.js</h3>
-                  <p>Basic</p>
-                </div>
-              </article>
-              <article>
-                <img src="./assets/checkmark.png" alt="Experience icon" class="icon"/>
-                <div>
-                  <h3>TypeScript</h3>
-                  <p>Basic</p>
-                </div>
-              </article>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    
-    <section id="projects">
-      <p class="section__text__p1">Browse My Recent</p>
-      <h1 class="title">Projects</h1>
-      <div class="experience-details-container">
-        <div class="about-containers">
-          <div class="details-container color-container">
-            <div class="article-container">
-              <img
-                src="./assets/project-1.png"
-                alt="Project 1"
-                class="project-img"
-              />
-            </div>
-            <h2 class="experience-sub-title project-title">AI Chat Bot</h2>
-            <div class="btn-container">
-              <button
-                class="btn btn-color-2 project-btn"
-                onclick="location.href='https://github.com/Gavin-Morris-04/AI-Chat-Bot'"
-              >
-                Github
-              </button>
-              <button
-                class="btn btn-color-2 project-btn"
-                onclick="location.href='https://youtu.be/7ptm9hGPXGE'"
-              >
-                Live Demo
-              </button>
-            </div>
-          </div>
-          <div class="details-container color-container">
-            <div class="article-container">
-              <img
-                src="./assets/project-2.png"
-                alt="Project 2"
-                class="project-img"
-              />
-            </div>
-            <h2 class="experience-sub-title project-title">Carbon Emissions Calculator</h2>
-            <div class="btn-container">
-              <button
-                class="btn btn-color-2 project-btn"
-                onclick="location.href='https://github.com/Gavin-Morris-04/Carbon-Emissions-Calculator'"
-              >
-                Github
-              </button>
-              <button
-                class="btn btn-color-2 project-btn"
-                onclick="location.href='https://youtu.be/hFn-CyVpJDQ'"
-              >
-                Live Demo
-              </button>
-            </div>
-          </div>
-          <div class="details-container color-container">
-            <div class="article-container">
-              <img
-                src="./assets/project-3.png"
-                alt="Project 3"
-                class="project-img"
-              />
-            </div>
-            <h2 class="experience-sub-title project-title">Freelance Web Development Website</h2>
-            <div class="btn-container">
-              <button
-                class="btn btn-color-2 project-btn"
-                onclick="location.href='https://github.com/Gavin-Morris-04/Portfolio'"
-              >
-                Github
-              </button>
-              <button
-                class="btn btn-color-2 project-btn"
-                onclick="location.href='https://gavin-morris-04.github.io/Gavin-Morris-Web-Development/'"
-              >
-                Live Demo
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+        .container {
+            position: relative;
+            min-height: 100vh;
+        }
 
-    <section id="certifications">
-      <p class="section__text__p1">Look At My</p>
-      <h1 class="title">Certifications</h1>
-      <div class="section-container">
-        <div class="certifications-details-container">
-          <div class="details-container">
-            <img src="assets/ibm.png" alt="IBM icon" class="icon" />
-            <h2>IBM</h2>
-            <h3>IBM FULL STACK DEVELOPER PROFESSIONAL CERTIFICATE</h3>
-              <p>
-              - Course ID: 3UBKQ00NGCIA 
-              <br /> - Provides hands-on courses that delve into both front-end and back-end aspects of software engineering, sharpening my existing skills while fostering new ones and transforming me into a more proficient and reliable engineer.
-              <br /> - Skills: Python, Flask, React.js, Node.js, Express.js, MySQL, JavaScript, HTML, CSS, Docker, Kubernetes,  
-              <br /> - Verification Link: <a href="https://coursera.org/verify/professional-cert/3UBKQ00NGCIA">https://coursera.org/verify/professional-cert/3UBKQ00NGCIA</a>
-              </p>
-            <h3>IBM GENERATIVE AI ENGINEERING PROFESSIONAL CERTIFICATE</h3> 
-              <p>
-              - Course ID: EAMKPE6N4UHX
-              <br /> - Offers an in-depth course designed to guide learners from AI fundamentals to mastering the use and creation of Generative AI solutions.
-              <br /> - Skills: Python, Flask, LLMs, RAGs, LangChain, Machine Learning
-              </p>
-          </div>
-          <div class="details-container">
-            <img src="assets/google.webp" alt="Google icon" class="icon" />
-            <h2>GOOGLE</h2>
-            <h3>GOOGLE AI ESSENTIALS</h3>
-            <p>
-             Course ID: XA8OSW778LOB
-             <br /> - Gave me a great introduction to AI and took from knowing nothing about AI to being a beginner with understanding in the creation and use of AI.
-             <br /> Skills: LLMs, Rags, Machine Learning
-             <br /> - Verification Link: <a href="https://coursera.org/verify/XA8OSW778LOB">https://coursera.org/verify/XA8OSW778LOB</a>
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-    
-    <section id="contact">
-      <p class="section__text__p1">Get in Touch</p>
-      <h1 class="title">Contact Me</h1>
-      <div class="contact-info-upper-container">
-        <div class="contact-info-container">
-          <img  src="./assets/email.png" alt="Email icon" class="icon contact-icon email-icon"/>
-          <p><a href="mailto:gmorriscs@gmail.com">gmorriscs@gmail.com</a></p>
-        </div>
-        <div class="contact-info-container">
-          <img src="./assets/linkedin.png" alt="LinkedIn icon" class="icon contact-icon"/>
-          <p><a href="https://www.linkedin.com/in/gavin-morris-73a22a242/">LinkedIn</a></p>
-        </div>
-      </div>
-    </section>
+        /* Background Effects */
+        .background {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+        }
 
-    <footer>
-      <nav>
-        <div class="nav-links-container">
-          <ul class="nav-links">
-            <li><a href="#about">About</a></li>
-            <li><a href="#experience">Experience</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#contact">Contact</a></li>
-          </ul>
+        .bg-gradient {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom right, #050810, #0a0f1a, #0f172a);
+        }
+
+        .bg-blobs {
+            position: absolute;
+            inset: 0;
+            opacity: 0.3;
+        }
+
+        .blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(128px);
+        }
+
+        .blob-1 {
+            top: 25%;
+            left: 25%;
+            width: 384px;
+            height: 384px;
+            background: rgba(59, 130, 246, 0.1);
+        }
+
+        .blob-2 {
+            bottom: 25%;
+            right: 25%;
+            width: 384px;
+            height: 384px;
+            background: rgba(251, 191, 36, 0.1);
+        }
+
+        .blob-3 {
+            top: 50%;
+            left: 50%;
+            width: 256px;
+            height: 256px;
+            background: rgba(168, 85, 247, 0.1);
+        }
+
+        .grid-pattern {
+            position: absolute;
+            inset: 0;
+            opacity: 0.02;
+            background-image: 
+                linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px);
+            background-size: 60px 60px;
+        }
+
+        .cursor-glow {
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            border-radius: 50%;
+            pointer-events: none;
+            background: radial-gradient(circle, rgba(59,130,246,0.08) 0%, transparent 70%);
+            transition: opacity 0.3s;
+            transform: translate(-50%, -50%);
+        }
+
+        /* Progress Bar */
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(to right, #fbbf24, #3b82f6, #a855f7);
+            transform-origin: left;
+            z-index: 50;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 40;
+            backdrop-filter: blur(20px);
+            background: rgba(5, 8, 16, 0.7);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .nav-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 80px;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 900;
+            letter-spacing: -0.05em;
+            background: linear-gradient(to right, #fbbf24, #fcd34d, #60a5fa);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            cursor: pointer;
+            position: relative;
+            transition: transform 0.2s;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        .nav-items {
+            display: none;
+            gap: 0.25rem;
+        }
+
+        @media (min-width: 1024px) {
+            .nav-items {
+                display: flex;
+            }
+        }
+
+        .nav-item {
+            padding: 0.5rem 1rem;
+            border-radius: 9999px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            transition: all 0.3s;
+            cursor: pointer;
+            border: none;
+            background: none;
+            color: #94a3b8;
+        }
+
+        .nav-item:hover {
+            color: white;
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .nav-item.active {
+            color: white;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .menu-button {
+            display: block;
+            padding: 0.5rem;
+            border-radius: 0.5rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: none;
+            color: white;
+            cursor: pointer;
+        }
+
+        @media (min-width: 1024px) {
+            .menu-button {
+                display: none;
+            }
+        }
+
+        .mobile-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            backdrop-filter: blur(20px);
+            background: rgba(5, 8, 16, 0.95);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 1rem 1.5rem;
+            display: none;
+        }
+
+        .mobile-menu.open {
+            display: block;
+        }
+
+        .mobile-menu button {
+            display: block;
+            width: 100%;
+            text-align: left;
+            padding: 0.75rem 1rem;
+            border-radius: 0.5rem;
+            margin-bottom: 0.5rem;
+            border: none;
+            background: none;
+            color: #94a3b8;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .mobile-menu button:hover,
+        .mobile-menu button.active {
+            color: white;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Sections */
+        section {
+            position: relative;
+            padding: 8rem 1.5rem;
+            z-index: 1;
+        }
+
+        .max-w-5xl {
+            max-width: 1024px;
+            margin: 0 auto;
+        }
+
+        .max-w-7xl {
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+
+        /* Hero Section */
+        #home {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding-top: 5rem;
+            text-align: center;
+        }
+
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 9999px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            margin-bottom: 2rem;
+            font-size: 0.875rem;
+            color: #94a3b8;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #4ade80;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .hero-title {
+            font-size: clamp(3rem, 10vw, 6rem);
+            font-weight: 900;
+            letter-spacing: -0.05em;
+            margin-bottom: 1.5rem;
+            line-height: 1;
+        }
+
+        .hero-name {
+            display: block;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .hero-name-gradient {
+            display: block;
+            background: linear-gradient(to right, #fbbf24, #fcd34d, #60a5fa);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.25rem, 3vw, 1.5rem);
+            color: #94a3b8;
+            font-weight: 300;
+            margin-bottom: 1rem;
+        }
+
+        .hero-description {
+            font-size: 1.125rem;
+            color: #64748b;
+            max-width: 42rem;
+            margin: 0 auto 3rem;
+            line-height: 1.7;
+        }
+
+        .hero-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            align-items: center;
+            justify-content: center;
+        }
+
+        @media (min-width: 640px) {
+            .hero-buttons {
+                flex-direction: row;
+            }
+        }
+
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 2rem;
+            border-radius: 9999px;
+            background: linear-gradient(to right, #f59e0b, #fbbf24);
+            color: #050810;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .btn-primary:hover {
+            transform: scale(1.05);
+        }
+
+        .btn-secondary {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 2rem;
+            border-radius: 9999px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            font-weight: 600;
+            background: none;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.05);
+            transform: scale(1.05);
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #64748b;
+            cursor: pointer;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(10px); }
+        }
+
+        /* Section Headers */
+        .section-header {
+            text-align: center;
+            margin-bottom: 5rem;
+        }
+
+        .section-label {
+            color: #fbbf24;
+            font-size: 0.875rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .section-title {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 900;
+            letter-spacing: -0.05em;
+        }
+
+        /* Cards */
+        .card {
+            padding: 2rem;
+            border-radius: 1.5rem;
+            background: linear-gradient(to bottom right, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.5s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card:hover {
+            border-color: rgba(59, 130, 246, 0.3);
+            transform: translateY(-5px);
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom right, rgba(59, 130, 246, 0.05), transparent);
+            opacity: 0;
+            transition: opacity 0.5s;
+            border-radius: 1.5rem;
+        }
+
+        .card:hover::before {
+            opacity: 1;
+        }
+
+        /* Grid Layouts */
+        .grid-2 {
+            display: grid;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        @media (min-width: 1024px) {
+            .grid-2 {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .grid-3 {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        @media (min-width: 768px) {
+            .grid-3 {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        .grid-4 {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        @media (min-width: 640px) {
+            .grid-4 {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .grid-4 {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        /* Stat Cards */
+        .stat-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+
+        .stat-card {
+            padding: 1.5rem;
+            border-radius: 1.5rem;
+            background: linear-gradient(to bottom right, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.5s;
+            position: relative;
+        }
+
+        .stat-card:hover {
+            border-color: rgba(251, 191, 36, 0.3);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 900;
+            background: linear-gradient(to right, #fbbf24, #60a5fa);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: #64748b;
+            font-size: 0.875rem;
+        }
+
+        /* Experience Timeline */
+        .timeline {
+            position: relative;
+        }
+
+        .timeline-line {
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 1px;
+            background: linear-gradient(to bottom, #fbbf24, #3b82f6, #a855f7);
+        }
+
+        @media (min-width: 768px) {
+            .timeline-line {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 4rem;
+            padding-left: 2rem;
+        }
+
+        @media (min-width: 768px) {
+            .timeline-item {
+                padding-left: 0;
+            }
+            
+            .timeline-item:nth-child(odd) {
+                padding-right: calc(50% + 2rem);
+                text-align: right;
+            }
+            
+            .timeline-item:nth-child(even) {
+                padding-left: calc(50% + 2rem);
+            }
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: -2px;
+            top: 0.5rem;
+            width: 16px;
+            height: 16px;
+            background: #fbbf24;
+            border-radius: 50%;
+            box-shadow: 0 0 20px rgba(251, 191, 36, 0.5);
+        }
+
+        @media (min-width: 768px) {
+            .timeline-dot {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+        }
+
+        .experience-date {
+            color: #64748b;
+            font-size: 0.875rem;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .experience-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #60a5fa;
+            margin-bottom: 0.25rem;
+        }
+
+        .experience-company {
+            color: #fbbf24;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .experience-highlights {
+            list-style: none;
+            padding: 0;
+        }
+
+        .experience-highlights li {
+            color: #94a3b8;
+            font-size: 0.875rem;
+            line-height: 1.7;
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.5rem;
+        }
+
+        .experience-highlights li::before {
+            content: '▹';
+            color: #fbbf24;
+            flex-shrink: 0;
+            margin-top: 0.25rem;
+        }
+
+        /* Projects */
+        .project-card {
+            position: relative;
+        }
+
+        .project-glow {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to right, rgba(59, 130, 246, 0.2), rgba(168, 85, 247, 0.2));
+            border-radius: 1.5rem;
+            filter: blur(40px);
+            opacity: 0;
+            transition: opacity 0.5s;
+        }
+
+        .project-card:hover .project-glow {
+            opacity: 1;
+        }
+
+        .project-content {
+            position: relative;
+            padding: 2rem;
+            border-radius: 1.5rem;
+            background: linear-gradient(to bottom right, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.5s;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-card:hover .project-content {
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .project-gradient-bar {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            border-radius: 1.5rem 1.5rem 0 0;
+        }
+
+        .gradient-blue {
+            background: linear-gradient(to right, #3b82f6, #06b6d4);
+        }
+
+        .gradient-purple {
+            background: linear-gradient(to right, #a855f7, #ec4899);
+        }
+
+        .project-icon {
+            padding: 0.75rem;
+            border-radius: 0.75rem;
+            width: fit-content;
+            margin-bottom: 1.5rem;
+        }
+
+        .project-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1.5rem;
+        }
+
+        .project-date {
+            font-size: 0.875rem;
+            color: #64748b;
+        }
+
+        .project-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 1rem;
+            transition: color 0.3s;
+        }
+
+        .project-card:hover .project-title {
+            color: #60a5fa;
+        }
+
+        .project-description {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+        }
+
+        .project-description li {
+            color: #94a3b8;
+            font-size: 0.875rem;
+            line-height: 1.7;
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.5rem;
+        }
+
+        .project-description li::before {
+            content: '▹';
+            color: #fbbf24;
+            flex-shrink: 0;
+            margin-top: 0.25rem;
+        }
+
+        .project-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            border-radius: 9999px;
+            border: 1px solid rgba(251, 191, 36, 0.5);
+            color: #fbbf24;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .project-link:hover {
+            background: #fbbf24;
+            color: #050810;
+            transform: scale(1.05);
+        }
+
+        /* Skills */
+        .skills-card {
+            padding: 1.5rem;
+            border-radius: 1.5rem;
+            background: linear-gradient(to bottom right, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.5s;
+        }
+
+        .skills-card:hover {
+            border-color: rgba(251, 191, 36, 0.3);
+        }
+
+        .skills-title {
+            font-size: 1.125rem;
+            font-weight: 700;
+            color: #fbbf24;
+            margin-bottom: 1.5rem;
+        }
+
+        .skill-item {
+            margin-bottom: 1rem;
+        }
+
+        .skill-header {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.875rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .skill-name {
+            color: #cbd5e1;
+        }
+
+        .skill-percentage {
+            color: #64748b;
+        }
+
+        .skill-bar {
+            height: 6px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 9999px;
+            overflow: hidden;
+        }
+
+        .skill-progress {
+            height: 100%;
+            background: linear-gradient(to right, #f59e0b, #3b82f6);
+            border-radius: 9999px;
+            transition: width 1s ease-out;
+        }
+
+        .framework-grid,
+        .tool-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.75rem;
+        }
+
+        .framework-item,
+        .tool-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem;
+            border-radius: 0.75rem;
+            background: rgba(255, 255, 255, 0.05);
+            transition: all 0.3s;
+            font-size: 0.875rem;
+            color: #cbd5e1;
+        }
+
+        .framework-item:hover,
+        .tool-item:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: scale(1.05);
+        }
+
+        .spec-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .spec-tag {
+            padding: 0.5rem 1rem;
+            border-radius: 9999px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.875rem;
+            color: #cbd5e1;
+            transition: all 0.3s;
+            cursor: default;
+        }
+
+        .spec-tag:hover {
+            border-color: rgba(6, 182, 212, 0.3);
+            background: rgba(6, 182, 212, 0.1);
+            transform: scale(1.05);
+        }
+
+        /* Certifications */
+        .cert-card {
+            padding: 1.5rem;
+            border-radius: 1.5rem;
+            background: linear-gradient(to bottom right, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            transition: all 0.5s;
+        }
+
+        .cert-card:hover {
+            border-color: rgba(251, 191, 36, 0.3);
+            transform: translateY(-5px);
+        }
+
+        .cert-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .cert-issuer {
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: #60a5fa;
+            letter-spacing: 0.1em;
+        }
+
+        .cert-title {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: white;
+            margin: 0.5rem 0;
+            line-height: 1.4;
+        }
+
+        .cert-id {
+            font-size: 0.75rem;
+            color: #64748b;
+            font-family: monospace;
+        }
+
+        /* Contact */
+        .contact-grid {
+            display: grid;
+            gap: 1rem;
+        }
+
+        @media (min-width: 640px) {
+            .contact-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .contact-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        .contact-card {
+            padding: 1.5rem;
+            border-radius: 1.5rem;
+            background: linear-gradient(to bottom right, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.5s;
+            display: block;
+        }
+
+        .contact-card:hover {
+            border-color: rgba(251, 191, 36, 0.3);
+            transform: translateY(-5px) scale(1.02);
+        }
+
+        .contact-icon {
+            width: 32px;
+            height: 32px;
+            color: #64748b;
+            margin: 0 auto 1rem;
+            transition: color 0.3s;
+        }
+
+        .contact-card:hover .contact-icon {
+            color: #fbbf24;
+        }
+
+        .contact-label {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: #60a5fa;
+            margin-bottom: 0.25rem;
+        }
+
+        .contact-value {
+            font-size: 0.875rem;
+            color: #94a3b8;
+            transition: color 0.3s;
+        }
+
+        .contact-card:hover .contact-value {
+            color: white;
+        }
+
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 1.25rem 2.5rem;
+            border-radius: 9999px;
+            background: linear-gradient(to right, #f59e0b, #fbbf24);
+            color: #050810;
+            font-weight: 700;
+            font-size: 1.125rem;
+            border: none;
+            cursor: pointer;
+            text-decoration: none;
+            transition: transform 0.2s;
+            margin-top: 4rem;
+        }
+
+        .cta-button:hover {
+            transform: scale(1.05);
+        }
+
+        /* Footer */
+        footer {
+            padding: 3rem 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            text-align: center;
+            color: #64748b;
+        }
+
+        /* Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s, transform 0.8s;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .fade-in-left {
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: opacity 0.8s, transform 0.8s;
+        }
+
+        .fade-in-left.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .fade-in-right {
+            opacity: 0;
+            transform: translateX(50px);
+            transition: opacity 0.8s, transform 0.8s;
+        }
+
+        .fade-in-right.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* Floating Elements */
+        .floating-shape {
+            position: absolute;
+            pointer-events: none;
+        }
+
+        .shape-1 {
+            top: 25%;
+            left: 10%;
+            width: 80px;
+            height: 80px;
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            border-radius: 0.5rem;
+            animation: float 20s infinite linear;
+        }
+
+        .shape-2 {
+            top: 33%;
+            right: 15%;
+            width: 128px;
+            height: 128px;
+            border: 1px solid rgba(251, 191, 36, 0.2);
+            border-radius: 50%;
+            animation: float-reverse 25s infinite linear;
+        }
+
+        .shape-3 {
+            bottom: 25%;
+            left: 20%;
+            width: 64px;
+            height: 64px;
+            background: linear-gradient(to bottom right, rgba(168, 85, 247, 0.1), rgba(59, 130, 246, 0.1));
+            clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+            animation: float 15s infinite linear;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-20px) rotate(180deg);
+            }
+        }
+
+        @keyframes float-reverse {
+            0%, 100% {
+                transform: scale(1) rotate(0deg);
+            }
+            50% {
+                transform: scale(1.1) rotate(-360deg);
+            }
+        }
+
+        /* Education Card */
+        .education-card {
+            margin-top: 2rem;
+            padding: 1.5rem;
+            border-radius: 1.5rem;
+            background: linear-gradient(to bottom right, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.5s;
+        }
+
+        .education-card:hover {
+            border-color: rgba(59, 130, 246, 0.3);
+        }
+
+        .education-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+        }
+
+        .education-icon {
+            padding: 0.5rem;
+            border-radius: 0.5rem;
+            background: rgba(251, 191, 36, 0.1);
+            color: #fbbf24;
+        }
+
+        .education-label {
+            color: #fbbf24;
+            font-weight: 600;
+        }
+
+        .education-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 0.5rem;
+        }
+
+        .education-degree {
+            color: #cbd5e1;
+            margin-bottom: 0.25rem;
+        }
+
+        .education-minor {
+            color: #94a3b8;
+        }
+
+        .education-details {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1rem;
+            font-size: 0.875rem;
+            color: #64748b;
+        }
+
+        .education-detail {
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+
+        /* Icon styles */
+        .icon {
+            width: 18px;
+            height: 18px;
+            fill: currentColor;
+        }
+
+        .icon-lg {
+            width: 24px;
+            height: 24px;
+        }
+
+        .icon-xl {
+            width: 32px;
+            height: 32px;
+        }
+
+        /* Responsive text */
+        @media (max-width: 640px) {
+            section {
+                padding: 4rem 1rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Background -->
+        <div class="background">
+            <div class="bg-gradient"></div>
+            <div class="bg-blobs">
+                <div class="blob blob-1"></div>
+                <div class="blob blob-2"></div>
+                <div class="blob blob-3"></div>
+            </div>
+            <div class="grid-pattern"></div>
+            <div class="cursor-glow" id="cursorGlow"></div>
         </div>
-      </nav>
-    </footer>
-    <script src="script.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/whatwg-fetch/dist/fetch.umd.js"></script>
-  </body>
+
+        <!-- Progress Bar -->
+        <div class="progress-bar" id="progressBar"></div>
+
+        <!-- Navigation -->
+        <nav>
+            <div class="nav-container">
+                <div class="logo" onclick="scrollToSection('home')">GM</div>
+                <div class="nav-items" id="navItems">
+                    <button class="nav-item" data-section="home" onclick="scrollToSection('home')">Home</button>
+                    <button class="nav-item" data-section="about" onclick="scrollToSection('about')">About</button>
+                    <button class="nav-item" data-section="experience" onclick="scrollToSection('experience')">Experience</button>
+                    <button class="nav-item" data-section="projects" onclick="scrollToSection('projects')">Projects</button>
+                    <button class="nav-item" data-section="skills" onclick="scrollToSection('skills')">Skills</button>
+                    <button class="nav-item" data-section="certifications" onclick="scrollToSection('certifications')">Certifications</button>
+                    <button class="nav-item" data-section="contact" onclick="scrollToSection('contact')">Contact</button>
+                </div>
+                <button class="menu-button" onclick="toggleMenu()">
+                    <svg class="icon-lg" id="menuIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="3" y1="12" x2="21" y2="12"></line>
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <line x1="3" y1="18" x2="21" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
+            <div class="mobile-menu" id="mobileMenu">
+                <button data-section="home" onclick="scrollToSection('home')">Home</button>
+                <button data-section="about" onclick="scrollToSection('about')">About</button>
+                <button data-section="experience" onclick="scrollToSection('experience')">Experience</button>
+                <button data-section="projects" onclick="scrollToSection('projects')">Projects</button>
+                <button data-section="skills" onclick="scrollToSection('skills')">Skills</button>
+                <button data-section="certifications" onclick="scrollToSection('certifications')">Certifications</button>
+                <button data-section="contact" onclick="scrollToSection('contact')">Contact</button>
+            </div>
+        </nav>
+
+        <!-- Hero Section -->
+        <section id="home">
+            <div class="max-w-5xl">
+                <div class="status-badge fade-in">
+                    <span class="status-dot"></span>
+                    <span>Available for opportunities</span>
+                </div>
+
+                <h1 class="hero-title fade-in">
+                    <span class="hero-name">GAVIN</span>
+                    <span class="hero-name-gradient">MORRIS</span>
+                </h1>
+
+                <p class="hero-subtitle fade-in">Software Engineer & Full-Stack Developer</p>
+
+                <p class="hero-description fade-in">
+                    Computer Science student at LSU crafting innovative solutions with cutting-edge technologies. 
+                    Passionate about building impactful software that makes a difference.
+                </p>
+
+                <div class="hero-buttons fade-in">
+                    <button class="btn-primary" onclick="scrollToSection('projects')">
+                        View My Work
+                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                            <polyline points="12 5 19 12 12 19"></polyline>
+                        </svg>
+                    </button>
+                    <button class="btn-secondary" onclick="scrollToSection('contact')">
+                        Get In Touch
+                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                            <polyline points="22,6 12,13 2,6"></polyline>
+                        </svg>
+                    </button>
+                </div>
+
+                <div class="scroll-indicator" onclick="scrollToSection('about')">
+                    <svg class="icon-xl" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                </div>
+            </div>
+
+            <!-- Floating Shapes -->
+            <div class="floating-shape shape-1"></div>
+            <div class="floating-shape shape-2"></div>
+            <div class="floating-shape shape-3"></div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about">
+            <div class="max-w-7xl">
+                <div class="section-header fade-in">
+                    <span class="section-label">Introduction</span>
+                    <h2 class="section-title">About Me</h2>
+                </div>
+
+                <div class="grid-2">
+                    <div class="fade-in-left">
+                        <h3 style="font-size: 1.875rem; font-weight: 700; color: #60a5fa; margin-bottom: 1.5rem;">
+                            Building the Future, One Line at a Time
+                        </h3>
+                        <p style="font-size: 1.125rem; color: #94a3b8; line-height: 1.7; margin-bottom: 1.5rem;">
+                            I'm a passionate Computer Science student at Louisiana State University, driven by the endless possibilities 
+                            of technology. With hands-on experience in full-stack development, GIS applications, and AI integration, 
+                            I thrive on solving complex problems and creating impactful solutions.
+                        </p>
+                        <p style="font-size: 1.125rem; color: #94a3b8; line-height: 1.7;">
+                            My journey includes developing production-ready applications, optimizing backend systems, and launching 
+                            products to the App Store. I'm constantly learning, growing, and pushing the boundaries of what's possible.
+                        </p>
+
+                        <!-- Education Card -->
+                        <div class="education-card fade-in">
+                            <div class="education-header">
+                                <div class="education-icon">
+                                    <svg class="icon-lg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
+                                        <path d="M6 12v5c3 3 9 3 12 0v-5"></path>
+                                    </svg>
+                                </div>
+                                <span class="education-label">Education</span>
+                            </div>
+                            <h4 class="education-title">Louisiana State University</h4>
+                            <p class="education-degree">Bachelor of Science in Computer Science</p>
+                            <p class="education-minor">Minor in Mathematics</p>
+                            <div class="education-details">
+                                <span class="education-detail">
+                                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                                    </svg>
+                                    GPA: 3.52
+                                </span>
+                                <span class="education-detail">
+                                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                                        <line x1="16" y1="2" x2="16" y2="6"></line>
+                                        <line x1="8" y1="2" x2="8" y2="6"></line>
+                                        <line x1="3" y1="10" x2="21" y2="10"></line>
+                                    </svg>
+                                    May 2027
+                                </span>
+                                <span class="education-detail">
+                                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                                        <circle cx="12" cy="10" r="3"></circle>
+                                    </svg>
+                                    Baton Rouge, LA
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Stats Grid -->
+                    <div class="stat-grid fade-in-right">
+                        <div class="stat-card">
+                            <svg class="icon-xl" style="color: #64748b; margin-bottom: 1rem;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+                                <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+                            </svg>
+                            <div class="stat-number">4+</div>
+                            <div class="stat-label">Years Experience</div>
+                        </div>
+                        <div class="stat-card">
+                            <svg class="icon-xl" style="color: #64748b; margin-bottom: 1rem;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="16 18 22 12 16 6"></polyline>
+                                <polyline points="8 6 2 12 8 18"></polyline>
+                            </svg>
+                            <div class="stat-number">2</div>
+                            <div class="stat-label">Major Projects</div>
+                        </div>
+                        <div class="stat-card">
+                            <svg class="icon-xl" style="color: #64748b; margin-bottom: 1rem;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="8" r="7"></circle>
+                                <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline>
+                            </svg>
+                            <div class="stat-number">4</div>
+                            <div class="stat-label">Certifications</div>
+                        </div>
+                        <div class="stat-card">
+                            <svg class="icon-xl" style="color: #64748b; margin-bottom: 1rem;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
+                            </svg>
+                            <div class="stat-number">15+</div>
+                            <div class="stat-label">Technologies</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Experience Section -->
+        <section id="experience">
+            <div class="max-w-5xl">
+                <div class="section-header fade-in">
+                    <span class="section-label">Career Journey</span>
+                    <h2 class="section-title">Experience</h2>
+                </div>
+
+                <div class="timeline">
+                    <div class="timeline-line"></div>
+
+                    <div class="timeline-item fade-in">
+                        <div class="timeline-dot"></div>
+                        <div class="card">
+                            <span class="experience-date">January 2026 – May 2026</span>
+                            <h3 class="experience-title">Software Engineer Intern</h3>
+                            <p class="experience-company">Louisiana Blue Insurance</p>
+                            <ul class="experience-highlights">
+                                <li>Developed backend features using C# and SQL to manage client documents, payments, and records within cloud-based systems</li>
+                                <li>Built and optimized database queries and workflows to improve data consistency and performance across patient-facing applications</li>
+                                <li>Collaborated with engineers and stakeholders to debug issues, deploy updates, and enhance system reliability in production</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item fade-in">
+                        <div class="timeline-dot"></div>
+                        <div class="card">
+                            <span class="experience-date">January 2025 – May 2025</span>
+                            <h3 class="experience-title">Software Developer Intern</h3>
+                            <p class="experience-company">LSU CARTS</p>
+                            <ul class="experience-highlights">
+                                <li>Collaborated in a team to develop GIS applications using Python and Blazor, contributing to innovative solutions</li>
+                                <li>Developed applications that enhanced the efficiency of GIS analysts, increasing their productivity by up to 25%</li>
+                                <li>Applied problem-solving techniques and programming expertise to deliver functional GIS tools that support research and transportation safety</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects">
+            <div class="max-w-7xl">
+                <div class="section-header fade-in">
+                    <span class="section-label">Portfolio</span>
+                    <h2 class="section-title">Featured Projects</h2>
+                </div>
+
+                <div class="grid-2">
+                    <div class="project-card fade-in">
+                        <div class="project-glow"></div>
+                        <div class="project-content">
+                            <div class="project-gradient-bar gradient-blue"></div>
+                            <div class="project-header">
+                                <div class="project-icon gradient-blue">
+                                    <svg class="icon-lg" style="color: white;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect>
+                                        <line x1="12" y1="18" x2="12.01" y2="18"></line>
+                                    </svg>
+                                </div>
+                                <span class="project-date">May 2025</span>
+                            </div>
+                            <h3 class="project-title">Inventory Pro Tracker</h3>
+                            <ul class="project-description">
+                                <li>Developed and launched a full-stack inventory management system with Swift UI iOS app and responsive web interface</li>
+                                <li>Designed and deployed scalable backend using Railway for real-time inventory tracking across multiple suppliers</li>
+                                <li>Built intuitive UI/UX for businesses to manage complex supply chains with multi-supplier support and usage history</li>
+                            </ul>
+                            <a href="https://apps.apple.com/us/app/inventoryprotracker/id6747211069" target="_blank" rel="noopener noreferrer" class="project-link">
+                                View on App Store
+                                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                                    <polyline points="15 3 21 3 21 9"></polyline>
+                                    <line x1="10" y1="14" x2="21" y2="3"></line>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="project-card fade-in">
+                        <div class="project-glow"></div>
+                        <div class="project-content">
+                            <div class="project-gradient-bar gradient-purple"></div>
+                            <div class="project-header">
+                                <div class="project-icon gradient-purple">
+                                    <svg class="icon-lg" style="color: white;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z"></path>
+                                        <circle cx="12" cy="12" r="3"></circle>
+                                    </svg>
+                                </div>
+                                <span class="project-date">December 2024</span>
+                            </div>
+                            <h3 class="project-title">AI Chat Bot</h3>
+                            <ul class="project-description">
+                                <li>Designed a terminal-based AI chatbot using Python, providing secure and efficient local interaction environment</li>
+                                <li>Leveraged the Ollama platform to enhance chatbot functionality with advanced AI capabilities</li>
+                                <li>Designed and debugged to ensure seamless user interaction with effective troubleshooting techniques</li>
+                            </ul>
+                            <a href="https://github.com/Gavin-Morris-04/AI-Chat-Bot" target="_blank" rel="noopener noreferrer" class="project-link">
+                                View on GitHub
+                                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                                    <polyline points="15 3 21 3 21 9"></polyline>
+                                    <line x1="10" y1="14" x2="21" y2="3"></line>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills">
+            <div class="max-w-7xl">
+                <div class="section-header fade-in">
+                    <span class="section-label">Expertise</span>
+                    <h2 class="section-title">Technical Skills</h2>
+                </div>
+
+                <div class="grid-4">
+                    <!-- Languages -->
+                    <div class="skills-card fade-in">
+                        <h3 class="skills-title">Languages</h3>
+                        <div id="languageSkills">
+                            <div class="skill-item">
+                                <div class="skill-header">
+                                    <span class="skill-name">Python</span>
+                                    <span class="skill-percentage">90%</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" data-level="90"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-header">
+                                    <span class="skill-name">JavaScript</span>
+                                    <span class="skill-percentage">85%</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" data-level="85"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-header">
+                                    <span class="skill-name">TypeScript</span>
+                                    <span class="skill-percentage">80%</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" data-level="80"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-header">
+                                    <span class="skill-name">C#</span>
+                                    <span class="skill-percentage">75%</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" data-level="75"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-header">
+                                    <span class="skill-name">SQL</span>
+                                    <span class="skill-percentage">85%</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" data-level="85"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-header">
+                                    <span class="skill-name">HTML/CSS</span>
+                                    <span class="skill-percentage">90%</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" data-level="90"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Frameworks -->
+                    <div class="skills-card fade-in">
+                        <h3 class="skills-title" style="color: #60a5fa;">Frameworks</h3>
+                        <div class="framework-grid">
+                            <div class="framework-item">
+                                <svg class="icon" style="color: #60a5fa;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polyline points="16 18 22 12 16 6"></polyline>
+                                    <polyline points="8 6 2 12 8 18"></polyline>
+                                </svg>
+                                <span>React</span>
+                            </div>
+                            <div class="framework-item">
+                                <svg class="icon" style="color: #60a5fa;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polyline points="4 17 10 11 4 5"></polyline>
+                                    <line x1="12" y1="19" x2="20" y2="19"></line>
+                                </svg>
+                                <span>Flask</span>
+                            </div>
+                            <div class="framework-item">
+                                <svg class="icon" style="color: #60a5fa;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                                </svg>
+                                <span>Express</span>
+                            </div>
+                            <div class="framework-item">
+                                <svg class="icon" style="color: #60a5fa;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                                    <path d="M2 17l10 5 10-5"></path>
+                                    <path d="M2 12l10 5 10-5"></path>
+                                </svg>
+                                <span>Node.js</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tools -->
+                    <div class="skills-card fade-in">
+                        <h3 class="skills-title" style="color: #a855f7;">Tools</h3>
+                        <div class="tool-grid">
+                            <div class="tool-item">
+                                <svg class="icon" style="color: #a855f7;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
+                                    <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path>
+                                    <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path>
+                                </svg>
+                                <span>MySQL</span>
+                            </div>
+                            <div class="tool-item">
+                                <svg class="icon" style="color: #a855f7;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+                                    <polyline points="7.5 4.21 12 6.81 16.5 4.21"></polyline>
+                                    <polyline points="7.5 19.79 7.5 14.6 3 12"></polyline>
+                                    <polyline points="21 12 16.5 14.6 16.5 19.79"></polyline>
+                                    <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+                                    <line x1="12" y1="22.08" x2="12" y2="12"></line>
+                                </svg>
+                                <span>Docker</span>
+                            </div>
+                            <div class="tool-item">
+                                <svg class="icon" style="color: #a855f7;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"></path>
+                                </svg>
+                                <span>Kubernetes</span>
+                            </div>
+                            <div class="tool-item">
+                                <svg class="icon" style="color: #a855f7;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="12" cy="12" r="3"></circle>
+                                    <path d="M12 1v6m0 6v6"></path>
+                                    <path d="m4.93 4.93 4.24 4.24m5.66 5.66 4.24 4.24"></path>
+                                    <path d="M1 12h6m6 0h6"></path>
+                                    <path d="m4.93 19.07 4.24-4.24m5.66-5.66 4.24-4.24"></path>
+                                </svg>
+                                <span>Git</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Specializations -->
+                    <div class="skills-card fade-in">
+                        <h3 class="skills-title" style="color: #06b6d4;">Specializations</h3>
+                        <div class="spec-tags">
+                            <span class="spec-tag">Full-Stack Development</span>
+                            <span class="spec-tag">AI Integration</span>
+                            <span class="spec-tag">Prompt Engineering</span>
+                            <span class="spec-tag">GIS Applications</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Certifications Section -->
+        <section id="certifications">
+            <div class="max-w-7xl">
+                <div class="section-header fade-in">
+                    <span class="section-label">Credentials</span>
+                    <h2 class="section-title">Certifications</h2>
+                </div>
+
+                <div class="grid-4">
+                    <div class="cert-card fade-in">
+                        <div class="cert-icon">🏦</div>
+                        <span class="cert-issuer">WHARTON</span>
+                        <h3 class="cert-title">FinTech: Foundations & Applications of Financial Technology</h3>
+                        <span class="cert-id">A9CABJKOSLQ3</span>
+                    </div>
+                    <div class="cert-card fade-in">
+                        <div class="cert-icon">🤖</div>
+                        <span class="cert-issuer">GOOGLE</span>
+                        <h3 class="cert-title">AI Essentials</h3>
+                        <span class="cert-id">XA8OSW778LOB</span>
+                    </div>
+                    <div class="cert-card fade-in">
+                        <div class="cert-icon">💻</div>
+                        <span class="cert-issuer">IBM</span>
+                        <h3 class="cert-title">Full Stack Developer Professional Certificate</h3>
+                        <span class="cert-id">3UBKQ00NGCIA</span>
+                    </div>
+                    <div class="cert-card fade-in">
+                        <div class="cert-icon">🧠</div>
+                        <span class="cert-issuer">IBM</span>
+                        <h3 class="cert-title">Generative AI Engineering Professional Certificate</h3>
+                        <span class="cert-id">EAMKPE6N4UHX</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Involvement Section -->
+        <section id="involvement">
+            <div class="max-w-7xl">
+                <div class="section-header fade-in">
+                    <span class="section-label">Community</span>
+                    <h2 class="section-title">Campus Involvement</h2>
+                </div>
+
+                <div class="grid-3">
+                    <div class="card fade-in">
+                        <div style="padding: 0.75rem; border-radius: 0.75rem; background: rgba(59, 130, 246, 0.1); width: fit-content; margin-bottom: 1.5rem;">
+                            <svg class="icon-lg" style="color: #60a5fa;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                            </svg>
+                        </div>
+                        <h3 style="font-size: 1.25rem; font-weight: 700; color: white; margin-bottom: 0.5rem;">LSU Student Government</h3>
+                        <p style="color: #fbbf24; font-size: 0.875rem; font-weight: 600; margin-bottom: 1rem;">Coordinator of Safety and Transportation</p>
+                        <p style="color: #94a3b8; line-height: 1.7;">Working to improve campus safety and transportation systems for all LSU students.</p>
+                    </div>
+                    <div class="card fade-in">
+                        <div style="padding: 0.75rem; border-radius: 0.75rem; background: rgba(59, 130, 246, 0.1); width: fit-content; margin-bottom: 1.5rem;">
+                            <svg class="icon-lg" style="color: #60a5fa;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                                <circle cx="9" cy="7" r="4"></circle>
+                                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                            </svg>
+                        </div>
+                        <h3 style="font-size: 1.25rem; font-weight: 700; color: white; margin-bottom: 0.5rem;">Tau Kappa Epsilon</h3>
+                        <p style="color: #fbbf24; font-size: 0.875rem; font-weight: 600; margin-bottom: 1rem;">Social Chair - Executive Board</p>
+                        <p style="color: #94a3b8; line-height: 1.7;">Organizing events and fostering brotherhood within the fraternity.</p>
+                    </div>
+                    <div class="card fade-in">
+                        <div style="padding: 0.75rem; border-radius: 0.75rem; background: rgba(59, 130, 246, 0.1); width: fit-content; margin-bottom: 1.5rem;">
+                            <svg class="icon-lg" style="color: #60a5fa;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                            </svg>
+                        </div>
+                        <h3 style="font-size: 1.25rem; font-weight: 700; color: white; margin-bottom: 0.5rem;">LSU Companion Animal Alliance</h3>
+                        <p style="color: #fbbf24; font-size: 0.875rem; font-weight: 600; margin-bottom: 1rem;">Volunteer</p>
+                        <p style="color: #94a3b8; line-height: 1.7;">Dedicating time to care for and improve the lives of companion animals.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact">
+            <div class="max-w-5xl" style="text-align: center;">
+                <div class="section-header fade-in">
+                    <span class="section-label">Get In Touch</span>
+                    <h2 class="section-title">Let's Connect</h2>
+                    <p style="font-size: 1.25rem; color: #94a3b8; margin-top: 2rem; max-width: 42rem; margin-left: auto; margin-right: auto;">
+                        I'm always open to discussing new opportunities, collaborations, or just connecting with fellow tech enthusiasts.
+                    </p>
+                </div>
+
+                <div class="contact-grid fade-in">
+                    <a href="mailto:gmorriscs@gmail.com" class="contact-card">
+                        <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                            <polyline points="22,6 12,13 2,6"></polyline>
+                        </svg>
+                        <h3 class="contact-label">Email</h3>
+                        <p class="contact-value">gmorriscs@gmail.com</p>
+                    </a>
+                    <a href="tel:+15042228798" class="contact-card">
+                        <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                        </svg>
+                        <h3 class="contact-label">Phone</h3>
+                        <p class="contact-value">(504) 222-8798</p>
+                    </a>
+                    <a href="https://www.linkedin.com/in/gmorr32" target="_blank" rel="noopener noreferrer" class="contact-card">
+                        <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                            <rect x="2" y="9" width="4" height="12"></rect>
+                            <circle cx="4" cy="4" r="2"></circle>
+                        </svg>
+                        <h3 class="contact-label">LinkedIn</h3>
+                        <p class="contact-value">gmorr32</p>
+                    </a>
+                    <a href="https://gavinmorrisportfolio.com" target="_blank" rel="noopener noreferrer" class="contact-card">
+                        <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <line x1="2" y1="12" x2="22" y2="12"></line>
+                            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                        </svg>
+                        <h3 class="contact-label">Portfolio</h3>
+                        <p class="contact-value">gavinmorrisportfolio.com</p>
+                    </a>
+                </div>
+
+                <a href="mailto:gmorriscs@gmail.com" class="cta-button fade-in">
+                    Say Hello
+                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                        <polyline points="22,6 12,13 2,6"></polyline>
+                    </svg>
+                </a>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <p>© 2025 Gavin Morris. Designed and built with passion.</p>
+        </footer>
+    </div>
+
+    <script>
+        // Cursor Glow Effect
+        const cursorGlow = document.getElementById('cursorGlow');
+        document.addEventListener('mousemove', (e) => {
+            cursorGlow.style.left = e.clientX + 'px';
+            cursorGlow.style.top = e.clientY + 'px';
+        });
+
+        // Progress Bar
+        window.addEventListener('scroll', () => {
+            const scrollTop = window.pageYOffset;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrollPercent = scrollTop / docHeight;
+            document.getElementById('progressBar').style.transform = `scaleX(${scrollPercent})`;
+        });
+
+        // Smooth Scroll
+        function scrollToSection(sectionId) {
+            const element = document.getElementById(sectionId);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth' });
+            }
+            // Close mobile menu if open
+            const mobileMenu = document.getElementById('mobileMenu');
+            mobileMenu.classList.remove('open');
+        }
+
+        // Active Section Tracking
+        function updateActiveSection() {
+            const sections = ['home', 'about', 'experience', 'projects', 'skills', 'certifications', 'contact'];
+            const scrollPosition = window.scrollY + 100;
+
+            for (const section of sections) {
+                const element = document.getElementById(section);
+                if (element) {
+                    const offsetTop = element.offsetTop;
+                    const offsetHeight = element.offsetHeight;
+                    if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
+                        // Update desktop nav
+                        document.querySelectorAll('.nav-item').forEach(item => {
+                            item.classList.remove('active');
+                            if (item.dataset.section === section) {
+                                item.classList.add('active');
+                            }
+                        });
+                        // Update mobile nav
+                        document.querySelectorAll('.mobile-menu button').forEach(item => {
+                            item.classList.remove('active');
+                            if (item.dataset.section === section) {
+                                item.classList.add('active');
+                            }
+                        });
+                        break;
+                    }
+                }
+            }
+        }
+
+        window.addEventListener('scroll', updateActiveSection);
+        updateActiveSection();
+
+        // Mobile Menu Toggle
+        function toggleMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            const menuIcon = document.getElementById('menuIcon');
+            mobileMenu.classList.toggle('open');
+            
+            if (mobileMenu.classList.contains('open')) {
+                menuIcon.innerHTML = '<line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line>';
+            } else {
+                menuIcon.innerHTML = '<line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line>';
+            }
+        }
+
+        // Intersection Observer for Animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    
+                    // Animate skill bars
+                    if (entry.target.querySelector('.skill-progress')) {
+                        entry.target.querySelectorAll('.skill-progress').forEach(bar => {
+                            const level = bar.dataset.level;
+                            setTimeout(() => {
+                                bar.style.width = level + '%';
+                            }, 200);
+                        });
+                    }
+                }
+            });
+        }, observerOptions);
+
+        // Observe all fade-in elements
+        document.querySelectorAll('.fade-in, .fade-in-left, .fade-in-right').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Initial animations for hero section
+        setTimeout(() => {
+            document.querySelectorAll('#home .fade-in').forEach((el, index) => {
+                setTimeout(() => {
+                    el.classList.add('visible');
+                }, index * 100);
+            });
+        }, 200);
+
+        // Initialize skill bars width to 0
+        document.querySelectorAll('.skill-progress').forEach(bar => {
+            bar.style.width = '0%';
+        });
+    </script>
+</body>
 </html>
