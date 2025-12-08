@@ -889,17 +889,22 @@
         .contact-grid {
             display: grid;
             gap: 1rem;
+            justify-content: center;
         }
 
         @media (min-width: 640px) {
             .contact-grid {
-                grid-template-columns: repeat(2, 1fr);
+                grid-template-columns: repeat(3, 1fr);
+                max-width: 900px;
+                margin: 0 auto;
             }
         }
 
         @media (min-width: 1024px) {
             .contact-grid {
-                grid-template-columns: repeat(4, 1fr);
+                grid-template-columns: repeat(3, 1fr);
+                max-width: 900px;
+                margin: 0 auto;
             }
         }
 
@@ -1753,15 +1758,6 @@
                         </svg>
                         <h3 class="contact-label">LinkedIn</h3>
                         <p class="contact-value">gmorr32</p>
-                    </a>
-                    <a href="https://gavinmorrisportfolio.com" target="_blank" rel="noopener noreferrer" class="contact-card">
-                        <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <circle cx="12" cy="12" r="10"></circle>
-                            <line x1="2" y1="12" x2="22" y2="12"></line>
-                            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
-                        </svg>
-                        <h3 class="contact-label">Portfolio</h3>
-                        <p class="contact-value">gavinmorrisportfolio.com</p>
                     </a>
                 </div>
 
