@@ -1,1784 +1,554 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gavin Morris - Portfolio</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            background: #0a0e27;
-            color: #e2e8f0;
-            overflow-x: hidden;
-            line-height: 1.6;
-        }
-
-        .container {
-            position: relative;
-            min-height: 100vh;
-        }
-
-        /* Background Effects */
-        .background {
-            position: fixed;
-            inset: 0;
-            z-index: 0;
-            pointer-events: none;
-            overflow: hidden;
-        }
-
-        .bg-gradient {
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 50%, #0f172a 100%);
-        }
-
-        .bg-blobs {
-            position: absolute;
-            inset: 0;
-            opacity: 0.4;
-        }
-
-        .blob {
-            position: absolute;
-            border-radius: 50%;
-            filter: blur(120px);
-            animation: blob-animate 20s infinite;
-        }
-
-        .blob-1 {
-            top: -10%;
-            left: -10%;
-            width: 500px;
-            height: 500px;
-            background: radial-gradient(circle, rgba(59, 130, 246, 0.3) 0%, transparent 70%);
-            animation-delay: 0s;
-        }
-
-        .blob-2 {
-            bottom: -10%;
-            right: -10%;
-            width: 600px;
-            height: 600px;
-            background: radial-gradient(circle, rgba(168, 85, 247, 0.3) 0%, transparent 70%);
-            animation-delay: 7s;
-        }
-
-        .blob-3 {
-            top: 50%;
-            left: 50%;
-            width: 400px;
-            height: 400px;
-            background: radial-gradient(circle, rgba(251, 191, 36, 0.2) 0%, transparent 70%);
-            animation-delay: 14s;
-        }
-
-        @keyframes blob-animate {
-            0%, 100% { transform: translate(0, 0) scale(1); }
-            33% { transform: translate(50px, -50px) scale(1.1); }
-            66% { transform: translate(-50px, 50px) scale(0.9); }
-        }
-
-        .grid-pattern {
-            position: absolute;
-            inset: 0;
-            opacity: 0.03;
-            background-image: 
-                linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px);
-            background-size: 50px 50px;
-        }
-
-        /* Progress Bar */
-        .progress-bar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background: linear-gradient(to right, #3b82f6, #8b5cf6, #f59e0b);
-            transform-origin: left;
-            z-index: 100;
-            box-shadow: 0 0 10px rgba(59, 130, 246, 0.5);
-        }
-
-        /* Navigation */
-        nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 90;
-            backdrop-filter: blur(20px) saturate(180%);
-            background: rgba(10, 14, 39, 0.8);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            transition: all 0.3s;
-        }
-
-        .nav-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 2rem;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            height: 80px;
-        }
-
-        .logo {
-            font-size: 1.75rem;
-            font-weight: 800;
-            letter-spacing: -0.02em;
-            background: linear-gradient(135deg, #60a5fa, #a78bfa, #fbbf24);
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-            cursor: pointer;
-            transition: transform 0.3s;
-        }
-
-        .logo:hover {
-            transform: scale(1.05);
-        }
-
-        .nav-items {
-            display: none;
-            gap: 0.5rem;
-        }
-
-        @media (min-width: 1024px) {
-            .nav-items {
-                display: flex;
-            }
-        }
-
-        .nav-item {
-            padding: 0.625rem 1.25rem;
-            border-radius: 8px;
-            font-size: 0.9375rem;
-            font-weight: 500;
-            transition: all 0.3s;
-            cursor: pointer;
-            border: none;
-            background: none;
-            color: #94a3b8;
-            position: relative;
-        }
-
-        .nav-item::before {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 0;
-            height: 2px;
-            background: linear-gradient(90deg, #3b82f6, #8b5cf6);
-            transition: width 0.3s;
-        }
-
-        .nav-item:hover {
-            color: white;
-            background: rgba(255, 255, 255, 0.05);
-        }
-
-        .nav-item:hover::before,
-        .nav-item.active::before {
-            width: 60%;
-        }
-
-        .nav-item.active {
-            color: white;
-            background: rgba(59, 130, 246, 0.1);
-        }
-
-        .menu-button {
-            display: block;
-            padding: 0.5rem;
-            border-radius: 8px;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            color: white;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .menu-button:hover {
-            background: rgba(255, 255, 255, 0.1);
-        }
-
-        @media (min-width: 1024px) {
-            .menu-button {
-                display: none;
-            }
-        }
-
-        .mobile-menu {
-            position: absolute;
-            top: 100%;
-            left: 0;
-            right: 0;
-            backdrop-filter: blur(20px) saturate(180%);
-            background: rgba(10, 14, 39, 0.95);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 1rem 2rem;
-            display: none;
-        }
-
-        .mobile-menu.open {
-            display: block;
-        }
-
-        .mobile-menu button {
-            display: block;
-            width: 100%;
-            text-align: left;
-            padding: 1rem;
-            border-radius: 8px;
-            margin-bottom: 0.5rem;
-            border: none;
-            background: none;
-            color: #94a3b8;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .mobile-menu button:hover,
-        .mobile-menu button.active {
-            color: white;
-            background: rgba(59, 130, 246, 0.2);
-        }
-
-        /* Sections */
-        section {
-            position: relative;
-            padding: 6rem 2rem;
-            z-index: 1;
-        }
-
-        .max-w-5xl {
-            max-width: 1024px;
-            margin: 0 auto;
-        }
-
-        .max-w-7xl {
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        /* Hero Section */
-        #home {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding-top: 5rem;
-            text-align: center;
-        }
-
-        .status-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.75rem;
-            padding: 0.625rem 1.5rem;
-            border-radius: 50px;
-            background: rgba(34, 197, 94, 0.1);
-            border: 1px solid rgba(34, 197, 94, 0.3);
-            margin-bottom: 2rem;
-            font-size: 0.875rem;
-            color: #4ade80;
-            backdrop-filter: blur(10px);
-        }
-
-        .status-dot {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            background: #4ade80;
-            animation: pulse 2s infinite;
-            box-shadow: 0 0 10px rgba(34, 197, 94, 0.5);
-        }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.7; transform: scale(1.2); }
-        }
-
-        .hero-title {
-            font-size: clamp(3.5rem, 12vw, 7rem);
-            font-weight: 900;
-            letter-spacing: -0.05em;
-            margin-bottom: 1.5rem;
-            line-height: 1.1;
-        }
-
-        .hero-name {
-            display: block;
-            color: #f1f5f9;
-        }
-
-        .hero-name-gradient {
-            display: block;
-            background: linear-gradient(135deg, #60a5fa 0%, #a78bfa 50%, #fbbf24 100%);
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-size: 200% 200%;
-            animation: gradient-shift 5s ease infinite;
-        }
-
-        @keyframes gradient-shift {
-            0%, 100% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-        }
-
-        .hero-subtitle {
-            font-size: clamp(1.5rem, 4vw, 2rem);
-            color: #94a3b8;
-            font-weight: 400;
-            margin-bottom: 1.5rem;
-        }
-
-        .hero-description {
-            font-size: clamp(1rem, 2vw, 1.25rem);
-            color: #64748b;
-            max-width: 48rem;
-            margin: 0 auto 3rem;
-            line-height: 1.8;
-        }
-
-        .hero-buttons {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-            align-items: center;
-            justify-content: center;
-        }
-
-        @media (min-width: 640px) {
-            .hero-buttons {
-                flex-direction: row;
-            }
-        }
-
-        .btn-primary {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.75rem;
-            padding: 1.125rem 2.5rem;
-            border-radius: 50px;
-            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
-            color: white;
-            font-weight: 600;
-            font-size: 1.0625rem;
-            border: none;
-            cursor: pointer;
-            transition: all 0.3s;
-            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4);
-            text-decoration: none;
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(59, 130, 246, 0.6);
-        }
-
-        .btn-secondary {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.75rem;
-            padding: 1.125rem 2.5rem;
-            border-radius: 50px;
-            border: 2px solid rgba(255, 255, 255, 0.2);
-            color: white;
-            font-weight: 600;
-            font-size: 1.0625rem;
-            background: rgba(255, 255, 255, 0.05);
-            cursor: pointer;
-            transition: all 0.3s;
-            text-decoration: none;
-            backdrop-filter: blur(10px);
-        }
-
-        .btn-secondary:hover {
-            background: rgba(255, 255, 255, 0.1);
-            border-color: rgba(255, 255, 255, 0.3);
-            transform: translateY(-2px);
-        }
-
-        .scroll-indicator {
-            position: absolute;
-            bottom: 3rem;
-            left: 50%;
-            transform: translateX(-50%);
-            color: #64748b;
-            cursor: pointer;
-            animation: bounce 2s infinite;
-        }
-
-        @keyframes bounce {
-            0%, 100% { transform: translateX(-50%) translateY(0); }
-            50% { transform: translateX(-50%) translateY(15px); }
-        }
-
-        /* Section Headers */
-        .section-header {
-            text-align: center;
-            margin-bottom: 4rem;
-        }
-
-        .section-label {
-            color: #60a5fa;
-            font-size: 0.9375rem;
-            font-weight: 600;
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-            margin-bottom: 1rem;
-            display: block;
-        }
-
-        .section-title {
-            font-size: clamp(2.5rem, 7vw, 4.5rem);
-            font-weight: 900;
-            letter-spacing: -0.03em;
-            color: #f1f5f9;
-        }
-
-        /* Cards */
-        .card {
-            padding: 2.5rem;
-            border-radius: 1.5rem;
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-            overflow: hidden;
-            backdrop-filter: blur(10px);
-        }
-
-        .card::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(168, 85, 247, 0.1));
-            opacity: 0;
-            transition: opacity 0.4s;
-            border-radius: 1.5rem;
-        }
-
-        .card:hover {
-            border-color: rgba(59, 130, 246, 0.4);
-            transform: translateY(-8px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-        }
-
-        .card:hover::before {
-            opacity: 1;
-        }
-
-        /* Grid Layouts */
-        .grid-2 {
-            display: grid;
-            gap: 3rem;
-            align-items: center;
-        }
-
-        @media (min-width: 1024px) {
-            .grid-2 {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        .grid-3 {
-            display: grid;
-            gap: 2rem;
-        }
-
-        @media (min-width: 768px) {
-            .grid-3 {
-                grid-template-columns: repeat(3, 1fr);
-            }
-        }
-
-        /* Experience Timeline */
-        .timeline {
-            position: relative;
-            padding: 2rem 0;
-        }
-
-        .timeline-line {
-            position: absolute;
-            left: 1.5rem;
-            top: 0;
-            bottom: 0;
-            width: 2px;
-            background: linear-gradient(to bottom, #3b82f6, #8b5cf6, #f59e0b);
-        }
-
-        @media (min-width: 768px) {
-            .timeline-line {
-                left: 50%;
-                transform: translateX(-50%);
-            }
-        }
-
-        .timeline-item {
-            position: relative;
-            margin-bottom: 4rem;
-            padding-left: 4rem;
-        }
-
-        @media (min-width: 768px) {
-            .timeline-item {
-                padding-left: 0;
-            }
-            
-            .timeline-item:nth-child(odd) {
-                padding-right: calc(50% + 2.5rem);
-                text-align: right;
-            }
-            
-            .timeline-item:nth-child(even) {
-                padding-left: calc(50% + 2.5rem);
-            }
-        }
-
-        .timeline-dot {
-            position: absolute;
-            left: 0.75rem;
-            top: 0.75rem;
-            width: 20px;
-            height: 20px;
-            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
-            border-radius: 50%;
-            box-shadow: 0 0 20px rgba(59, 130, 246, 0.6);
-            border: 3px solid #0a0e27;
-        }
-
-        @media (min-width: 768px) {
-            .timeline-dot {
-                left: 50%;
-                transform: translateX(-50%);
-            }
-        }
-
-        .experience-date {
-            color: #64748b;
-            font-size: 0.9375rem;
-            margin-bottom: 0.75rem;
-            display: block;
-            font-weight: 500;
-        }
-
-        .experience-title {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: #60a5fa;
-            margin-bottom: 0.5rem;
-        }
-
-        .experience-company {
-            color: #fbbf24;
-            font-weight: 600;
-            font-size: 1.125rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .experience-highlights {
-            list-style: none;
-            padding: 0;
-        }
-
-        .experience-highlights li {
-            color: #cbd5e1;
-            font-size: 0.9375rem;
-            line-height: 1.8;
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: flex-start;
-            gap: 0.75rem;
-            position: relative;
-        }
-
-        .experience-highlights li::before {
-            content: '▹';
-            color: #60a5fa;
-            flex-shrink: 0;
-            margin-top: 0.25rem;
-            font-size: 1.25rem;
-        }
-
-        /* Projects */
-        .projects-grid {
-            display: grid;
-            gap: 2rem;
-        }
-
-        @media (min-width: 768px) {
-            .projects-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        .project-card {
-            position: relative;
-        }
-
-        .project-content {
-            position: relative;
-            padding: 2.5rem;
-            border-radius: 1.5rem;
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: all 0.4s;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            backdrop-filter: blur(10px);
-        }
-
-        .project-card:hover .project-content {
-            border-color: rgba(59, 130, 246, 0.4);
-            transform: translateY(-8px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-        }
-
-        .project-gradient-bar {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            border-radius: 1.5rem 1.5rem 0 0;
-        }
-
-        .gradient-blue {
-            background: linear-gradient(90deg, #3b82f6, #06b6d4);
-        }
-
-        .gradient-purple {
-            background: linear-gradient(90deg, #8b5cf6, #ec4899);
-        }
-
-        .gradient-amber {
-            background: linear-gradient(90deg, #f59e0b, #fbbf24);
-        }
-
-        .project-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 1.5rem;
-        }
-
-        .project-date {
-            font-size: 0.875rem;
-            color: #64748b;
-            font-weight: 500;
-        }
-
-        .project-title {
-            font-size: 1.75rem;
-            font-weight: 700;
-            color: #f1f5f9;
-            margin-bottom: 1.5rem;
-            transition: color 0.3s;
-        }
-
-        .project-card:hover .project-title {
-            color: #60a5fa;
-        }
-
-        .project-description {
-            list-style: none;
-            padding: 0;
-            margin-bottom: 2rem;
-            flex-grow: 1;
-        }
-
-        .project-description li {
-            color: #cbd5e1;
-            font-size: 0.9375rem;
-            line-height: 1.8;
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: flex-start;
-            gap: 0.75rem;
-        }
-
-        .project-description li::before {
-            content: '▹';
-            color: #60a5fa;
-            flex-shrink: 0;
-            margin-top: 0.25rem;
-            font-size: 1.25rem;
-        }
-
-        .project-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.75rem;
-            padding: 0.875rem 1.75rem;
-            border-radius: 50px;
-            border: 2px solid rgba(96, 165, 250, 0.5);
-            color: #60a5fa;
-            font-weight: 600;
-            text-decoration: none;
-            transition: all 0.3s;
-            width: fit-content;
-        }
-
-        .project-link:hover {
-            background: #60a5fa;
-            color: #0a0e27;
-            border-color: #60a5fa;
-            transform: translateX(5px);
-        }
-
-        /* Skills */
-        .skills-grid {
-            display: grid;
-            gap: 2rem;
-        }
-
-        @media (min-width: 768px) {
-            .skills-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (min-width: 1024px) {
-            .skills-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
-        }
-
-        .skills-card {
-            padding: 2rem;
-            border-radius: 1.5rem;
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: all 0.4s;
-            backdrop-filter: blur(10px);
-        }
-
-        .skills-card:hover {
-            border-color: rgba(96, 165, 250, 0.4);
-            transform: translateY(-5px);
-        }
-
-        .skills-title {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: #60a5fa;
-            margin-bottom: 2rem;
-        }
-
-        .skills-list {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
-
-        .skill-tag {
-            display: inline-block;
-            padding: 0.75rem 1.25rem;
-            border-radius: 8px;
-            background: rgba(59, 130, 246, 0.1);
-            border: 1px solid rgba(59, 130, 246, 0.2);
-            color: #93c5fd;
-            font-size: 0.9375rem;
-            font-weight: 500;
-            transition: all 0.3s;
-        }
-
-        .skill-tag:hover {
-            background: rgba(59, 130, 246, 0.2);
-            border-color: rgba(59, 130, 246, 0.4);
-            transform: translateY(-2px);
-        }
-
-        .skills-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.75rem;
-        }
-
-        /* Certifications */
-        .cert-grid {
-            display: grid;
-            gap: 2rem;
-        }
-
-        @media (min-width: 640px) {
-            .cert-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (min-width: 1024px) {
-            .cert-grid {
-                grid-template-columns: repeat(4, 1fr);
-            }
-        }
-
-        .cert-card {
-            padding: 2rem;
-            border-radius: 1.5rem;
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            text-align: center;
-            transition: all 0.4s;
-            backdrop-filter: blur(10px);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .cert-card:hover {
-            border-color: rgba(251, 191, 36, 0.4);
-            transform: translateY(-8px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-        }
-
-        .cert-icon {
-            font-size: 3rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .cert-issuer {
-            font-size: 0.75rem;
-            font-weight: 700;
-            color: #60a5fa;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            margin-bottom: 0.75rem;
-        }
-
-        .cert-title {
-            font-size: 0.9375rem;
-            font-weight: 600;
-            color: #f1f5f9;
-            margin-bottom: 1rem;
-            line-height: 1.5;
-            flex-grow: 1;
-        }
-
-        .cert-id {
-            font-size: 0.75rem;
-            color: #64748b;
-            font-family: 'Courier New', monospace;
-            word-break: break-all;
-        }
-
-        /* Education Card */
-        .education-card {
-            margin-top: 2rem;
-            padding: 2rem;
-            border-radius: 1.5rem;
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: all 0.4s;
-            backdrop-filter: blur(10px);
-        }
-
-        .education-card:hover {
-            border-color: rgba(59, 130, 246, 0.4);
-        }
-
-        .education-header {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .education-icon {
-            padding: 0.75rem;
-            border-radius: 12px;
-            background: rgba(251, 191, 36, 0.1);
-            color: #fbbf24;
-        }
-
-        .education-label {
-            color: #fbbf24;
-            font-weight: 600;
-            font-size: 0.9375rem;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-        }
-
-        .education-title {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: #f1f5f9;
-            margin-bottom: 0.75rem;
-        }
-
-        .education-degree {
-            color: #cbd5e1;
-            font-size: 1.125rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .education-minor {
-            color: #94a3b8;
-            font-size: 1rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .education-details {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1.5rem;
-            font-size: 0.9375rem;
-            color: #64748b;
-        }
-
-        .education-detail {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        /* Contact */
-        .contact-grid {
-            display: grid;
-            gap: 1.5rem;
-            justify-content: center;
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        @media (min-width: 640px) {
-            .contact-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
-        }
-
-        .contact-card {
-            padding: 2rem;
-            border-radius: 1.5rem;
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            text-align: center;
-            text-decoration: none;
-            color: inherit;
-            transition: all 0.4s;
-            display: block;
-            backdrop-filter: blur(10px);
-        }
-
-        .contact-card:hover {
-            border-color: rgba(251, 191, 36, 0.4);
-            transform: translateY(-8px) scale(1.02);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-        }
-
-        .contact-icon {
-            width: 40px;
-            height: 40px;
-            color: #64748b;
-            margin: 0 auto 1.5rem;
-            transition: color 0.3s;
-        }
-
-        .contact-card:hover .contact-icon {
-            color: #fbbf24;
-        }
-
-        .contact-label {
-            font-size: 0.9375rem;
-            font-weight: 600;
-            color: #60a5fa;
-            margin-bottom: 0.5rem;
-        }
-
-        .contact-value {
-            font-size: 0.9375rem;
-            color: #94a3b8;
-            transition: color 0.3s;
-        }
-
-        .contact-card:hover .contact-value {
-            color: #f1f5f9;
-        }
-
-        .cta-button {
-            display: inline-flex;
-            align-items: center;
-            gap: 1rem;
-            padding: 1.5rem 3rem;
-            border-radius: 50px;
-            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
-            color: white;
-            font-weight: 700;
-            font-size: 1.125rem;
-            border: none;
-            cursor: pointer;
-            text-decoration: none;
-            transition: all 0.3s;
-            margin-top: 3rem;
-            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4);
-        }
-
-        .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 25px rgba(59, 130, 246, 0.6);
-        }
-
-        /* Campus Involvement */
-        .involvement-grid {
-            display: grid;
-            gap: 2rem;
-        }
-
-        @media (min-width: 768px) {
-            .involvement-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
-        }
-
-        /* Footer */
-        footer {
-            padding: 4rem 2rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            text-align: center;
-            color: #64748b;
-            position: relative;
-            z-index: 1;
-        }
-
-        /* Animations */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(40px);
-            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-        }
-
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .fade-in-left {
-            opacity: 0;
-            transform: translateX(-60px);
-            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-        }
-
-        .fade-in-left.visible {
-            opacity: 1;
-            transform: translateX(0);
-        }
-
-        .fade-in-right {
-            opacity: 0;
-            transform: translateX(60px);
-            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-        }
-
-        .fade-in-right.visible {
-            opacity: 1;
-            transform: translateX(0);
-        }
-
-        /* Icon styles */
-        .icon {
-            width: 20px;
-            height: 20px;
-            stroke: currentColor;
-            fill: none;
-            stroke-width: 2;
-            stroke-linecap: round;
-            stroke-linejoin: round;
-        }
-
-        .icon-lg {
-            width: 24px;
-            height: 24px;
-        }
-
-        .icon-xl {
-            width: 32px;
-            height: 32px;
-        }
-
-        /* Responsive */
-        @media (max-width: 640px) {
-            section {
-                padding: 4rem 1rem;
-            }
-            
-            .section-title {
-                font-size: 2rem;
-            }
-
-            .nav-container {
-                padding: 0 1rem;
-            }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Gavin Morris — Software Engineer, ML/AI enthusiast, and Computer Science student at LSU. Portfolio showcasing experience, projects, and certifications.">
+  <meta name="author" content="Gavin Morris">
+  <title>Gavin Morris | Software Engineer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="container">
-        <!-- Background -->
-        <div class="background">
-            <div class="bg-gradient"></div>
-            <div class="bg-blobs">
-                <div class="blob blob-1"></div>
-                <div class="blob blob-2"></div>
-                <div class="blob blob-3"></div>
-            </div>
-            <div class="grid-pattern"></div>
-        </div>
+  <div class="bg-layer" aria-hidden="true">
+    <div class="bg-mesh"></div>
+    <div class="bg-grid"></div>
+    <canvas id="particle-canvas"></canvas>
+  </div>
 
-        <!-- Progress Bar -->
-        <div class="progress-bar" id="progressBar"></div>
+  <div class="scroll-progress" aria-hidden="true"></div>
 
-        <!-- Navigation -->
-        <nav>
-            <div class="nav-container">
-                <div class="logo" onclick="scrollToSection('home')">GM</div>
-                <div class="nav-items" id="navItems">
-                    <button class="nav-item" data-section="home" onclick="scrollToSection('home')">Home</button>
-                    <button class="nav-item" data-section="about" onclick="scrollToSection('about')">About</button>
-                    <button class="nav-item" data-section="experience" onclick="scrollToSection('experience')">Experience</button>
-                    <button class="nav-item" data-section="projects" onclick="scrollToSection('projects')">Projects</button>
-                    <button class="nav-item" data-section="skills" onclick="scrollToSection('skills')">Skills</button>
-                    <button class="nav-item" data-section="certifications" onclick="scrollToSection('certifications')">Certifications</button>
-                    <button class="nav-item" data-section="contact" onclick="scrollToSection('contact')">Contact</button>
-                </div>
-                <button class="menu-button" onclick="toggleMenu()">
-                    <svg class="icon-lg" id="menuIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <line x1="3" y1="12" x2="21" y2="12"></line>
-                        <line x1="3" y1="6" x2="21" y2="6"></line>
-                        <line x1="3" y1="18" x2="21" y2="18"></line>
-                    </svg>
-                </button>
-            </div>
-            <div class="mobile-menu" id="mobileMenu">
-                <button data-section="home" onclick="scrollToSection('home')">Home</button>
-                <button data-section="about" onclick="scrollToSection('about')">About</button>
-                <button data-section="experience" onclick="scrollToSection('experience')">Experience</button>
-                <button data-section="projects" onclick="scrollToSection('projects')">Projects</button>
-                <button data-section="skills" onclick="scrollToSection('skills')">Skills</button>
-                <button data-section="certifications" onclick="scrollToSection('certifications')">Certifications</button>
-                <button data-section="contact" onclick="scrollToSection('contact')">Contact</button>
-            </div>
-        </nav>
-
-        <!-- Hero Section -->
-        <section id="home">
-            <div class="max-w-5xl">
-                <div class="status-badge fade-in">
-                    <span class="status-dot"></span>
-                    <span>Available for opportunities</span>
-                </div>
-
-                <h1 class="hero-title fade-in">
-                    <span class="hero-name">GAVIN</span>
-                    <span class="hero-name-gradient">MORRIS</span>
-                </h1>
-
-                <p class="hero-subtitle fade-in">Software Engineer & ML/AI Enthusiast</p>
-
-                <p class="hero-description fade-in">
-                    Computer Science student at LSU passionate about building innovative solutions with machine learning, 
-                    AI, and full-stack technologies. Transforming complex problems into elegant, scalable applications.
-                </p>
-
-                <div class="hero-buttons fade-in">
-                    <a href="#projects" class="btn-primary" onclick="scrollToSection('projects'); return false;">
-                        View My Work
-                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <line x1="5" y1="12" x2="19" y2="12"></line>
-                            <polyline points="12 5 19 12 12 19"></polyline>
-                        </svg>
-                    </a>
-                    <a href="#contact" class="btn-secondary" onclick="scrollToSection('contact'); return false;">
-                        Get In Touch
-                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-                            <polyline points="22,6 12,13 2,6"></polyline>
-                        </svg>
-                    </a>
-                </div>
-
-                <div class="scroll-indicator" onclick="scrollToSection('about')">
-                    <svg class="icon-xl" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <polyline points="6 9 12 15 18 9"></polyline>
-                    </svg>
-                </div>
-            </div>
-        </section>
-
-        <!-- About Section -->
-        <section id="about">
-            <div class="max-w-7xl">
-                <div class="section-header fade-in">
-                    <span class="section-label">Introduction</span>
-                    <h2 class="section-title">About Me</h2>
-                </div>
-
-                <div class="grid-2">
-                    <div class="fade-in-left">
-                        <h3 style="font-size: 2rem; font-weight: 700; color: #60a5fa; margin-bottom: 2rem;">
-                            Building the Future, One Line at a Time
-                        </h3>
-                        <p style="font-size: 1.125rem; color: #cbd5e1; line-height: 1.8; margin-bottom: 1.5rem;">
-                            I'm a Computer Science student at Louisiana State University with a passion for machine learning, 
-                            AI, and full-stack development. Through internships at Blue Cross Blue Shield of Louisiana and LSU CARTS, 
-                            I've gained hands-on experience building production systems and optimizing performance.
-                        </p>
-                        <p style="font-size: 1.125rem; color: #cbd5e1; line-height: 1.8; margin-bottom: 2rem;">
-                            My work spans from ML inference optimization and AI-powered applications to scalable backend systems 
-                            and mobile apps. I'm constantly exploring new technologies and applying them to solve real-world problems, 
-                            with projects ranging from phishing detection systems to inventory management platforms.
-                        </p>
-
-                        <!-- Education Card -->
-                        <div class="education-card fade-in">
-                            <div class="education-header">
-                                <div class="education-icon">
-                                    <svg class="icon-lg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
-                                        <path d="M6 12v5c3 3 9 3 12 0v-5"></path>
-                                    </svg>
-                                </div>
-                                <span class="education-label">Education</span>
-                            </div>
-                            <h4 class="education-title">Louisiana State University</h4>
-                            <p class="education-degree">Bachelor of Science in Computer Science</p>
-                            <p class="education-minor">Minor in Mathematics</p>
-                            <div class="education-details">
-                                <span class="education-detail">
-                                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-                                    </svg>
-                                    GPA: 3.52
-                                </span>
-                                <span class="education-detail">
-                                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
-                                        <line x1="16" y1="2" x2="16" y2="6"></line>
-                                        <line x1="8" y1="2" x2="8" y2="6"></line>
-                                        <line x1="3" y1="10" x2="21" y2="10"></line>
-                                    </svg>
-                                    May 2027
-                                </span>
-                                <span class="education-detail">
-                                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-                                        <circle cx="12" cy="10" r="3"></circle>
-                                    </svg>
-                                    Baton Rouge, LA
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="grid-2" style="gap: 1.5rem;">
-                        <div class="card fade-in-right">
-                            <div style="font-size: 3rem; font-weight: 900; background: linear-gradient(135deg, #60a5fa, #a78bfa); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 1rem;">2+</div>
-                            <div style="color: #94a3b8; font-size: 1.125rem;">Years Experience</div>
-                        </div>
-                        <div class="card fade-in-right">
-                            <div style="font-size: 3rem; font-weight: 900; background: linear-gradient(135deg, #fbbf24, #f59e0b); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 1rem;">6+</div>
-                            <div style="color: #94a3b8; font-size: 1.125rem;">Major Projects</div>
-                        </div>
-                        <div class="card fade-in-right">
-                            <div style="font-size: 3rem; font-weight: 900; background: linear-gradient(135deg, #8b5cf6, #ec4899); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 1rem;">4</div>
-                            <div style="color: #94a3b8; font-size: 1.125rem;">Certifications</div>
-                        </div>
-                        <div class="card fade-in-right">
-                            <div style="font-size: 3rem; font-weight: 900; background: linear-gradient(135deg, #06b6d4, #3b82f6); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 1rem;">20+</div>
-                            <div style="color: #94a3b8; font-size: 1.125rem;">Technologies</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Experience Section -->
-        <section id="experience">
-            <div class="max-w-5xl">
-                <div class="section-header fade-in">
-                    <span class="section-label">Career Journey</span>
-                    <h2 class="section-title">Experience</h2>
-                </div>
-
-                <div class="timeline">
-                    <div class="timeline-line"></div>
-
-                    <div class="timeline-item fade-in">
-                        <div class="timeline-dot"></div>
-                        <div class="card">
-                            <span class="experience-date">January 2026 – May 2026</span>
-                            <h3 class="experience-title">Software Engineer Intern</h3>
-                            <p class="experience-company">Blue Cross Blue Shield of Louisiana</p>
-                            <ul class="experience-highlights">
-                                <li>Developed backend features using C# and SQL to manage client documents, payments, and records within cloud-based systems, ensuring accurate storage and retrieval</li>
-                                <li>Built and optimized database queries and workflows to improve data consistency and performance across patient-facing applications</li>
-                                <li>Collaborated with engineers and stakeholders to debug issues, deploy updates, and enhance system reliability in a production environment</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="timeline-item fade-in">
-                        <div class="timeline-dot"></div>
-                        <div class="card">
-                            <span class="experience-date">January 2025 – May 2025</span>
-                            <h3 class="experience-title">Software Developer Intern</h3>
-                            <p class="experience-company">LSU CARTS</p>
-                            <ul class="experience-highlights">
-                                <li>Collaborated in a team of two to develop GIS applications using Python or Blazor, contributing to innovative solutions</li>
-                                <li>Developed applications that enhanced the efficiency of GIS analysts, increasing their productivity by up to 25%</li>
-                                <li>Applied problem-solving techniques and programming expertise to deliver functional and efficient GIS tools that support research and transportation safety initiatives</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Projects Section -->
-        <section id="projects">
-            <div class="max-w-7xl">
-                <div class="section-header fade-in">
-                    <span class="section-label">Portfolio</span>
-                    <h2 class="section-title">Featured Projects</h2>
-                </div>
-
-                <div class="projects-grid">
-                    <div class="project-card fade-in">
-                        <div class="project-content">
-                            <div class="project-gradient-bar gradient-purple"></div>
-                            <div class="project-header">
-                                <span class="project-date">January 2026</span>
-                            </div>
-                            <h3 class="project-title">Inference Kernel Optimization Lab</h3>
-                            <ul class="project-description">
-                                <li>Designed and benchmarked cache-blocked ML inference kernels (GEMM, Softmax, LayerNorm) using NumPy and Numba, analyzing compute vs memory-bound behavior under controlled single-thread and multi-thread execution</li>
-                                <li>Implemented rigorous performance methodology with thread isolation, block-size sweeps, latency metrics, and roofline analysis to identify cache locality, memory access, and SIMD limitations versus BLAS</li>
-                            </ul>
-                            <a href="https://github.com/Gavin-Morris-04/Inference-Kernel-Optimization-Lab" target="_blank" rel="noopener noreferrer" class="project-link">
-                                View on GitHub
-                                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-                                    <polyline points="15 3 21 3 21 9"></polyline>
-                                    <line x1="10" y1="14" x2="21" y2="3"></line>
-                                </svg>
-                            </a>
-                        </div>
-                    </div>
-
-                    <div class="project-card fade-in">
-                        <div class="project-content">
-                            <div class="project-gradient-bar gradient-blue"></div>
-                            <div class="project-header">
-                                <span class="project-date">January 2026</span>
-                            </div>
-                            <h3 class="project-title">ML Inference Scheduler & Performance Profiler</h3>
-                            <ul class="project-description">
-                                <li>Built a production-inspired ML inference scheduler simulating mixed workloads, SLO-aware scheduling, micro-batching, and GPU-style resource constraints</li>
-                                <li>Implemented and benchmarked multiple scheduling strategies, analyzing latency, throughput, tail behavior, and SLO violations using detailed trace-based performance profiling</li>
-                                <li>Simulated GPU-style execution lanes, queue contention, and memory-bounded inference workloads to study latency/throughput tradeoffs under hardware-constrained environments</li>
-                            </ul>
-                            <a href="https://github.com/Gavin-Morris-04/ML-IS-PP" target="_blank" rel="noopener noreferrer" class="project-link">
-                                View on GitHub
-                                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-                                    <polyline points="15 3 21 3 21 9"></polyline>
-                                    <line x1="10" y1="14" x2="21" y2="3"></line>
-                                </svg>
-                            </a>
-                        </div>
-                    </div>
-
-                    <div class="project-card fade-in">
-                        <div class="project-content">
-                            <div class="project-gradient-bar gradient-purple"></div>
-                            <div class="project-header">
-                                <span class="project-date">January 2026</span>
-                            </div>
-                            <h3 class="project-title">AI Phishing Detection Bot</h3>
-                            <ul class="project-description">
-                                <li>Implemented a research-derived RoBERTa-based phishing detection system, translating academic findings on AI spear-phishing into a scalable ML pipeline achieving 93.7% overall accuracy</li>
-                                <li>Reproduced and validated published results at scale using Enron and multi-LLM (GPT, Claude, Gemini, LLaMA) datasets, achieving 96%+ detection on traditional phishing and quantifying degradation on AI-generated attacks</li>
-                            </ul>
-                            <a href="https://github.com/Gavin-Morris-04/AI-Phishing-Project" target="_blank" rel="noopener noreferrer" class="project-link">
-                                View on GitHub
-                                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-                                    <polyline points="15 3 21 3 21 9"></polyline>
-                                    <line x1="10" y1="14" x2="21" y2="3"></line>
-                                </svg>
-                            </a>
-                        </div>
-                    </div>
-
-                    <div class="project-card fade-in">
-                        <div class="project-content">
-                            <div class="project-gradient-bar gradient-amber"></div>
-                            <div class="project-header">
-                                <span class="project-date">November 2025</span>
-                            </div>
-                            <h3 class="project-title">Coach AI</h3>
-                            <ul class="project-description">
-                                <li>Developed an AI-powered iOS platform combining LLMs, real-time health data, task management, and location-aware automation for personalized coaching and workout planning</li>
-                                <li>Integrated Llama 3.1 via Groq API into a context-aware pipeline aggregating HealthKit metrics, goals, tasks, and calendar events for automated workout plans and task updates</li>
-                                <li>Designed a scalable cloud architecture using Firebase Authentication and Firestore with dual-layer persistence, secure data isolation, and geofence-triggered automation via CoreLocation</li>
-                            </ul>
-                            <a href="https://github.com/Gavin-Morris-04/Coach-Ai" target="_blank" rel="noopener noreferrer" class="project-link">
-                                View on GitHub
-                                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-                                    <polyline points="15 3 21 3 21 9"></polyline>
-                                    <line x1="10" y1="14" x2="21" y2="3"></line>
-                                </svg>
-                            </a>
-                        </div>
-                    </div>
-
-                    <div class="project-card fade-in">
-                        <div class="project-content">
-                            <div class="project-gradient-bar gradient-blue"></div>
-                            <div class="project-header">
-                                <span class="project-date">May 2025</span>
-                            </div>
-                            <h3 class="project-title">Inventory Pro Tracker</h3>
-                            <ul class="project-description">
-                                <li>Developed and launched a full-stack inventory management system featuring a Swift UI iOS app and responsive web interface (HTML, CSS, JavaScript), now available on the App Store</li>
-                                <li>Designed and deployed a scalable backend using Railway, enabling real-time tracking of inventory across multiple suppliers and locations</li>
-                                <li>Built intuitive UI/UX for businesses to easily manage complex supply chains with multi-supplier support, item categorization, and usage history visibility</li>
-                            </ul>
-                            <a href="https://github.com/Gavin-Morris-04/inventory-pro" target="_blank" rel="noopener noreferrer" class="project-link">
-                                View on GitHub
-                                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-                                    <polyline points="15 3 21 3 21 9"></polyline>
-                                    <line x1="10" y1="14" x2="21" y2="3"></line>
-                                </svg>
-                            </a>
-                        </div>
-                    </div>
-
-                    <div class="project-card fade-in">
-                        <div class="project-content">
-                            <div class="project-gradient-bar gradient-purple"></div>
-                            <div class="project-header">
-                                <span class="project-date">December 2024</span>
-                            </div>
-                            <h3 class="project-title">AI Chat Bot</h3>
-                            <ul class="project-description">
-                                <li>Designed a terminal-based AI chatbot using Python, providing a secure and efficient local interaction environment</li>
-                                <li>Leveraged the Ollama platform to enhance chatbot functionality, demonstrating proficiency in integrating AI tools into Python applications</li>
-                                <li>Designed and debugged the chatbot to ensure seamless user interaction, showcasing effective troubleshooting and development techniques</li>
-                            </ul>
-                            <a href="https://github.com/Gavin-Morris-04/AI-Chat-Bot" target="_blank" rel="noopener noreferrer" class="project-link">
-                                View on GitHub
-                                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-                                    <polyline points="15 3 21 3 21 9"></polyline>
-                                    <line x1="10" y1="14" x2="21" y2="3"></line>
-                                </svg>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Skills Section -->
-        <section id="skills">
-            <div class="max-w-7xl">
-                <div class="section-header fade-in">
-                    <span class="section-label">Expertise</span>
-                    <h2 class="section-title">Technical Skills</h2>
-                </div>
-
-                <div class="skills-grid">
-                    <div class="skills-card fade-in">
-                        <h3 class="skills-title">ML & AI</h3>
-                        <div class="skills-tags">
-                            <span class="skill-tag">Transformers</span>
-                            <span class="skill-tag">RoBERTa</span>
-                            <span class="skill-tag">LLM Pipelines</span>
-                            <span class="skill-tag">Embeddings</span>
-                            <span class="skill-tag">ML Evaluation</span>
-                            <span class="skill-tag">Inference Optimization</span>
-                        </div>
-                    </div>
-
-                    <div class="skills-card fade-in">
-                        <h3 class="skills-title">Systems & Performance</h3>
-                        <div class="skills-tags">
-                            <span class="skill-tag">Scheduling</span>
-                            <span class="skill-tag">Latency Profiling</span>
-                            <span class="skill-tag">Tail Latency</span>
-                            <span class="skill-tag">Throughput Analysis</span>
-                            <span class="skill-tag">Micro-batching</span>
-                            <span class="skill-tag">Resource Contention</span>
-                        </div>
-                    </div>
-
-                    <div class="skills-card fade-in">
-                        <h3 class="skills-title">Infrastructure & Tools</h3>
-                        <div class="skills-tags">
-                            <span class="skill-tag">Python</span>
-                            <span class="skill-tag">SQL</span>
-                            <span class="skill-tag">Docker</span>
-                            <span class="skill-tag">Kubernetes</span>
-                            <span class="skill-tag">REST APIs</span>
-                            <span class="skill-tag">Cloud Deployment</span>
-                            <span class="skill-tag">C#</span>
-                            <span class="skill-tag">Swift</span>
-                            <span class="skill-tag">JavaScript</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Certifications Section -->
-        <section id="certifications">
-            <div class="max-w-7xl">
-                <div class="section-header fade-in">
-                    <span class="section-label">Credentials</span>
-                    <h2 class="section-title">Certifications</h2>
-                </div>
-
-                <div class="cert-grid">
-                    <div class="cert-card fade-in">
-                        <div class="cert-icon">🏦</div>
-                        <span class="cert-issuer">WHARTON</span>
-                        <h3 class="cert-title">Foundations & Applications of Financial Technology</h3>
-                        <span class="cert-id">A9CABJKOSLQ3</span>
-                    </div>
-                    <div class="cert-card fade-in">
-                        <div class="cert-icon">🤖</div>
-                        <span class="cert-issuer">GOOGLE</span>
-                        <h3 class="cert-title">AI Essentials</h3>
-                        <span class="cert-id">A9CABJKOSLQ3</span>
-                    </div>
-                    <div class="cert-card fade-in">
-                        <div class="cert-icon">💻</div>
-                        <span class="cert-issuer">IBM</span>
-                        <h3 class="cert-title">Full Stack Developer Professional Certificate</h3>
-                        <span class="cert-id">3UBKQ00NGCIA</span>
-                    </div>
-                    <div class="cert-card fade-in">
-                        <div class="cert-icon">🧠</div>
-                        <span class="cert-issuer">IBM</span>
-                        <h3 class="cert-title">Generative AI Engineering Professional Certificate</h3>
-                        <span class="cert-id">EAMKPE6N4UHX</span>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Campus Involvement Section -->
-        <section id="involvement">
-            <div class="max-w-7xl">
-                <div class="section-header fade-in">
-                    <span class="section-label">Community</span>
-                    <h2 class="section-title">Campus Involvement</h2>
-                </div>
-
-                <div class="involvement-grid">
-                    <div class="card fade-in">
-                        <div style="padding: 0.75rem; border-radius: 12px; background: rgba(59, 130, 246, 0.1); width: fit-content; margin-bottom: 1.5rem;">
-                            <svg class="icon-lg" style="color: #60a5fa;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
-                            </svg>
-                        </div>
-                        <h3 style="font-size: 1.5rem; font-weight: 700; color: #f1f5f9; margin-bottom: 0.75rem;">LSU Student Government</h3>
-                        <p style="color: #fbbf24; font-size: 1rem; font-weight: 600; margin-bottom: 1rem;">Coordinator of Safety and Transportation</p>
-                        <p style="color: #cbd5e1; line-height: 1.8;">Serving as Coordinator of Safety and Transportation on LSU Student Government, working to improve campus safety and transportation systems.</p>
-                    </div>
-                    <div class="card fade-in">
-                        <div style="padding: 0.75rem; border-radius: 12px; background: rgba(168, 85, 247, 0.1); width: fit-content; margin-bottom: 1.5rem;">
-                            <svg class="icon-lg" style="color: #a78bfa;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-                                <circle cx="9" cy="7" r="4"></circle>
-                                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
-                                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
-                            </svg>
-                        </div>
-                        <h3 style="font-size: 1.5rem; font-weight: 700; color: #f1f5f9; margin-bottom: 0.75rem;">Tau Kappa Epsilon</h3>
-                        <p style="color: #fbbf24; font-size: 1rem; font-weight: 600; margin-bottom: 1rem;">Social Chair - Executive Board</p>
-                        <p style="color: #cbd5e1; line-height: 1.8;">Serving as the Social Chair on the Executive Board, organizing events and fostering brotherhood within the fraternity.</p>
-                    </div>
-                    <div class="card fade-in">
-                        <div style="padding: 0.75rem; border-radius: 12px; background: rgba(251, 191, 36, 0.1); width: fit-content; margin-bottom: 1.5rem;">
-                            <svg class="icon-lg" style="color: #fbbf24;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
-                            </svg>
-                        </div>
-                        <h3 style="font-size: 1.5rem; font-weight: 700; color: #f1f5f9; margin-bottom: 0.75rem;">LSU Companion Animal Alliance</h3>
-                        <p style="color: #fbbf24; font-size: 1rem; font-weight: 600; margin-bottom: 1rem;">Student Volunteer</p>
-                        <p style="color: #cbd5e1; line-height: 1.8;">Dedicating time as a student volunteer to care for and improve the lives of companion animals.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Contact Section -->
-        <section id="contact">
-            <div class="max-w-5xl" style="text-align: center;">
-                <div class="section-header fade-in">
-                    <span class="section-label">Get In Touch</span>
-                    <h2 class="section-title">Let's Connect</h2>
-                    <p style="font-size: 1.25rem; color: #94a3b8; margin-top: 2rem; max-width: 42rem; margin-left: auto; margin-right: auto; line-height: 1.8;">
-                        I'm always open to discussing new opportunities, collaborations, or just connecting with fellow tech enthusiasts.
-                    </p>
-                </div>
-
-                <div class="contact-grid fade-in">
-                    <a href="mailto:gmorriscs@gmail.com" class="contact-card">
-                        <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-                            <polyline points="22,6 12,13 2,6"></polyline>
-                        </svg>
-                        <h3 class="contact-label">Email</h3>
-                        <p class="contact-value">gmorriscs@gmail.com</p>
-                    </a>
-                    <a href="tel:+15042228798" class="contact-card">
-                        <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
-                        </svg>
-                        <h3 class="contact-label">Phone</h3>
-                        <p class="contact-value">(504) 222-8798</p>
-                    </a>
-                    <a href="https://www.linkedin.com/in/gmorr32" target="_blank" rel="noopener noreferrer" class="contact-card">
-                        <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
-                            <rect x="2" y="9" width="4" height="12"></rect>
-                            <circle cx="4" cy="4" r="2"></circle>
-                        </svg>
-                        <h3 class="contact-label">LinkedIn</h3>
-                        <p class="contact-value">gmorr32</p>
-                    </a>
-                </div>
-
-                <a href="mailto:gmorriscs@gmail.com" class="cta-button fade-in">
-                    Say Hello
-                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-                        <polyline points="22,6 12,13 2,6"></polyline>
-                    </svg>
-                </a>
-            </div>
-        </section>
-
-        <!-- Footer -->
-        <footer>
-            <p>© 2025 Gavin Morris. Designed and built with passion.</p>
-        </footer>
+  <header class="nav" role="banner">
+    <div class="nav-inner">
+      <a href="#home" class="logo" data-scroll="home">Gavin Morris</a>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="#home" class="nav-link" data-nav="home" data-scroll="home">Home</a>
+        <a href="#about" class="nav-link" data-nav="about" data-scroll="about">About</a>
+        <a href="#experience" class="nav-link" data-nav="experience" data-scroll="experience">Experience</a>
+        <a href="#projects" class="nav-link" data-nav="projects" data-scroll="projects">Projects</a>
+        <a href="#skills" class="nav-link" data-nav="skills" data-scroll="skills">Skills</a>
+        <a href="#certifications" class="nav-link" data-nav="certifications" data-scroll="certifications">Certs</a>
+        <a href="#involvement" class="nav-link" data-nav="involvement" data-scroll="involvement">Community</a>
+        <a href="#contact" class="nav-link" data-nav="contact" data-scroll="contact">Contact</a>
+      </nav>
+      <a href="#contact" class="nav-cta" data-scroll="contact">Get in touch</a>
+      <button class="menu-toggle" id="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-drawer">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/>
+        </svg>
+      </button>
     </div>
+  </header>
 
-    <script>
-        // Progress Bar
-        window.addEventListener('scroll', () => {
-            const scrollTop = window.pageYOffset;
-            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-            const scrollPercent = scrollTop / docHeight;
-            document.getElementById('progressBar').style.transform = `scaleX(${scrollPercent})`;
-        });
+  <nav class="mobile-drawer" id="mobile-drawer" aria-label="Mobile navigation" aria-hidden="true">
+    <a href="#home" class="nav-link" data-nav="home" data-scroll="home">Home</a>
+    <a href="#about" class="nav-link" data-nav="about" data-scroll="about">About</a>
+    <a href="#experience" class="nav-link" data-nav="experience" data-scroll="experience">Experience</a>
+    <a href="#projects" class="nav-link" data-nav="projects" data-scroll="projects">Projects</a>
+    <a href="#skills" class="nav-link" data-nav="skills" data-scroll="skills">Skills</a>
+    <a href="#certifications" class="nav-link" data-nav="certifications" data-scroll="certifications">Certifications</a>
+    <a href="#involvement" class="nav-link" data-nav="involvement" data-scroll="involvement">Community</a>
+    <a href="#contact" class="nav-link" data-nav="contact" data-scroll="contact">Contact</a>
+  </nav>
 
-        // Smooth Scroll
-        function scrollToSection(sectionId) {
-            const element = document.getElementById(sectionId);
-            if (element) {
-                element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            }
-            // Close mobile menu if open
-            const mobileMenu = document.getElementById('mobileMenu');
-            mobileMenu.classList.remove('open');
-        }
+  <main>
+    <!-- Hero -->
+    <section id="home" class="hero">
+      <div class="hero-badge reveal">
+        <span class="hero-badge-dot"></span>
+        Open to opportunities
+      </div>
+      <h1 class="hero-title reveal">
+        <span class="line">Gavin</span>
+        <span class="line accent">Morris</span>
+      </h1>
+      <p class="hero-role reveal">
+        <span id="typewriter"></span><span class="cursor" aria-hidden="true"></span>
+      </p>
+      <p class="hero-bio reveal">
+        Computer Science student at Louisiana State University building production systems across ML inference,
+        full-stack applications, and cloud backends — from enterprise healthcare to founder-led client delivery.
+      </p>
+      <div class="hero-actions reveal">
+        <a href="#projects" class="btn btn-primary" data-scroll="projects">
+          View projects
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a href="#experience" class="btn btn-outline" data-scroll="experience">My experience</a>
+      </div>
+      <div class="hero-contact reveal">
+        <a href="mailto:gmorriscs@gmail.com">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          gmorriscs@gmail.com
+        </a>
+        <a href="tel:+15042228798">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          (504) 222-8798
+        </a>
+        <a href="https://www.linkedin.com/in/gmorr32" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          LinkedIn
+        </a>
+        <a href="https://gavinmorrisportfolio.com/" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          gavinmorrisportfolio.com
+        </a>
+      </div>
+      <a href="#about" class="scroll-hint reveal" data-scroll="about" aria-label="Scroll down">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+      </a>
+    </section>
 
-        // Active Section Tracking
-        function updateActiveSection() {
-            const sections = ['home', 'about', 'experience', 'projects', 'skills', 'certifications', 'involvement', 'contact'];
-            const scrollPosition = window.scrollY + 150;
+    <!-- About & Education -->
+    <section id="about" class="section section-wide">
+      <div class="section-header reveal">
+        <span class="section-label">Introduction</span>
+        <h2 class="section-title">About me</h2>
+        <p class="section-desc">
+          I'm a Computer Science student at LSU with a minor in Mathematics, passionate about machine learning,
+          systems performance, and shipping software that solves real problems — from enterprise backends to
+          founder-led products at Deltara Tech.
+        </p>
+      </div>
 
-            for (const section of sections) {
-                const element = document.getElementById(section);
-                if (element) {
-                    const offsetTop = element.offsetTop;
-                    const offsetHeight = element.offsetHeight;
-                    if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
-                        // Update desktop nav
-                        document.querySelectorAll('.nav-item').forEach(item => {
-                            item.classList.remove('active');
-                            if (item.dataset.section === section) {
-                                item.classList.add('active');
-                            }
-                        });
-                        // Update mobile nav
-                        document.querySelectorAll('.mobile-menu button').forEach(item => {
-                            item.classList.remove('active');
-                            if (item.dataset.section === section) {
-                                item.classList.add('active');
-                            }
-                        });
-                        break;
-                    }
-                }
-            }
-        }
+      <div class="about-grid">
+        <div class="reveal-left">
+          <div class="edu-card">
+            <span class="section-label">Education</span>
+            <h3 class="edu-school">Louisiana State University</h3>
+            <p class="edu-degree">Bachelor of Science, Computer Science</p>
+            <p class="edu-minor">Minor: Mathematics</p>
+            <div class="edu-meta">
+              <span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                Baton Rouge, LA
+              </span>
+              <span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                May 2027
+              </span>
+              <span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                GPA: 3.52
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="stats-row stagger reveal-right">
+          <div class="stat-card">
+            <div class="stat-num" data-count="3">0</div>
+            <div class="stat-label">Roles & internships</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-num" data-count="6">0</div>
+            <div class="stat-label">Featured projects</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-num" data-count="5">0</div>
+            <div class="stat-label">Certifications</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-num" data-count="4">0</div>
+            <div class="stat-label">Campus organizations</div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-        window.addEventListener('scroll', updateActiveSection);
-        updateActiveSection();
+    <!-- Experience -->
+    <section id="experience" class="section">
+      <div class="section-header reveal">
+        <span class="section-label">Career</span>
+        <h2 class="section-title">Experience</h2>
+        <p class="section-desc">Hands-on engineering across healthcare, GIS research, and founder-led client delivery.</p>
+      </div>
 
-        // Mobile Menu Toggle
-        function toggleMenu() {
-            const mobileMenu = document.getElementById('mobileMenu');
-            const menuIcon = document.getElementById('menuIcon');
-            mobileMenu.classList.toggle('open');
-            
-            if (mobileMenu.classList.contains('open')) {
-                menuIcon.innerHTML = '<line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line>';
-            } else {
-                menuIcon.innerHTML = '<line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line>';
-            }
-        }
+      <div class="timeline">
+        <article class="exp-card reveal">
+          <p class="exp-date">January 2026 – May 2026</p>
+          <h3 class="exp-role">Software Engineer Intern</h3>
+          <p class="exp-company">Blue Cross Blue Shield of Louisiana</p>
+          <ul class="exp-bullets">
+            <li>Developed backend features using C# and SQL to manage client documents, payments, and records within cloud-based systems, ensuring accurate storage and retrieval.</li>
+            <li>Built and optimized database queries and workflows to improve data consistency and performance across patient-facing applications.</li>
+            <li>Collaborated with engineers and stakeholders to debug issues, deploy updates, and enhance system reliability in a production environment.</li>
+          </ul>
+        </article>
 
-        // Intersection Observer for Animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
+        <article class="exp-card reveal">
+          <p class="exp-date">May 2025 – Present</p>
+          <h3 class="exp-role">Founder & Software Engineer</h3>
+          <p class="exp-company">Deltara Tech LLC</p>
+          <span class="exp-tag">Current</span>
+          <ul class="exp-bullets">
+            <li>Founded a custom software development company providing web, mobile, and business automation solutions for small businesses.</li>
+            <li>Developed and deployed production applications used by clients to manage operations, customer interactions, and business workflows.</li>
+            <li>Led the full software development lifecycle, including client discovery, system design, implementation, testing, deployment, and maintenance.</li>
+          </ul>
+        </article>
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, observerOptions);
+        <article class="exp-card reveal">
+          <p class="exp-date">January 2025 – May 2025</p>
+          <h3 class="exp-role">Software Developer Intern</h3>
+          <p class="exp-company">LSU CARTS</p>
+          <ul class="exp-bullets">
+            <li>Collaborated in a team of two to develop GIS applications using Python or Blazor, contributing to innovative solutions.</li>
+            <li>Developed applications that enhanced the efficiency of GIS analysts, increasing their productivity by up to 25%.</li>
+            <li>Applied problem-solving techniques and programming expertise to deliver functional and efficient GIS tools that support research and transportation safety initiatives.</li>
+          </ul>
+        </article>
+      </div>
+    </section>
 
-        // Observe all fade-in elements
-        document.querySelectorAll('.fade-in, .fade-in-left, .fade-in-right').forEach(el => {
-            observer.observe(el);
-        });
+    <!-- Projects -->
+    <section id="projects" class="section section-wide">
+      <div class="section-header reveal">
+        <span class="section-label">Portfolio</span>
+        <h2 class="section-title">Projects</h2>
+        <p class="section-desc">From ML inference systems to full-stack and mobile apps — filter by focus area.</p>
+      </div>
 
-        // Initial animations for hero section
-        setTimeout(() => {
-            document.querySelectorAll('#home .fade-in').forEach((el, index) => {
-                setTimeout(() => {
-                    el.classList.add('visible');
-                }, index * 150);
-            });
-        }, 300);
-    </script>
+      <div class="filter-bar reveal">
+        <button class="filter-btn active" type="button" data-filter="all">All</button>
+        <button class="filter-btn" type="button" data-filter="ml">ML & AI</button>
+        <button class="filter-btn" type="button" data-filter="fullstack">Full-Stack</button>
+        <button class="filter-btn" type="button" data-filter="mobile">Mobile</button>
+      </div>
+
+      <div class="projects-grid stagger">
+        <article class="project-card reveal" data-category="fullstack">
+          <div class="project-top"></div>
+          <div class="project-body">
+            <div class="project-meta">
+              <span class="project-date">May 2026</span>
+              <span class="project-cat">Full-Stack</span>
+            </div>
+            <h3 class="project-name">CoHabit</h3>
+            <ul class="project-bullets">
+              <li>Developed a full-stack roommate and shared-living management platform designed to streamline task coordination, expense tracking, and household communication through an intuitive user-focused interface.</li>
+              <li>Built responsive frontend and backend features that organized shared household data into clear, accessible workflows, improving collaboration and simplifying day-to-day apartment management.</li>
+            </ul>
+            <a href="https://github.com/Gavin-Morris-04/CoHabit" class="project-link" target="_blank" rel="noopener noreferrer">
+              View on GitHub
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            </a>
+          </div>
+        </article>
+
+        <article class="project-card reveal" data-category="ml">
+          <div class="project-top"></div>
+          <div class="project-body">
+            <div class="project-meta">
+              <span class="project-date">January 2026</span>
+              <span class="project-cat">ML & AI</span>
+            </div>
+            <h3 class="project-name">Inference Kernel Optimization Lab</h3>
+            <ul class="project-bullets">
+              <li>Designed and benchmarked cache-blocked ML inference kernels (GEMM, Softmax, LayerNorm) using NumPy and Numba, analyzing compute vs memory-bound behavior under controlled single-thread and multi-thread execution.</li>
+              <li>Implemented rigorous performance methodology with thread isolation, block-size sweeps, latency metrics, and roofline analysis to identify cache locality, memory access, and SIMD limitations versus BLAS.</li>
+            </ul>
+            <a href="https://github.com/Gavin-Morris-04/Inference-Kernel-Optimization-Lab" class="project-link" target="_blank" rel="noopener noreferrer">
+              View on GitHub
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            </a>
+          </div>
+        </article>
+
+        <article class="project-card reveal" data-category="ml">
+          <div class="project-top"></div>
+          <div class="project-body">
+            <div class="project-meta">
+              <span class="project-date">January 2026</span>
+              <span class="project-cat">ML & AI</span>
+            </div>
+            <h3 class="project-name">ML Inference Scheduler & Performance Profiler</h3>
+            <ul class="project-bullets">
+              <li>Built a production-inspired ML inference scheduler simulating mixed workloads, SLO-aware scheduling, micro-batching, and GPU-style resource constraints.</li>
+              <li>Implemented and benchmarked multiple scheduling strategies, analyzing latency, throughput, tail behavior, and SLO violations using detailed trace-based performance profiling.</li>
+              <li>Simulated GPU-style execution lanes, queue contention, and memory-bounded inference workloads to study latency/throughput tradeoffs under hardware-constrained environments.</li>
+            </ul>
+            <a href="https://github.com/Gavin-Morris-04/ML-IS-PP" class="project-link" target="_blank" rel="noopener noreferrer">
+              View on GitHub
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            </a>
+          </div>
+        </article>
+
+        <article class="project-card reveal" data-category="mobile">
+          <div class="project-top"></div>
+          <div class="project-body">
+            <div class="project-meta">
+              <span class="project-date">November 2025</span>
+              <span class="project-cat">Mobile</span>
+            </div>
+            <h3 class="project-name">Coach AI</h3>
+            <ul class="project-bullets">
+              <li>Developed an AI-powered iOS platform combining LLMs, real-time health data, task management, and location-aware automation for personalized coaching and workout planning.</li>
+              <li>Integrated Llama 3.1 via Groq API into a context-aware pipeline aggregating HealthKit metrics, goals, tasks, and calendar events for automated workout plans and task updates.</li>
+              <li>Designed a scalable cloud architecture using Firebase Authentication and Firestore with dual-layer persistence, secure data isolation, and geofence-triggered automation via CoreLocation.</li>
+            </ul>
+            <a href="https://github.com/Gavin-Morris-04/Coach-Ai" class="project-link" target="_blank" rel="noopener noreferrer">
+              View on GitHub
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            </a>
+          </div>
+        </article>
+
+        <article class="project-card reveal" data-category="mobile">
+          <div class="project-top"></div>
+          <div class="project-body">
+            <div class="project-meta">
+              <span class="project-date">May 2025</span>
+              <span class="project-cat">Mobile</span>
+            </div>
+            <h3 class="project-name">Inventory Pro Tracker</h3>
+            <ul class="project-bullets">
+              <li>Developed and launched a full-stack inventory management system featuring a Swift UI iOS app and responsive web interface (HTML, CSS, JavaScript), now available on the App Store.</li>
+              <li>Designed and deployed a scalable backend using Railway, enabling real-time tracking of inventory across multiple suppliers and locations.</li>
+              <li>Built intuitive UI/UX for businesses to easily manage complex supply chains with multi-supplier support, item categorization, and usage history visibility.</li>
+            </ul>
+            <a href="https://github.com/Gavin-Morris-04/inventory-pro" class="project-link" target="_blank" rel="noopener noreferrer">
+              View on GitHub
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            </a>
+          </div>
+        </article>
+
+        <article class="project-card reveal" data-category="ml">
+          <div class="project-top"></div>
+          <div class="project-body">
+            <div class="project-meta">
+              <span class="project-date">December 2024</span>
+              <span class="project-cat">ML & AI</span>
+            </div>
+            <h3 class="project-name">AI Chat Bot</h3>
+            <ul class="project-bullets">
+              <li>Designed a terminal-based AI chatbot using Python, providing a secure and efficient local interaction environment.</li>
+              <li>Leveraged the Ollama platform to enhance chatbot functionality, demonstrating proficiency in integrating AI tools into Python applications.</li>
+              <li>Designed and debugged the chatbot to ensure seamless user interaction, showcasing effective troubleshooting and development techniques.</li>
+            </ul>
+            <a href="https://github.com/Gavin-Morris-04/AI-Chat-Bot" class="project-link" target="_blank" rel="noopener noreferrer">
+              View on GitHub
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            </a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Skills -->
+    <section id="skills" class="section section-wide">
+      <div class="section-header center reveal">
+        <span class="section-label">Expertise</span>
+        <h2 class="section-title">Technical skills</h2>
+      </div>
+
+      <div class="skills-grid stagger">
+        <div class="skill-group reveal">
+          <h3>ML & AI</h3>
+          <div class="skill-tags">
+            <span class="skill-tag">Transformers</span>
+            <span class="skill-tag">RoBERTa</span>
+            <span class="skill-tag">LLM pipelines</span>
+            <span class="skill-tag">Embeddings</span>
+            <span class="skill-tag">ML evaluation</span>
+            <span class="skill-tag">Inference optimization</span>
+          </div>
+        </div>
+        <div class="skill-group reveal">
+          <h3>Systems & Performance</h3>
+          <div class="skill-tags">
+            <span class="skill-tag">Scheduling</span>
+            <span class="skill-tag">Latency profiling</span>
+            <span class="skill-tag">Tail latency</span>
+            <span class="skill-tag">Throughput analysis</span>
+            <span class="skill-tag">Micro-batching</span>
+            <span class="skill-tag">Resource contention</span>
+          </div>
+        </div>
+        <div class="skill-group reveal">
+          <h3>Infrastructure & Tools</h3>
+          <div class="skill-tags">
+            <span class="skill-tag">Python</span>
+            <span class="skill-tag">SQL</span>
+            <span class="skill-tag">Docker</span>
+            <span class="skill-tag">Kubernetes</span>
+            <span class="skill-tag">REST APIs</span>
+            <span class="skill-tag">Cloud deployment</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Certifications -->
+    <section id="certifications" class="section section-wide">
+      <div class="section-header center reveal">
+        <span class="section-label">Credentials</span>
+        <h2 class="section-title">Certifications</h2>
+        <p class="section-desc">Hover to reveal course IDs. Tap on mobile to flip.</p>
+      </div>
+
+      <div class="certs-grid stagger">
+        <div class="cert-card reveal">
+          <div class="cert-inner">
+            <div class="cert-front">
+              <span class="cert-issuer">Wharton</span>
+              <p class="cert-name">Foundations & Applications of Financial Technology</p>
+              <span class="cert-hint">Hover for ID</span>
+            </div>
+            <div class="cert-back">
+              <span class="cert-id">A9CABJKOSLQ3</span>
+            </div>
+          </div>
+        </div>
+        <div class="cert-card reveal">
+          <div class="cert-inner">
+            <div class="cert-front">
+              <span class="cert-issuer">Google</span>
+              <p class="cert-name">AI Essentials</p>
+              <span class="cert-hint">Hover for ID</span>
+            </div>
+            <div class="cert-back">
+              <span class="cert-id">A9CABJKOSLQ3</span>
+            </div>
+          </div>
+        </div>
+        <div class="cert-card reveal">
+          <div class="cert-inner">
+            <div class="cert-front">
+              <span class="cert-issuer">IBM</span>
+              <p class="cert-name">Full Stack Developer Professional Certificate</p>
+              <span class="cert-hint">Hover for ID</span>
+            </div>
+            <div class="cert-back">
+              <span class="cert-id">3UBKQ00NGCIA</span>
+            </div>
+          </div>
+        </div>
+        <div class="cert-card reveal">
+          <div class="cert-inner">
+            <div class="cert-front">
+              <span class="cert-issuer">IBM</span>
+              <p class="cert-name">Generative AI Engineering Professional Certificate</p>
+              <span class="cert-hint">Hover for ID</span>
+            </div>
+            <div class="cert-back">
+              <span class="cert-id">EAMKPE6N4UHX</span>
+            </div>
+          </div>
+        </div>
+        <div class="cert-card reveal">
+          <div class="cert-inner">
+            <div class="cert-front">
+              <span class="cert-issuer">Anthropic</span>
+              <p class="cert-name">AI Fluency: Framework & Foundations</p>
+              <span class="cert-hint">Hover for ID</span>
+            </div>
+            <div class="cert-back">
+              <span class="cert-id">7hykoutix9vb</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Campus Involvement -->
+    <section id="involvement" class="section section-wide">
+      <div class="section-header reveal">
+        <span class="section-label">Community</span>
+        <h2 class="section-title">Campus involvement</h2>
+        <p class="section-desc">Leadership, service, and technical community engagement at LSU.</p>
+      </div>
+
+      <div class="involve-grid stagger">
+        <article class="involve-card reveal">
+          <div class="involve-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <h3 class="involve-org">LSU Student Government</h3>
+          <p class="involve-role">Assistant Director of Technology, Innovation, and Modernization</p>
+          <p class="involve-desc">Driving technology initiatives and modernization efforts for student government operations and campus-facing solutions.</p>
+        </article>
+
+        <article class="involve-card reveal">
+          <div class="involve-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          </div>
+          <h3 class="involve-org">LSU Companion Animal Alliance</h3>
+          <p class="involve-role">Student Volunteer</p>
+          <p class="involve-desc">Volunteering to support companion animal care and welfare initiatives on campus and in the community.</p>
+        </article>
+
+        <article class="involve-card reveal">
+          <div class="involve-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+          </div>
+          <h3 class="involve-org">Artificial Intelligence Club</h3>
+          <p class="involve-role">Student Member</p>
+          <p class="involve-desc">Engaging with peers on AI research, projects, and emerging technologies in machine learning.</p>
+        </article>
+
+        <article class="involve-card reveal">
+          <div class="involve-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+          <h3 class="involve-org">Tau Kappa Epsilon</h3>
+          <p class="involve-role">Social Chairman — Executive Board</p>
+          <p class="involve-desc">Serving as Social Chairman on the Executive Board, organizing events and fostering brotherhood within the fraternity.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="section">
+      <div class="section-header center reveal">
+        <span class="section-label">Connect</span>
+        <h2 class="section-title">Let's work together</h2>
+        <p class="section-desc">I'm always open to internships, collaborations, and conversations about software and AI.</p>
+      </div>
+
+      <div class="contact-grid reveal">
+        <a href="mailto:gmorriscs@gmail.com" class="contact-card">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          <p class="contact-type">Email</p>
+          <p class="contact-val">gmorriscs@gmail.com</p>
+        </a>
+        <a href="tel:+15042228798" class="contact-card">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          <p class="contact-type">Phone</p>
+          <p class="contact-val">(504) 222-8798</p>
+        </a>
+        <a href="https://www.linkedin.com/in/gmorr32" class="contact-card" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          <p class="contact-type">LinkedIn</p>
+          <p class="contact-val">linkedin.com/in/gmorr32</p>
+        </a>
+        <a href="https://gavinmorrisportfolio.com/" class="contact-card" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          <p class="contact-type">Portfolio</p>
+          <p class="contact-val">gavinmorrisportfolio.com</p>
+        </a>
+      </div>
+
+      <div style="text-align: center; margin-top: 2.5rem;" class="reveal">
+        <a href="mailto:gmorriscs@gmail.com" class="btn btn-primary">
+          Say hello
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>&copy; 2026 Gavin Morris. Built with care in Baton Rouge, LA.</p>
+  </footer>
+
+  <button type="button" class="back-top" id="back-top" aria-label="Back to top">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="18 15 12 9 6 15"/></svg>
+  </button>
+
+  <script src="main.js"></script>
 </body>
 </html>
