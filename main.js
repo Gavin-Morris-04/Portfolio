@@ -80,7 +80,7 @@
   // Typewriter
   const roles = [
     "Software Engineer",
-    "ML & AI Enthusiast",
+    "ML & AI Research @ ATHENA Lab",
     "Founder @ Deltara Tech",
     "Computer Science @ LSU",
   ];
