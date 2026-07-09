@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Gavin Morris — Software Engineer, ML/AI researcher at LSU ATHENA Lab, and Computer Science student at LSU. Portfolio showcasing experience, projects, and certifications.">
+  <meta name="description" content="Gavin Morris — Software Engineer, ML/AI researcher at LSU ATHENA Lab, Spacebourne intern, and Computer Science student at LSU. Portfolio showcasing experience, projects, and certifications.">
   <meta name="author" content="Gavin Morris">
   <title>Gavin Morris | Software Engineer</title>
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
@@ -70,9 +70,9 @@
         <span id="typewriter"></span><span class="cursor" aria-hidden="true"></span>
       </p>
       <p class="hero-bio reveal">
-        Computer Science student at Louisiana State University building production systems across diffusion-based
-        AI research, ML inference, full-stack applications, and cloud backends — from ATHENA Lab to enterprise
-        healthcare and founder-led client delivery.
+        Computer Science student at Louisiana State University building production systems across AI platforms,
+        GPU-accelerated diffusion research on LONI HPC, ML inference, and cloud backends — from Spacebourne and
+        ATHENA Lab to enterprise healthcare and founder-led client delivery.
       </p>
       <div class="hero-actions reveal">
         <a href="#projects" class="btn btn-primary" data-scroll="projects">
@@ -111,9 +111,9 @@
         <h2 class="section-title">About me</h2>
         <p class="section-desc">
           I'm a Computer Science student at LSU with a minor in Mathematics, passionate about machine learning,
-          systems performance, and shipping software that solves real problems — from diffusion pipeline research
-          at the ATHENA Lab to enterprise backends and founder-led delivery at Deltara Tech, where I've built
-          production systems for 100+ users across Louisiana businesses.
+          systems performance, and shipping software that solves real problems — from AI workflow engineering at
+          Spacebourne and GPU-accelerated diffusion research on LONI HPC at the ATHENA Lab to founder-led delivery
+          at Deltara Tech, where I've built production systems for 100+ users across Louisiana businesses.
         </p>
       </div>
 
@@ -135,18 +135,18 @@
               </span>
               <span>
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                GPA: 3.52
+                GPA: 3.74
               </span>
             </div>
           </div>
         </div>
         <div class="stats-row stagger reveal-right">
           <div class="stat-card">
-            <div class="stat-num" data-count="4">0</div>
+            <div class="stat-num" data-count="5">0</div>
             <div class="stat-label">Roles & internships</div>
           </div>
           <div class="stat-card">
-            <div class="stat-num" data-count="7">0</div>
+            <div class="stat-num" data-count="5">0</div>
             <div class="stat-label">Featured projects</div>
           </div>
           <div class="stat-card">
@@ -166,19 +166,31 @@
       <div class="section-header reveal">
         <span class="section-label">Career</span>
         <h2 class="section-title">Experience</h2>
-        <p class="section-desc">Hands-on engineering across ML research, healthcare, GIS, and founder-led client delivery.</p>
+        <p class="section-desc">Hands-on engineering across AI platforms, ML research, healthcare, GIS, and founder-led client delivery.</p>
       </div>
 
       <div class="timeline">
+        <article class="exp-card reveal">
+          <p class="exp-date">June 2026 – Present</p>
+          <h3 class="exp-role">Software Engineer Intern</h3>
+          <p class="exp-company">Spacebourne</p>
+          <span class="exp-tag">Current</span>
+          <ul class="exp-bullets">
+            <li>Reduced AI processing time by 20% through backend optimization and workflow automation.</li>
+            <li>Developed 5+ production-ready features adopted across the CLARITY platform, improving user productivity and system capabilities.</li>
+            <li>Implemented AI workflow enhancements that decreased manual review time by 35% and improved operational efficiency.</li>
+          </ul>
+        </article>
+
         <article class="exp-card reveal">
           <p class="exp-date">June 2026 – Present</p>
           <h3 class="exp-role">Undergraduate AI Research Assistant</h3>
           <p class="exp-company">LSU ATHENA Lab</p>
           <span class="exp-tag">Current</span>
           <ul class="exp-bullets">
-            <li>Modified and extended PyTorch-based diffusion pipelines to support configurable denoising schedules, latent upsampling strategies, and multi-stage image generation workflows.</li>
-            <li>Built automated benchmarking infrastructure for large-scale AI experiments, logging generation outputs, runtime performance, and model evaluation metrics across hundreds of test configurations.</li>
-            <li>Analyzed system-level tradeoffs between inference speed, image quality, and text-image alignment using Stable Diffusion, Hugging Face Diffusers, and GPU-accelerated evaluation pipelines.</li>
+            <li>Engineered PyTorch diffusion pipelines executed on NVIDIA A100 GPUs on LONI's QB-4 supercomputing cluster, implementing configurable denoising schedules, latent upsampling strategies, and multi-stage image generation workflows.</li>
+            <li>Built automated benchmarking infrastructure for large-scale GPU experiments on HPC infrastructure, orchestrating Slurm batch jobs and logging generation outputs, GPU runtime performance, and evaluation metrics across hundreds of test configurations.</li>
+            <li>Profiled GPU inference tradeoffs between speed, image quality, and text-image alignment using Stable Diffusion and Hugging Face Diffusers, characterizing latency and memory behavior across pipeline configurations.</li>
           </ul>
         </article>
 
@@ -234,37 +246,17 @@
       </div>
 
       <div class="projects-grid stagger">
-        <article class="project-card reveal" data-category="ml">
-          <div class="project-top"></div>
-          <div class="project-body">
-            <div class="project-meta">
-              <span class="project-date">2026</span>
-              <span class="project-cat">ML & AI</span>
-            </div>
-            <h3 class="project-name">AI Email Security Shield</h3>
-            <ul class="project-bullets">
-              <li>Developed an Outlook email security add-in using React, TypeScript, Office.js, and FastAPI that analyzes email content for AI-generated text and phishing indicators in real time.</li>
-              <li>Designed and implemented a privacy-focused detection pipeline leveraging Hugging Face NLP models, custom phishing heuristics, and explainable risk scoring without relying on external AI APIs.</li>
-              <li>Built and deployed a full-stack architecture with Outlook integration, REST APIs, Docker containerization, caching, and secure client-server communication to support scalable email threat analysis.</li>
-            </ul>
-            <a href="https://github.com/Gavin-Morris-04/Dornier-Morris" class="project-link" target="_blank" rel="noopener noreferrer">
-              View on GitHub
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-            </a>
-          </div>
-        </article>
-
         <article class="project-card reveal" data-category="fullstack">
           <div class="project-top"></div>
           <div class="project-body">
             <div class="project-meta">
-              <span class="project-date">May 2026</span>
+              <span class="project-date">2026</span>
               <span class="project-cat">Full-Stack</span>
             </div>
             <h3 class="project-name">CoHabit</h3>
             <ul class="project-bullets">
-              <li>Developed a full-stack roommate and shared-living management platform designed to streamline task coordination, expense tracking, and household communication through an intuitive user-focused interface.</li>
-              <li>Built responsive frontend and backend features that organized shared household data into clear, accessible workflows, improving collaboration and simplifying day-to-day apartment management.</li>
+              <li>Developed a JavaFX (Java 17) desktop application for shared-living coordination — room setup, chore tracking, expense balancing — with layered model/core/UI architecture, Maven tooling, and JUnit 5 coverage of core manager logic.</li>
+              <li>Engineered a dual-persistence layer integrating Firebase Firestore via REST with transparent local JSON fallback (Jackson), preserving full functionality offline or on cloud failure.</li>
             </ul>
             <a href="https://github.com/Gavin-Morris-04/CoHabit" class="project-link" target="_blank" rel="noopener noreferrer">
               View on GitHub
@@ -277,13 +269,14 @@
           <div class="project-top"></div>
           <div class="project-body">
             <div class="project-meta">
-              <span class="project-date">January 2026</span>
+              <span class="project-date">2026</span>
               <span class="project-cat">ML & AI</span>
             </div>
             <h3 class="project-name">Inference Kernel Optimization Lab</h3>
             <ul class="project-bullets">
-              <li>Designed and benchmarked cache-blocked ML inference kernels (GEMM, Softmax, LayerNorm) using NumPy and Numba, analyzing compute vs memory-bound behavior under controlled single-thread and multi-thread execution.</li>
-              <li>Implemented rigorous performance methodology with thread isolation, block-size sweeps, latency metrics, and roofline analysis to identify cache locality, memory access, and SIMD limitations versus BLAS.</li>
+              <li>Implemented Transformer inference kernels (GEMM, Softmax, LayerNorm) in a three-tier progression — pure Python baseline, NumPy/BLAS, and JIT-compiled Numba — achieving a ~300× speedup over baseline through cache-block tiling, matrix-transpose memory layout optimization, 4-way loop unrolling, and thread-level parallelism.</li>
+              <li>Applied roofline model analysis to classify kernels as compute-bound (GEMM) vs memory-bound (Softmax, LayerNorm) by arithmetic intensity, and quantified the remaining gap to hand-tuned BLAS, attributing it to SIMD auto-vectorization limits.</li>
+              <li>Engineered a rigorous benchmarking harness with median-based timing, JIT warmup control, single-thread isolation for fair kernel comparison, and block-size sweeps, producing reproducible CSV results and performance plots.</li>
             </ul>
             <a href="https://github.com/Gavin-Morris-04/Inference-Kernel-Optimization-Lab" class="project-link" target="_blank" rel="noopener noreferrer">
               View on GitHub
@@ -296,14 +289,13 @@
           <div class="project-top"></div>
           <div class="project-body">
             <div class="project-meta">
-              <span class="project-date">January 2026</span>
+              <span class="project-date">2026</span>
               <span class="project-cat">ML & AI</span>
             </div>
             <h3 class="project-name">ML Inference Scheduler & Performance Profiler</h3>
             <ul class="project-bullets">
-              <li>Built a production-inspired ML inference scheduler simulating mixed workloads, SLO-aware scheduling, micro-batching, and GPU-style resource constraints.</li>
-              <li>Implemented and benchmarked multiple scheduling strategies, analyzing latency, throughput, tail behavior, and SLO violations using detailed trace-based performance profiling.</li>
-              <li>Simulated GPU-style execution lanes, queue contention, and memory-bounded inference workloads to study latency/throughput tradeoffs under hardware-constrained environments.</li>
+              <li>Built an SLO-aware ML inference scheduler modeling mixed workloads with micro-batching, priority queuing, and GPU-style execution lanes under memory-bandwidth constraints, benchmarking scheduling policies head-to-head.</li>
+              <li>Quantified latency, throughput, p99 tail latency, and SLO violation rates via trace-based profiling, characterizing queue contention and latency/throughput tradeoffs across batching strategies.</li>
             </ul>
             <a href="https://github.com/Gavin-Morris-04/ML-IS-PP" class="project-link" target="_blank" rel="noopener noreferrer">
               View on GitHub
@@ -346,26 +338,6 @@
               <li>Built intuitive UI/UX for businesses to easily manage complex supply chains with multi-supplier support, item categorization, and usage history visibility.</li>
             </ul>
             <a href="https://github.com/Gavin-Morris-04/inventory-pro" class="project-link" target="_blank" rel="noopener noreferrer">
-              View on GitHub
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-            </a>
-          </div>
-        </article>
-
-        <article class="project-card reveal" data-category="ml">
-          <div class="project-top"></div>
-          <div class="project-body">
-            <div class="project-meta">
-              <span class="project-date">December 2024</span>
-              <span class="project-cat">ML & AI</span>
-            </div>
-            <h3 class="project-name">AI Chat Bot</h3>
-            <ul class="project-bullets">
-              <li>Designed a terminal-based AI chatbot using Python, providing a secure and efficient local interaction environment.</li>
-              <li>Leveraged the Ollama platform to enhance chatbot functionality, demonstrating proficiency in integrating AI tools into Python applications.</li>
-              <li>Designed and debugged the chatbot to ensure seamless user interaction, showcasing effective troubleshooting and development techniques.</li>
-            </ul>
-            <a href="https://github.com/Gavin-Morris-04/AI-Chat-Bot" class="project-link" target="_blank" rel="noopener noreferrer">
               View on GitHub
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
             </a>
