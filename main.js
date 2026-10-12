@@ -80,9 +80,9 @@
   // Typewriter
   const roles = [
     "Software Engineer",
-    "Software Engineer @ Spacebourne",
-    "AI Research @ ATHENA Lab",
-    "Founder @ Deltara Tech",
+    "GPU Kernels & LLM Inference",
+    "vLLM Contributor",
+    "Delta-V Scholar @ Spacebourne",
     "Computer Science @ LSU",
   ];
   const typeEl = document.getElementById("typewriter");
