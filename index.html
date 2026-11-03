@@ -171,7 +171,7 @@
         <article class="involve-card reveal">
           <h3 class="involve-org">AI implementation</h3>
           <p class="involve-role">Put AI into real workflows, then measure it</p>
-          <p class="involve-desc">At Spacebourne I automated AI workflows, reducing AI processing time by 20% and manual review time by 35%. In Coach AI I connected Llama 3.1 to health, task, and calendar data.</p>
+          <p class="involve-desc">At Spacebourne I automated AI workflows, reducing AI processing time by 20% and manual review time by 35%. I also built an AI triage assistant that marked 0 of 20 test emergencies as routine, with a person approving every job.</p>
         </article>
         <article class="involve-card reveal">
           <h3 class="involve-org">Technical customer success</h3>
@@ -265,6 +265,28 @@
       </div>
 
       <div class="projects-grid stagger">
+        <article class="project-card reveal" data-category="ml">
+          <div class="project-top"></div>
+          <div class="project-body">
+            <div class="project-meta">
+              <span class="project-date">2026</span>
+              <span class="project-cat">Applied AI</span>
+            </div>
+            <h3 class="project-name">AI Service Operations Assistant</h3>
+            <p class="project-why">Built for the kind of HVAC office I already work with: it sorts incoming service requests so emergencies never sit in the queue, and a person approves every job before it is created.</p>
+            <ul class="project-bullets">
+              <li>Built a FastAPI service where Claude uses tools to look up customers and technician availability, then proposes urgency, trade, next action and a job for a specific technician.</li>
+              <li>Wrote a 60-request labeled eval set with understated emergencies, prompt injection attempts and Spanish requests. Claude marked 0 of 20 emergencies as routine, where a keyword baseline marked 8.</li>
+              <li>Measured cost and latency per request: about $0.024, with 10 s at the 95th percentile and 13 s at the 99th.</li>
+              <li>Added safeguards for when the model is wrong: keyword rules as a fallback and a safety floor, flags for low confidence, and an audit trail of every decision.</li>
+            </ul>
+            <a href="https://github.com/Gavin-Morris-04/ai-service-ops-assistant" class="project-link" target="_blank" rel="noopener noreferrer">
+              View on GitHub
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            </a>
+          </div>
+        </article>
+
         <article class="project-card reveal" data-category="apps">
           <div class="project-top"></div>
           <div class="project-body">
