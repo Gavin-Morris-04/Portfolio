@@ -5,6 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Gavin Morris — LSU Computer Science senior and founder of Deltara Tech, seeking solutions engineering, presales, and AI implementation roles after May 2027 graduation.">
   <meta name="author" content="Gavin Morris">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://gavinmorrisportfolio.com/">
+  <meta property="og:title" content="Gavin Morris | Solutions Engineering & AI Implementation">
+  <meta property="og:description" content="LSU Computer Science senior and founder of Deltara Tech. Client delivery, applied AI and a client-approved case study.">
+  <meta name="twitter:card" content="summary">
   <title>Gavin Morris | Solutions Engineering & AI Implementation</title>
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="alternate icon" href="favicon.svg">
@@ -17,7 +22,6 @@
   <div class="bg-layer" aria-hidden="true">
     <div class="bg-mesh"></div>
     <div class="bg-grid"></div>
-    <canvas id="particle-canvas"></canvas>
   </div>
 
   <div class="scroll-progress" aria-hidden="true"></div>
@@ -26,13 +30,11 @@
     <div class="nav-inner">
       <a href="#home" class="logo" data-scroll="home">Gavin Morris</a>
       <nav class="nav-links" aria-label="Main navigation">
-        <a href="#home" class="nav-link" data-nav="home" data-scroll="home">Home</a>
         <a href="#about" class="nav-link" data-nav="about" data-scroll="about">About</a>
+        <a href="#featured" class="nav-link" data-nav="featured" data-scroll="featured">Featured</a>
         <a href="#experience" class="nav-link" data-nav="experience" data-scroll="experience">Experience</a>
         <a href="#projects" class="nav-link" data-nav="projects" data-scroll="projects">Projects</a>
         <a href="#skills" class="nav-link" data-nav="skills" data-scroll="skills">Skills</a>
-        <a href="#certifications" class="nav-link" data-nav="certifications" data-scroll="certifications">Certs</a>
-        <a href="#involvement" class="nav-link" data-nav="involvement" data-scroll="involvement">Community</a>
         <a href="#contact" class="nav-link" data-nav="contact" data-scroll="contact">Contact</a>
       </nav>
       <a href="#contact" class="nav-cta" data-scroll="contact">Get in touch</a>
@@ -45,13 +47,11 @@
   </header>
 
   <nav class="mobile-drawer" id="mobile-drawer" aria-label="Mobile navigation" aria-hidden="true">
-    <a href="#home" class="nav-link" data-nav="home" data-scroll="home">Home</a>
     <a href="#about" class="nav-link" data-nav="about" data-scroll="about">About</a>
+    <a href="#featured" class="nav-link" data-nav="featured" data-scroll="featured">Featured</a>
     <a href="#experience" class="nav-link" data-nav="experience" data-scroll="experience">Experience</a>
     <a href="#projects" class="nav-link" data-nav="projects" data-scroll="projects">Projects</a>
     <a href="#skills" class="nav-link" data-nav="skills" data-scroll="skills">Skills</a>
-    <a href="#certifications" class="nav-link" data-nav="certifications" data-scroll="certifications">Certifications</a>
-    <a href="#involvement" class="nav-link" data-nav="involvement" data-scroll="involvement">Community</a>
     <a href="#contact" class="nav-link" data-nav="contact" data-scroll="contact">Contact</a>
   </nav>
 
@@ -67,7 +67,7 @@
         <span class="line accent">Morris</span>
       </h1>
       <p class="hero-role reveal">
-        <span id="typewriter"></span><span class="cursor" aria-hidden="true"></span>
+        Solutions Engineering &middot; AI Implementation &middot; Technical Customer Success
       </p>
       <p class="hero-bio reveal">
         I build software and work directly with the people who use it. As founder of Deltara Tech, I delivered
@@ -75,8 +75,8 @@
         in AI workflows, cloud backends, and LLM inference.
       </p>
       <div class="hero-actions reveal">
-        <a href="#experience" class="btn btn-primary" data-scroll="experience">
-          See my client work
+        <a href="case-study.html" class="btn btn-primary">
+          Read the client case study
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </a>
         <a href="#projects" class="btn btn-outline" data-scroll="projects">View projects</a>
@@ -144,19 +144,19 @@
         </div>
         <div class="stats-row stagger reveal-right">
           <div class="stat-card">
-            <div class="stat-num" data-count="6">0</div>
+            <div class="stat-num">6</div>
             <div class="stat-label">Business clients</div>
           </div>
           <div class="stat-card">
-            <div class="stat-num" data-count="18" data-prefix="$" data-suffix="K+">0</div>
+            <div class="stat-num">$18K+</div>
             <div class="stat-label">Client revenue</div>
           </div>
           <div class="stat-card">
-            <div class="stat-num" data-count="100" data-suffix="+">0</div>
+            <div class="stat-num">100+</div>
             <div class="stat-label">End users</div>
           </div>
           <div class="stat-card">
-            <div class="stat-num" data-count="7" data-prefix="$" data-suffix="M">0</div>
+            <div class="stat-num">$7M</div>
             <div class="stat-label">Budget voted on</div>
           </div>
         </div>
@@ -177,6 +177,41 @@
           <h3 class="involve-org">Technical customer success</h3>
           <p class="involve-role">Stay with the customer after launch</p>
           <p class="involve-desc">I supported Deltara's systems after launch, including a custom inventory system commissioned by a client and still in use today. At Blue Cross I worked with engineers and stakeholders to troubleshoot production issues.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- Featured work -->
+    <section id="featured" class="section section-wide">
+      <div class="section-header reveal">
+        <span class="section-label">Featured work</span>
+        <h2 class="section-title">Work for a real client</h2>
+        <p class="section-desc">A system a client still uses every day, and the AI tool I'm building for that same client's next problem.</p>
+      </div>
+
+      <div class="featured-grid stagger">
+        <article class="featured-card reveal">
+          <span class="featured-kind">Client case study</span>
+          <h3>Custom inventory app for a Louisiana HVAC company</h3>
+          <p>Replaced spreadsheets, handwritten notes and phone calls with one app that tracks every part across the warehouse and each service truck, and who used it.</p>
+          <ul class="featured-metrics">
+            <li><strong>4&ndash;5 hrs</strong> a week saved, by the owner's estimate</li>
+            <li><strong>100+</strong> field technicians</li>
+            <li><strong>Daily</strong> use, approved by the client</li>
+          </ul>
+          <a href="case-study.html" class="project-link">Read the case study <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        </article>
+
+        <article class="featured-card reveal">
+          <span class="featured-kind">AI proof of concept</span>
+          <h3>AI Service Operations Assistant</h3>
+          <p>Claude triages incoming service requests and proposes a job for a specific technician. A person approves every job before it is created.</p>
+          <ul class="featured-metrics">
+            <li><strong>0 of 20</strong> test emergencies marked routine</li>
+            <li><strong>60</strong> labeled test requests</li>
+            <li><strong>$0.024</strong> per request</li>
+          </ul>
+          <a href="https://github.com/Gavin-Morris-04/ai-service-ops-assistant" class="project-link" target="_blank" rel="noopener noreferrer">View on GitHub <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>
         </article>
       </div>
     </section>
@@ -207,7 +242,7 @@
           </a>
         </article>
 
-<article class="exp-card reveal">
+        <article class="exp-card reveal">
           <p class="exp-date">June 2026 – September 2026</p>
           <h3 class="exp-role">Software Engineer Intern</h3>
           <p class="exp-company">Spacebourne</p>
@@ -219,7 +254,7 @@
           </ul>
         </article>
 
-<article class="exp-card reveal">
+        <article class="exp-card reveal">
           <p class="exp-date">January 2026 – May 2026</p>
           <h3 class="exp-role">Software Engineer Intern</h3>
           <p class="exp-company">Blue Cross Blue Shield of Louisiana</p>
@@ -230,7 +265,7 @@
           </ul>
         </article>
 
-<article class="exp-card reveal">
+        <article class="exp-card reveal">
           <p class="exp-date">June 2026 – September 2026</p>
           <h3 class="exp-role">Undergraduate AI Research Assistant</h3>
           <p class="exp-company">LSU ATHENA Lab</p>
@@ -241,7 +276,7 @@
           </ul>
         </article>
 
-<article class="exp-card reveal">
+        <article class="exp-card reveal">
           <p class="exp-date">January 2025 – May 2025</p>
           <h3 class="exp-role">Software Developer Intern</h3>
           <p class="exp-company">LSU CARTS</p>
@@ -316,7 +351,7 @@
           </div>
         </article>
 
-<article class="project-card reveal" data-category="apps">
+        <article class="project-card reveal" data-category="apps">
           <div class="project-top"></div>
           <div class="project-body">
             <div class="project-meta">
@@ -337,7 +372,7 @@
           </div>
         </article>
 
-<article class="project-card reveal" data-category="ml">
+        <article class="project-card reveal" data-category="ml">
           <div class="project-top"></div>
           <div class="project-body">
             <div class="project-meta">
@@ -358,7 +393,7 @@
           </div>
         </article>
 
-<article class="project-card reveal" data-category="ml">
+        <article class="project-card reveal" data-category="ml">
           <div class="project-top"></div>
           <div class="project-body">
             <div class="project-meta">
@@ -378,7 +413,7 @@
           </div>
         </article>
 
-<article class="project-card reveal" data-category="ml">
+        <article class="project-card reveal" data-category="ml">
           <div class="project-top"></div>
           <div class="project-body">
             <div class="project-meta">
@@ -398,7 +433,7 @@
           </div>
         </article>
 
-<article class="project-card reveal" data-category="apps">
+        <article class="project-card reveal" data-category="apps">
           <div class="project-top"></div>
           <div class="project-body">
             <div class="project-meta">
@@ -418,7 +453,7 @@
           </div>
         </article>
 
-<article class="project-card reveal" data-category="ml">
+        <article class="project-card reveal" data-category="ml">
           <div class="project-top"></div>
           <div class="project-body">
             <div class="project-meta">
@@ -513,60 +548,28 @@
       <div class="section-header center reveal">
         <span class="section-label">Credentials</span>
         <h2 class="section-title">Certifications</h2>
-        <p class="section-desc">Hover to reveal course IDs. Tap on mobile to flip.</p>
       </div>
 
-      <div class="certs-grid stagger">
-        <div class="cert-card reveal">
-          <div class="cert-inner">
-            <div class="cert-front">
-              <span class="cert-issuer">IBM</span>
-              <p class="cert-name">Generative AI Engineering Professional Certificate</p>
-              <span class="cert-hint">Hover for ID</span>
-            </div>
-            <div class="cert-back">
-              <span class="cert-id">EAMKPE6N4UHX</span>
-            </div>
-          </div>
+      <div class="cert-list stagger">
+        <div class="cert-item reveal">
+          <span class="cert-issuer">IBM</span>
+          <p class="cert-name">Generative AI Engineering Professional Certificate</p>
+          <p class="cert-credential">Credential ID: EAMKPE6N4UHX</p>
         </div>
-
-<div class="cert-card reveal">
-          <div class="cert-inner">
-            <div class="cert-front">
-              <span class="cert-issuer">Anthropic</span>
-              <p class="cert-name">AI Fluency: Framework & Foundations</p>
-              <span class="cert-hint">Hover for ID</span>
-            </div>
-            <div class="cert-back">
-              <span class="cert-id">7hykoutix9vb</span>
-            </div>
-          </div>
+        <div class="cert-item reveal">
+          <span class="cert-issuer">Anthropic</span>
+          <p class="cert-name">AI Fluency: Framework &amp; Foundations</p>
+          <p class="cert-credential">Credential ID: 7hykoutix9vb</p>
         </div>
-
-<div class="cert-card reveal">
-          <div class="cert-inner">
-            <div class="cert-front">
-              <span class="cert-issuer">IBM</span>
-              <p class="cert-name">Full Stack Developer Professional Certificate</p>
-              <span class="cert-hint">Hover for ID</span>
-            </div>
-            <div class="cert-back">
-              <span class="cert-id">3UBKQ00NGCIA</span>
-            </div>
-          </div>
+        <div class="cert-item reveal">
+          <span class="cert-issuer">IBM</span>
+          <p class="cert-name">Full Stack Developer Professional Certificate</p>
+          <p class="cert-credential">Credential ID: 3UBKQ00NGCIA</p>
         </div>
-
-<div class="cert-card reveal">
-          <div class="cert-inner">
-            <div class="cert-front">
-              <span class="cert-issuer">Wharton</span>
-              <p class="cert-name">Foundations & Applications of Financial Technology</p>
-              <span class="cert-hint">Hover for ID</span>
-            </div>
-            <div class="cert-back">
-              <span class="cert-id">A9CABJKOSLQ3</span>
-            </div>
-          </div>
+        <div class="cert-item reveal">
+          <span class="cert-issuer">Wharton</span>
+          <p class="cert-name">Foundations &amp; Applications of Financial Technology</p>
+          <p class="cert-credential">Credential ID: A9CABJKOSLQ3</p>
         </div>
       </div>
     </section>
@@ -589,7 +592,7 @@
           <p class="involve-desc">One of 10 voting members who decided how to allocate a $7 million budget for campus technology resources.</p>
         </article>
 
-<article class="involve-card reveal">
+        <article class="involve-card reveal">
           <div class="involve-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
           </div>
@@ -598,7 +601,7 @@
           <p class="involve-desc">Driving technology initiatives and modernization efforts for student government operations and campus-facing solutions.</p>
         </article>
 
-<article class="involve-card reveal">
+        <article class="involve-card reveal">
           <div class="involve-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
           </div>
@@ -607,7 +610,7 @@
           <p class="involve-desc">Engaging with peers on AI research, projects, and emerging technologies in machine learning.</p>
         </article>
 
-<article class="involve-card reveal">
+        <article class="involve-card reveal">
           <div class="involve-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
           </div>
@@ -616,7 +619,7 @@
           <p class="involve-desc">Serving as Social Chairman on the Executive Board, organizing events and fostering brotherhood within the fraternity.</p>
         </article>
 
-<article class="involve-card reveal">
+        <article class="involve-card reveal">
           <div class="involve-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
           </div>
@@ -668,7 +671,13 @@
   </main>
 
   <footer class="footer">
-    <p>&copy; 2026 Gavin Morris. Built with care in Baton Rouge, LA.</p>
+    <p>&copy; 2026 Gavin Morris &middot; Baton Rouge, LA</p>
+    <p class="footer-links">
+      <a href="mailto:gmorriscs@gmail.com">Email</a>
+      <a href="https://www.linkedin.com/in/gmorr32" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      <a href="https://github.com/Gavin-Morris-04" target="_blank" rel="noopener noreferrer">GitHub</a>
+      <a href="case-study.html">Case study</a>
+    </p>
   </footer>
 
   <button type="button" class="back-top" id="back-top" aria-label="Back to top">
