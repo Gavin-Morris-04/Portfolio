@@ -1156,3 +1156,120 @@ main { position: relative; z-index: 1; }
   .cert-inner { transition: none; }
   .cert-card:hover .cert-inner { transform: none; }
 }
+
+/* Case study page */
+.case-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  transition: color 0.25s;
+}
+
+.case-back:hover { color: var(--accent-3); }
+
+.case {
+  position: relative;
+  z-index: 1;
+  max-width: 48rem;
+  margin: 0 auto;
+  padding: calc(var(--nav-h) + 3rem) 1.5rem 4rem;
+}
+
+.case section { margin-bottom: 3rem; }
+
+.case-title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 400;
+  line-height: 1.15;
+  color: var(--text);
+  margin-bottom: 1rem;
+}
+
+.case-byline {
+  color: var(--text-dim);
+  font-size: 0.9375rem;
+  padding-bottom: 1.5rem;
+  margin-bottom: 1.5rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.case h2 {
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 4vw, 2.25rem);
+  font-weight: 400;
+  color: var(--text);
+  margin-bottom: 1rem;
+}
+
+.case p,
+.case li {
+  color: var(--text-muted);
+  font-size: 1.0625rem;
+  line-height: 1.75;
+  margin-bottom: 1rem;
+}
+
+.case strong { color: var(--text); }
+
+.case-lead { font-size: 1.1875rem; color: var(--text); }
+
+.case ul { margin: 0 0 1rem 1.25rem; list-style: disc; }
+
+.case a:not(.btn) { color: var(--accent-3); text-decoration: underline; text-underline-offset: 3px; }
+
+.table-wrap {
+  overflow-x: auto;
+  margin: 1.5rem 0;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+}
+
+.case table { width: 100%; border-collapse: collapse; font-size: 0.9375rem; }
+
+.case th,
+.case td {
+  padding: 0.75rem 1rem;
+  text-align: left;
+  vertical-align: top;
+  border-bottom: 1px solid var(--border);
+  color: var(--text-muted);
+}
+
+.case thead th { color: var(--text); background: rgba(59, 130, 246, 0.12); font-weight: 600; }
+
+.case tr:last-child td,
+.case tr:last-child th { border-bottom: 0; }
+
+.case-facts th { width: 8rem; color: var(--accent-3); font-weight: 600; background: var(--surface); }
+
+.case blockquote {
+  margin: 1.5rem 0;
+  padding: 0.25rem 0 0.25rem 1.25rem;
+  border-left: 3px solid var(--accent-3);
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1.375rem;
+  line-height: 1.5;
+  color: var(--text);
+}
+
+.case-attribution { color: var(--text-dim); font-size: 0.9375rem; margin-top: -0.5rem; }
+
+.case figure {
+  margin: 1.5rem 0;
+  padding: 0.75rem;
+  background: #fff;
+  border-radius: 12px;
+}
+
+.case figure img { display: block; width: 100%; height: auto; }
+
+.case figcaption { color: #5f6b67; font-size: 0.875rem; text-align: center; margin-top: 0.5rem; }
+
+.case-note { font-size: 0.875rem !important; color: var(--text-dim) !important; font-style: italic; }
+
+.case-link { margin-top: 1.25rem; }
