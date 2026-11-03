@@ -79,10 +79,10 @@
 
   // Typewriter
   const roles = [
-    "Software Engineer",
-    "GPU Kernels & LLM Inference",
-    "vLLM Contributor",
-    "Delta-V Scholar @ Spacebourne",
+    "Solutions Engineering",
+    "AI Implementation",
+    "Technical Customer Success",
+    "Founder @ Deltara Tech",
     "Computer Science @ LSU",
   ];
   const typeEl = document.getElementById("typewriter");
@@ -127,6 +127,7 @@
         if (!entry.isIntersecting) return;
         const el = entry.target;
         const target = parseInt(el.dataset.count, 10);
+        const prefix = el.dataset.prefix || "";
         const suffix = el.dataset.suffix || "";
         const duration = 1400;
         const start = performance.now();
@@ -134,7 +135,7 @@
         function step(now) {
           const t = Math.min((now - start) / duration, 1);
           const eased = 1 - Math.pow(1 - t, 3);
-          el.textContent = Math.round(target * eased) + suffix;
+          el.textContent = prefix + Math.round(target * eased) + suffix;
           if (t < 1) requestAnimationFrame(step);
         }
         requestAnimationFrame(step);

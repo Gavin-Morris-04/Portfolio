@@ -770,6 +770,13 @@ main { position: relative; z-index: 1; }
 
 .project-card:hover .project-name { color: #93c5fd; }
 
+.project-why {
+  font-size: 0.9375rem;
+  color: var(--text);
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
 .project-bullets {
   flex: 1;
   margin-bottom: 1.5rem;
@@ -811,7 +818,7 @@ main { position: relative; z-index: 1; }
 }
 
 @media (min-width: 768px) {
-  .skills-grid { grid-template-columns: repeat(3, 1fr); }
+  .skills-grid { grid-template-columns: repeat(2, 1fr); }
 }
 
 .skill-group {
@@ -938,6 +945,16 @@ main { position: relative; z-index: 1; }
 }
 
 /* Involvement */
+.fit-grid {
+  display: grid;
+  gap: 1.25rem;
+  margin-top: 2.5rem;
+}
+
+@media (min-width: 900px) {
+  .fit-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
 .involve-grid {
   display: grid;
   gap: 1.25rem;
