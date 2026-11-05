@@ -10,303 +10,333 @@
   <meta property="og:title" content="Gavin Morris | Solutions Engineering & AI Implementation">
   <meta property="og:description" content="LSU Computer Science senior and founder of Deltara Tech. Client delivery, applied AI and a client-approved case study.">
   <meta name="twitter:card" content="summary">
+  <meta name="theme-color" content="#0c1524">
   <title>Gavin Morris | Solutions Engineering & AI Implementation</title>
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="alternate icon" href="favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300..700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/vendor/lenis-1.3.27/lenis.css">
   <link rel="stylesheet" href="styles.css">
+  <script>
+    /* Motion gate: animations only run when the visitor has not asked for reduced motion.
+       If the animation scripts fail to load, content is un-hidden after 2.5s. */
+    (function (d) {
+      var h = d.documentElement;
+      h.classList.add("js");
+      if (window.matchMedia && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        h.classList.add("motion");
+        setTimeout(function () { if (!h.classList.contains("motion-ready")) h.classList.remove("motion"); }, 2500);
+      }
+    })(document);
+  </script>
+  <script src="assets/vendor/gsap-3.15.0/gsap.min.js" defer></script>
+  <script src="assets/vendor/gsap-3.15.0/ScrollTrigger.min.js" defer></script>
+  <script src="assets/vendor/gsap-3.15.0/SplitText.min.js" defer></script>
+  <script src="assets/vendor/gsap-3.15.0/Flip.min.js" defer></script>
+  <script src="assets/vendor/lenis-1.3.27/lenis.min.js" defer></script>
+  <script src="effects.js" defer></script>
+  <script src="main.js" defer></script>
 </head>
 <body>
-  <div class="bg-layer" aria-hidden="true">
-    <div class="bg-mesh"></div>
-    <div class="bg-grid"></div>
-  </div>
-
+  <a class="skip-link" href="#main">Skip to main content</a>
   <div class="scroll-progress" aria-hidden="true"></div>
 
   <header class="nav" role="banner">
     <div class="nav-inner">
-      <a href="#home" class="logo" data-scroll="home">Gavin Morris</a>
+      <a href="#home" class="logo"><span class="logo-mark" aria-hidden="true"></span>Gavin Morris</a>
       <nav class="nav-links" aria-label="Main navigation">
-        <a href="#about" class="nav-link" data-nav="about" data-scroll="about">About</a>
-        <a href="#featured" class="nav-link" data-nav="featured" data-scroll="featured">Featured</a>
-        <a href="#experience" class="nav-link" data-nav="experience" data-scroll="experience">Experience</a>
-        <a href="#projects" class="nav-link" data-nav="projects" data-scroll="projects">Projects</a>
-        <a href="#skills" class="nav-link" data-nav="skills" data-scroll="skills">Skills</a>
-        <a href="#contact" class="nav-link" data-nav="contact" data-scroll="contact">Contact</a>
+        <a href="#about" class="nav-link" data-nav="about">About</a>
+        <a href="#featured" class="nav-link" data-nav="featured">Featured</a>
+        <a href="#experience" class="nav-link" data-nav="experience">Experience</a>
+        <a href="#projects" class="nav-link" data-nav="projects">Projects</a>
+        <a href="#skills" class="nav-link" data-nav="skills">Skills</a>
+        <a href="#contact" class="nav-link" data-nav="contact">Contact</a>
       </nav>
-      <a href="#contact" class="nav-cta" data-scroll="contact">Get in touch</a>
+      <a href="#contact" class="nav-cta">Get in touch</a>
       <button class="menu-toggle" id="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-drawer">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
-          <line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/>
-        </svg>
+        <span class="menu-toggle-bar" aria-hidden="true"></span>
+        <span class="menu-toggle-bar" aria-hidden="true"></span>
       </button>
     </div>
   </header>
 
-  <nav class="mobile-drawer" id="mobile-drawer" aria-label="Mobile navigation" aria-hidden="true">
-    <a href="#about" class="nav-link" data-nav="about" data-scroll="about">About</a>
-    <a href="#featured" class="nav-link" data-nav="featured" data-scroll="featured">Featured</a>
-    <a href="#experience" class="nav-link" data-nav="experience" data-scroll="experience">Experience</a>
-    <a href="#projects" class="nav-link" data-nav="projects" data-scroll="projects">Projects</a>
-    <a href="#skills" class="nav-link" data-nav="skills" data-scroll="skills">Skills</a>
-    <a href="#contact" class="nav-link" data-nav="contact" data-scroll="contact">Contact</a>
+  <nav class="mobile-drawer" id="mobile-drawer" aria-label="Mobile navigation" hidden>
+    <a href="#about" class="nav-link" data-nav="about">About</a>
+    <a href="#featured" class="nav-link" data-nav="featured">Featured</a>
+    <a href="#experience" class="nav-link" data-nav="experience">Experience</a>
+    <a href="#projects" class="nav-link" data-nav="projects">Projects</a>
+    <a href="#skills" class="nav-link" data-nav="skills">Skills</a>
+    <a href="#contact" class="nav-link" data-nav="contact">Contact</a>
   </nav>
 
-  <main>
+  <main id="main">
     <!-- Hero -->
-    <section id="home" class="hero">
-      <div class="hero-badge reveal">
-        <span class="hero-badge-dot"></span>
-        Open to full-time roles from May 2027
+    <section id="home" class="hero theme-night" aria-labelledby="hero-title">
+      <div class="hero-canvas" aria-hidden="true">
+        <canvas id="dot-grid"></canvas>
       </div>
-      <h1 class="hero-title reveal">
-        <span class="line">Gavin</span>
-        <span class="line accent">Morris</span>
-      </h1>
-      <p class="hero-role reveal">
-        Solutions Engineering &middot; AI Implementation &middot; Technical Customer Success
-      </p>
-      <p class="hero-bio reveal">
-        I build software and work directly with the people who use it. As founder of Deltara Tech, I delivered
-        production systems for 6 Louisiana businesses and 100+ end users. My internships and GPU research add depth
-        in AI workflows, cloud backends, and LLM inference.
-      </p>
-      <div class="hero-actions reveal">
-        <a href="case-study.html" class="btn btn-primary">
-          Read the client case study
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      <div class="container hero-inner">
+        <p class="hero-badge" data-hero-item>
+          <span class="status-dot" aria-hidden="true"></span>
+          Open to full-time roles from May 2027
+        </p>
+        <h1 class="hero-title" id="hero-title" data-hero-title>
+          <span class="line">Gavin</span>
+          <span class="line line-accent">Morris</span>
+        </h1>
+        <div class="hero-grid">
+          <p class="hero-role" data-hero-item>
+            Solutions Engineering &middot; AI Implementation &middot; Technical Customer Success
+          </p>
+          <div class="hero-copy">
+            <p class="hero-bio" data-hero-item>
+              I build software and work directly with the people who use it. As founder of Deltara Tech, I delivered
+              production systems for 6 Louisiana businesses and 100+ end users. My internships and GPU research add depth
+              in AI workflows, cloud backends, and LLM inference.
+            </p>
+            <div class="hero-actions" data-hero-item>
+              <a href="case-study.html" class="btn btn-primary" data-magnet>
+                Read the client case study
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </a>
+              <a href="#projects" class="btn btn-outline">View projects</a>
+            </div>
+          </div>
+        </div>
+        <div class="hero-contact" data-hero-item>
+          <a href="mailto:gmorriscs@gmail.com">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            gmorriscs@gmail.com
+          </a>
+          <a href="tel:+15042228798">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            (504) 222-8798
+          </a>
+          <a href="https://www.linkedin.com/in/gmorr32" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+            LinkedIn
+          </a>
+          <a href="https://github.com/Gavin-Morris-04" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+            GitHub
+          </a>
+        </div>
+        <a href="#about" class="scroll-hint" aria-label="Scroll down" data-hero-item>
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
         </a>
-        <a href="#projects" class="btn btn-outline" data-scroll="projects">View projects</a>
       </div>
-      <div class="hero-contact reveal">
-        <a href="mailto:gmorriscs@gmail.com">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-          gmorriscs@gmail.com
-        </a>
-        <a href="tel:+15042228798">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-          (504) 222-8798
-        </a>
-        <a href="https://www.linkedin.com/in/gmorr32" target="_blank" rel="noopener noreferrer">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
-          LinkedIn
-        </a>
-        <a href="https://github.com/Gavin-Morris-04" target="_blank" rel="noopener noreferrer">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
-          GitHub
-        </a>
-      </div>
-      <a href="#about" class="scroll-hint reveal" data-scroll="about" aria-label="Scroll down">
-        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
-      </a>
     </section>
 
     <!-- About & Education -->
-    <section id="about" class="section section-wide">
-      <div class="section-header reveal">
-        <span class="section-label">Introduction</span>
-        <h2 class="section-title">About me</h2>
-        <p class="section-desc">
-          I'm a Computer Science senior at LSU with a minor in Mathematics, graduating in May 2027. I'm looking for a
-          full-time solutions engineering, presales, or AI implementation role, where I can work with customers and
-          build what they need. That's the work I did running Deltara Tech, from client acquisition through deployment
-          and ongoing support. My engineering background includes AI workflow automation at Spacebourne, where I
-          received the Delta-V Scholar Capstone Award, GPU-accelerated diffusion research on LONI HPC at the ATHENA Lab,
-          production healthcare software at Blue Cross, and Triton kernels and a merged vLLM contribution.
-        </p>
-      </div>
+    <section id="about" class="section">
+      <div class="container">
+        <div class="sec-head">
+          <p class="eyebrow">Introduction</p>
+          <h2 class="sec-title" data-split>About me</h2>
+          <p class="sec-desc sec-desc-lg" data-reveal>
+            I'm a Computer Science senior at LSU with a minor in Mathematics, graduating in May 2027. I'm looking for a
+            full-time solutions engineering, presales, or AI implementation role, where I can work with customers and
+            build what they need. That's the work I did running Deltara Tech, from client acquisition through deployment
+            and ongoing support. My engineering background includes AI workflow automation at Spacebourne, where I
+            received the Delta-V Scholar Capstone Award, GPU-accelerated diffusion research on LONI HPC at the ATHENA Lab,
+            production healthcare software at Blue Cross, and Triton kernels and a merged vLLM contribution.
+          </p>
+        </div>
 
-      <div class="about-grid">
-        <div class="reveal-left">
-          <div class="edu-card">
-            <span class="section-label">Education</span>
+        <div class="about-grid">
+          <div class="edu-card theme-night" data-reveal>
+            <span class="card-label">Education</span>
             <h3 class="edu-school">Louisiana State University</h3>
             <p class="edu-degree">Bachelor of Science, Computer Science</p>
             <p class="edu-minor">Minor: Mathematics</p>
             <div class="edu-meta">
               <span>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
                 Baton Rouge, LA
               </span>
               <span>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
                 May 2027
               </span>
               <span>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
                 GPA: 3.74
               </span>
             </div>
           </div>
+          <div class="stats-row" data-reveal>
+            <div class="stat-card">
+              <div class="stat-num" data-countup>6</div>
+              <div class="stat-label">Business clients</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-num" data-countup>$18K+</div>
+              <div class="stat-label">Client revenue</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-num" data-countup>100+</div>
+              <div class="stat-label">End users</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-num" data-countup>$7M</div>
+              <div class="stat-label">Budget voted on</div>
+            </div>
+          </div>
         </div>
-        <div class="stats-row stagger reveal-right">
-          <div class="stat-card">
-            <div class="stat-num">6</div>
-            <div class="stat-label">Business clients</div>
-          </div>
-          <div class="stat-card">
-            <div class="stat-num">$18K+</div>
-            <div class="stat-label">Client revenue</div>
-          </div>
-          <div class="stat-card">
-            <div class="stat-num">100+</div>
-            <div class="stat-label">End users</div>
-          </div>
-          <div class="stat-card">
-            <div class="stat-num">$7M</div>
-            <div class="stat-label">Budget voted on</div>
-          </div>
-        </div>
-      </div>
 
-      <div class="fit-grid stagger">
-        <article class="involve-card reveal">
-          <h3 class="involve-org">Solutions engineering & presales</h3>
-          <p class="involve-role">Understand the need, shape the solution</p>
-          <p class="involve-desc">At Deltara Tech I handled client acquisition, requirements gathering, and delivery for 6 Louisiana businesses in HVAC, roofing, and home services, generating $18,000+ in revenue.</p>
-        </article>
-        <article class="involve-card reveal">
-          <h3 class="involve-org">AI implementation</h3>
-          <p class="involve-role">Put AI into real workflows, then measure it</p>
-          <p class="involve-desc">At Spacebourne I automated AI workflows, reducing AI processing time by 20% and manual review time by 35%. I also built an AI triage assistant that marked 0 of 20 test emergencies as routine, with a person approving every job.</p>
-        </article>
-        <article class="involve-card reveal">
-          <h3 class="involve-org">Technical customer success</h3>
-          <p class="involve-role">Stay with the customer after launch</p>
-          <p class="involve-desc">I supported Deltara's systems after launch, including a custom inventory system commissioned by a client and still in use today. At Blue Cross I worked with engineers and stakeholders to troubleshoot production issues.</p>
-        </article>
+        <div class="fit-grid">
+          <article class="fit-card" data-reveal>
+            <h3 class="fit-title">Solutions engineering & presales</h3>
+            <p class="fit-role">Understand the need, shape the solution</p>
+            <p class="fit-desc">At Deltara Tech I handled client acquisition, requirements gathering, and delivery for 6 Louisiana businesses in HVAC, roofing, and home services, generating $18,000+ in revenue.</p>
+          </article>
+          <article class="fit-card" data-reveal>
+            <h3 class="fit-title">AI implementation</h3>
+            <p class="fit-role">Put AI into real workflows, then measure it</p>
+            <p class="fit-desc">At Spacebourne I automated AI workflows, reducing AI processing time by 20% and manual review time by 35%. I also built an AI triage assistant that marked 0 of 20 test emergencies as routine, with a person approving every job.</p>
+          </article>
+          <article class="fit-card" data-reveal>
+            <h3 class="fit-title">Technical customer success</h3>
+            <p class="fit-role">Stay with the customer after launch</p>
+            <p class="fit-desc">I supported Deltara's systems after launch, including a custom inventory system commissioned by a client and still in use today. At Blue Cross I worked with engineers and stakeholders to troubleshoot production issues.</p>
+          </article>
+        </div>
       </div>
     </section>
 
     <!-- Featured work -->
-    <section id="featured" class="section section-wide">
-      <div class="section-header reveal">
-        <span class="section-label">Featured work</span>
-        <h2 class="section-title">Work for a real client</h2>
-        <p class="section-desc">A system a client still uses every day, and the AI tool I'm building for that same client's next problem.</p>
-      </div>
+    <section id="featured" class="section band">
+      <div class="container">
+        <div class="sec-head sec-head-stacked">
+          <p class="eyebrow">Featured work</p>
+          <h2 class="sec-title" data-split>Work for a real client</h2>
+          <p class="statement" data-scroll-reveal>A system a client still uses every day, and the AI tool I'm building for that same client's next problem.</p>
+        </div>
 
-      <div class="featured-grid stagger">
-        <article class="featured-card reveal">
-          <span class="featured-kind">Client case study</span>
-          <h3>Custom inventory app for a Louisiana HVAC company</h3>
-          <p>Replaced spreadsheets, handwritten notes and phone calls with one app that tracks every part across the warehouse and each service truck, and who used it.</p>
-          <ul class="featured-metrics">
-            <li><strong>4&ndash;5 hrs</strong> a week saved, by the owner's estimate</li>
-            <li><strong>100+</strong> field technicians</li>
-            <li><strong>Daily</strong> use, approved by the client</li>
-          </ul>
-          <a href="case-study.html" class="project-link">Read the case study <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
-        </article>
+        <div class="featured-grid">
+          <article class="featured-card card-night theme-night" data-reveal data-spotlight="dark">
+            <span class="featured-kind">Client case study</span>
+            <h3>Custom inventory app for a Louisiana HVAC company</h3>
+            <p>Replaced spreadsheets, handwritten notes and phone calls with one app that tracks every part across the warehouse and each service truck, and who used it.</p>
+            <ul class="featured-metrics">
+              <li><strong>4&ndash;5 hrs</strong> a week saved, by the owner's estimate</li>
+              <li><strong>100+</strong> field technicians</li>
+              <li><strong>Daily</strong> use, approved by the client</li>
+            </ul>
+            <a href="case-study.html" class="project-link">Read the case study <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          </article>
 
-        <article class="featured-card reveal">
-          <span class="featured-kind">AI proof of concept</span>
-          <h3>AI Service Operations Assistant</h3>
-          <p>Claude triages incoming service requests and proposes a job for a specific technician. A person approves every job before it is created.</p>
-          <ul class="featured-metrics">
-            <li><strong>0 of 20</strong> test emergencies marked routine</li>
-            <li><strong>60</strong> labeled test requests</li>
-            <li><strong>$0.024</strong> per request</li>
-          </ul>
-          <a href="https://github.com/Gavin-Morris-04/ai-service-ops-assistant" class="project-link" target="_blank" rel="noopener noreferrer">View on GitHub <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>
-        </article>
+          <article class="featured-card" data-reveal data-spotlight="light">
+            <span class="featured-kind">AI proof of concept</span>
+            <h3>AI Service Operations Assistant</h3>
+            <p>Claude triages incoming service requests and proposes a job for a specific technician. A person approves every job before it is created.</p>
+            <ul class="featured-metrics">
+              <li><strong>0 of 20</strong> test emergencies marked routine</li>
+              <li><strong>60</strong> labeled test requests</li>
+              <li><strong>$0.024</strong> per request</li>
+            </ul>
+            <a href="https://github.com/Gavin-Morris-04/ai-service-ops-assistant" class="project-link" target="_blank" rel="noopener noreferrer">View on GitHub <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>
+          </article>
+        </div>
       </div>
     </section>
 
     <!-- Experience -->
     <section id="experience" class="section">
-      <div class="section-header reveal">
-        <span class="section-label">Career</span>
-        <h2 class="section-title">Experience</h2>
-        <p class="section-desc">Client delivery first, backed by hands-on engineering across AI platforms, ML research, healthcare, and GIS.</p>
-      </div>
+      <div class="container">
+        <div class="sec-head">
+          <p class="eyebrow">Career</p>
+          <h2 class="sec-title" data-split>Experience</h2>
+          <p class="sec-desc" data-reveal>Client delivery first, backed by hands-on engineering across AI platforms, ML research, healthcare, and GIS.</p>
+        </div>
 
-      <div class="timeline">
-        <article class="exp-card reveal">
-          <p class="exp-date">May 2025 – July 2026</p>
-          <h3 class="exp-role">Founder & Software Engineer</h3>
-          <p class="exp-company">Deltara Tech LLC</p>
-          <span class="exp-tag">Client-facing</span>
-          <ul class="exp-bullets">
-            <li>Generated $18,000+ in revenue building custom software solutions for 6 Louisiana businesses.</li>
-            <li>Delivered production web, mobile, and automation systems used by 100+ end users across HVAC, roofing, and home-service industries.</li>
-            <li>Managed client acquisition, requirements gathering, development, deployment, and ongoing support.</li>
-            <li>Built a custom inventory system for a client, still in use today.</li>
-          </ul>
-          <a href="case-study.html" class="project-link case-link">
-            Read the client case study
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-          </a>
-        </article>
+        <div class="timeline">
+          <div class="timeline-rail" aria-hidden="true"><span class="timeline-fill"></span></div>
 
-        <article class="exp-card reveal">
-          <p class="exp-date">June 2026 – September 2026</p>
-          <h3 class="exp-role">Software Engineer Intern</h3>
-          <p class="exp-company">Spacebourne</p>
-          <span class="exp-tag">Delta-V Scholar Award</span>
-          <ul class="exp-bullets">
-            <li>Received the Summer 2026 Delta-V Scholar Capstone Award.</li>
-            <li>Developed 5+ production-ready features adopted across the CLARITY platform, improving user productivity and expanding system capabilities.</li>
-            <li>Optimized backend processes and automated AI workflows, reducing AI processing time by 20% and manual review time by 35%.</li>
-          </ul>
-        </article>
+          <article class="exp-card" data-reveal>
+            <p class="exp-date">May 2025 – July 2026</p>
+            <h3 class="exp-role">Founder & Software Engineer</h3>
+            <p class="exp-company">Deltara Tech LLC</p>
+            <span class="exp-tag">Client-facing</span>
+            <ul class="exp-bullets">
+              <li>Generated $18,000+ in revenue building custom software solutions for 6 Louisiana businesses.</li>
+              <li>Delivered production web, mobile, and automation systems used by 100+ end users across HVAC, roofing, and home-service industries.</li>
+              <li>Managed client acquisition, requirements gathering, development, deployment, and ongoing support.</li>
+              <li>Built a custom inventory system for a client, still in use today.</li>
+            </ul>
+            <a href="case-study.html" class="project-link case-link">
+              Read the client case study
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+          </article>
 
-        <article class="exp-card reveal">
-          <p class="exp-date">January 2026 – May 2026</p>
-          <h3 class="exp-role">Software Engineer Intern</h3>
-          <p class="exp-company">Blue Cross Blue Shield of Louisiana</p>
-          <ul class="exp-bullets">
-            <li>Developed backend features using C# and SQL to manage client documents, payments, and records within cloud-based systems, ensuring accurate storage and retrieval.</li>
-            <li>Built and optimized database queries and workflows to improve data consistency and performance across patient-facing applications.</li>
-            <li>Supported build and deployment workflows using Microsoft TFS and YAML pipelines, collaborating with engineers and stakeholders to troubleshoot issues and improve production reliability.</li>
-          </ul>
-        </article>
+          <article class="exp-card" data-reveal>
+            <p class="exp-date">June 2026 – September 2026</p>
+            <h3 class="exp-role">Software Engineer Intern</h3>
+            <p class="exp-company">Spacebourne</p>
+            <span class="exp-tag">Delta-V Scholar Award</span>
+            <ul class="exp-bullets">
+              <li>Received the Summer 2026 Delta-V Scholar Capstone Award.</li>
+              <li>Developed 5+ production-ready features adopted across the CLARITY platform, improving user productivity and expanding system capabilities.</li>
+              <li>Optimized backend processes and automated AI workflows, reducing AI processing time by 20% and manual review time by 35%.</li>
+            </ul>
+          </article>
 
-        <article class="exp-card reveal">
-          <p class="exp-date">June 2026 – September 2026</p>
-          <h3 class="exp-role">Undergraduate AI Research Assistant</h3>
-          <p class="exp-company">LSU ATHENA Lab</p>
-          <ul class="exp-bullets">
-            <li>Engineered PyTorch diffusion pipelines executed on NVIDIA A100 GPUs on LONI's QB-4 supercomputing cluster, implementing configurable denoising schedules, latent upsampling strategies, and multi-stage image generation workflows.</li>
-            <li>Built automated benchmarking infrastructure for large-scale GPU experiments on HPC infrastructure, orchestrating Slurm batch jobs and logging generation outputs, GPU runtime performance, and evaluation metrics across hundreds of test configurations.</li>
-            <li>Profiled GPU inference tradeoffs between speed, image quality, and text-image alignment using Stable Diffusion and Hugging Face Diffusers, characterizing latency and memory behavior across pipeline configurations.</li>
-          </ul>
-        </article>
+          <article class="exp-card" data-reveal>
+            <p class="exp-date">January 2026 – May 2026</p>
+            <h3 class="exp-role">Software Engineer Intern</h3>
+            <p class="exp-company">Blue Cross Blue Shield of Louisiana</p>
+            <ul class="exp-bullets">
+              <li>Developed backend features using C# and SQL to manage client documents, payments, and records within cloud-based systems, ensuring accurate storage and retrieval.</li>
+              <li>Built and optimized database queries and workflows to improve data consistency and performance across patient-facing applications.</li>
+              <li>Supported build and deployment workflows using Microsoft TFS and YAML pipelines, collaborating with engineers and stakeholders to troubleshoot issues and improve production reliability.</li>
+            </ul>
+          </article>
 
-        <article class="exp-card reveal">
-          <p class="exp-date">January 2025 – May 2025</p>
-          <h3 class="exp-role">Software Developer Intern</h3>
-          <p class="exp-company">LSU CARTS</p>
-          <ul class="exp-bullets">
-            <li>Collaborated with a team of two to develop GIS applications using Python and Blazor.</li>
-            <li>Developed applications that enhanced the efficiency of GIS analysts, increasing their productivity by up to 25%.</li>
-            <li>Applied problem-solving techniques and programming expertise to deliver functional and efficient GIS tools that support research and transportation safety initiatives.</li>
-          </ul>
-        </article>
+          <article class="exp-card" data-reveal>
+            <p class="exp-date">June 2026 – September 2026</p>
+            <h3 class="exp-role">Undergraduate AI Research Assistant</h3>
+            <p class="exp-company">LSU ATHENA Lab</p>
+            <ul class="exp-bullets">
+              <li>Engineered PyTorch diffusion pipelines executed on NVIDIA A100 GPUs on LONI's QB-4 supercomputing cluster, implementing configurable denoising schedules, latent upsampling strategies, and multi-stage image generation workflows.</li>
+              <li>Built automated benchmarking infrastructure for large-scale GPU experiments on HPC infrastructure, orchestrating Slurm batch jobs and logging generation outputs, GPU runtime performance, and evaluation metrics across hundreds of test configurations.</li>
+              <li>Profiled GPU inference tradeoffs between speed, image quality, and text-image alignment using Stable Diffusion and Hugging Face Diffusers, characterizing latency and memory behavior across pipeline configurations.</li>
+            </ul>
+          </article>
+
+          <article class="exp-card" data-reveal>
+            <p class="exp-date">January 2025 – May 2025</p>
+            <h3 class="exp-role">Software Developer Intern</h3>
+            <p class="exp-company">LSU CARTS</p>
+            <ul class="exp-bullets">
+              <li>Collaborated with a team of two to develop GIS applications using Python and Blazor.</li>
+              <li>Developed applications that enhanced the efficiency of GIS analysts, increasing their productivity by up to 25%.</li>
+              <li>Applied problem-solving techniques and programming expertise to deliver functional and efficient GIS tools that support research and transportation safety initiatives.</li>
+            </ul>
+          </article>
+        </div>
       </div>
     </section>
 
     <!-- Projects -->
-    <section id="projects" class="section section-wide">
-      <div class="section-header reveal">
-        <span class="section-label">Portfolio</span>
-        <h2 class="section-title">Projects</h2>
-        <p class="section-desc">Client and customer-facing apps first, then the AI and performance work behind them. Each card says why the project matters.</p>
-      </div>
+    <section id="projects" class="section band">
+      <div class="container">
+        <div class="sec-head">
+          <p class="eyebrow">Portfolio</p>
+          <h2 class="sec-title" data-split>Projects</h2>
+          <p class="sec-desc" data-reveal>Client and customer-facing apps first, then the AI and performance work behind them. Each card says why the project matters.</p>
+        </div>
 
-      <div class="filter-bar reveal">
-        <button class="filter-btn active" type="button" data-filter="all">All</button>
-        <button class="filter-btn" type="button" data-filter="apps">Apps & client work</button>
-        <button class="filter-btn" type="button" data-filter="ml">AI & performance</button>
-      </div>
+        <div class="filter-bar" role="group" aria-label="Filter projects" data-reveal>
+          <button class="filter-btn active" type="button" data-filter="all" aria-pressed="true">All</button>
+          <button class="filter-btn" type="button" data-filter="apps" aria-pressed="false">Apps & client work</button>
+          <button class="filter-btn" type="button" data-filter="ml" aria-pressed="false">AI & performance</button>
+        </div>
 
-      <div class="projects-grid stagger">
-        <article class="project-card reveal" data-category="ml">
-          <div class="project-top"></div>
-          <div class="project-body">
+        <div class="projects-grid">
+          <article class="project-card" data-category="ml" data-reveal data-spotlight="light">
             <div class="project-meta">
               <span class="project-date">2026</span>
               <span class="project-cat">Applied AI</span>
@@ -319,16 +349,15 @@
               <li>Measured cost and latency per request: about $0.024, with 10 s at the 95th percentile and 13 s at the 99th.</li>
               <li>Added safeguards for when the model is wrong: keyword rules as a fallback and a safety floor, flags for low confidence, and an audit trail of every decision.</li>
             </ul>
-            <a href="https://github.com/Gavin-Morris-04/ai-service-ops-assistant" class="project-link" target="_blank" rel="noopener noreferrer">
-              View on GitHub
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-            </a>
-          </div>
-        </article>
+            <div class="project-links">
+              <a href="https://github.com/Gavin-Morris-04/ai-service-ops-assistant" class="project-link" target="_blank" rel="noopener noreferrer">
+                View on GitHub
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              </a>
+            </div>
+          </article>
 
-        <article class="project-card reveal" data-category="apps">
-          <div class="project-top"></div>
-          <div class="project-body">
+          <article class="project-card" data-category="apps" data-reveal data-spotlight="light">
             <div class="project-meta">
               <span class="project-date">May 2025</span>
               <span class="project-cat">App Store</span>
@@ -340,20 +369,19 @@
               <li>Designed and deployed a scalable backend using Railway, enabling real-time tracking of inventory across multiple suppliers and locations.</li>
               <li>Built intuitive UI/UX for businesses to easily manage complex supply chains with multi-supplier support, item categorization, and usage history visibility.</li>
             </ul>
-            <a href="case-study.html" class="project-link">
-              Read the case study
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-            </a>
-            <a href="https://github.com/Gavin-Morris-04/inventory-pro" class="project-link" target="_blank" rel="noopener noreferrer">
-              View on GitHub
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-            </a>
-          </div>
-        </article>
+            <div class="project-links">
+              <a href="case-study.html" class="project-link">
+                Read the case study
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </a>
+              <a href="https://github.com/Gavin-Morris-04/inventory-pro" class="project-link" target="_blank" rel="noopener noreferrer">
+                View on GitHub
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              </a>
+            </div>
+          </article>
 
-        <article class="project-card reveal" data-category="apps">
-          <div class="project-top"></div>
-          <div class="project-body">
+          <article class="project-card" data-category="apps" data-reveal data-spotlight="light">
             <div class="project-meta">
               <span class="project-date">November 2025</span>
               <span class="project-cat">Applied AI</span>
@@ -365,16 +393,15 @@
               <li>Integrated Llama 3.1 via Groq API into a context-aware pipeline aggregating HealthKit metrics, goals, tasks, and calendar events for automated workout plans and task updates.</li>
               <li>Designed a scalable cloud architecture using Firebase Authentication and Firestore with dual-layer persistence, secure data isolation, and geofence-triggered automation via CoreLocation.</li>
             </ul>
-            <a href="https://github.com/Gavin-Morris-04/Coach-Ai" class="project-link" target="_blank" rel="noopener noreferrer">
-              View on GitHub
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-            </a>
-          </div>
-        </article>
+            <div class="project-links">
+              <a href="https://github.com/Gavin-Morris-04/Coach-Ai" class="project-link" target="_blank" rel="noopener noreferrer">
+                View on GitHub
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              </a>
+            </div>
+          </article>
 
-        <article class="project-card reveal" data-category="ml">
-          <div class="project-top"></div>
-          <div class="project-body">
+          <article class="project-card" data-category="ml" data-reveal data-spotlight="light">
             <div class="project-meta">
               <span class="project-date">2026</span>
               <span class="project-cat">ML & AI</span>
@@ -386,16 +413,15 @@
               <li>Diagnosed a 20× FP16 GEMM slowdown down to the instruction level by dumping compiled PTX: Triton emitted zero tensor-core (mma) instructions on sm_75 vs. 8 on sm_80, confirming a compiler codegen gap (not kernel code) that produced a 30× jump (2.4 → 73 TFLOP/s) on identical source across GPU generations.</li>
               <li>Built a cross-vendor benchmark suite (roofline analysis, median-of-N timing, FP32/FP16) spanning T4, A100, and AMD MI300X cloud instances; documented Ampere's silent TF32 default breaking bit-level FP32 reproducibility and a full failure taxonomy of ROCm environment provisioning in a public friction log.</li>
             </ul>
-            <a href="https://github.com/Gavin-Morris-04/triton-inference-kernels" class="project-link" target="_blank" rel="noopener noreferrer">
-              View on GitHub
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-            </a>
-          </div>
-        </article>
+            <div class="project-links">
+              <a href="https://github.com/Gavin-Morris-04/triton-inference-kernels" class="project-link" target="_blank" rel="noopener noreferrer">
+                View on GitHub
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              </a>
+            </div>
+          </article>
 
-        <article class="project-card reveal" data-category="ml">
-          <div class="project-top"></div>
-          <div class="project-body">
+          <article class="project-card" data-category="ml" data-reveal data-spotlight="light">
             <div class="project-meta">
               <span class="project-date">2026</span>
               <span class="project-cat">ML & AI</span>
@@ -406,16 +432,15 @@
               <li>Built an SLO-aware ML inference scheduler modeling mixed workloads with micro-batching, priority queuing, and GPU-style execution lanes under memory-bandwidth constraints, benchmarking 4 scheduling policies head-to-head.</li>
               <li>Quantified latency, throughput, p99 tail latency, and SLO violation rates via trace-based profiling, characterizing queue contention and latency/throughput tradeoffs across batching strategies.</li>
             </ul>
-            <a href="https://github.com/Gavin-Morris-04/ML-IS-PP" class="project-link" target="_blank" rel="noopener noreferrer">
-              View on GitHub
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-            </a>
-          </div>
-        </article>
+            <div class="project-links">
+              <a href="https://github.com/Gavin-Morris-04/ML-IS-PP" class="project-link" target="_blank" rel="noopener noreferrer">
+                View on GitHub
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              </a>
+            </div>
+          </article>
 
-        <article class="project-card reveal" data-category="ml">
-          <div class="project-top"></div>
-          <div class="project-body">
+          <article class="project-card" data-category="ml" data-reveal data-spotlight="light">
             <div class="project-meta">
               <span class="project-date">2026</span>
               <span class="project-cat">Open Source</span>
@@ -426,16 +451,15 @@
               <li>Merged a documentation fix into vLLM, the leading open-source LLM inference engine, tracing doc–code mismatches through the model registry and test suite.</li>
               <li>Approved through core-maintainer review.</li>
             </ul>
-            <a href="https://github.com/vllm-project/vllm/pull/48293" class="project-link" target="_blank" rel="noopener noreferrer">
-              View pull request
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-            </a>
-          </div>
-        </article>
+            <div class="project-links">
+              <a href="https://github.com/vllm-project/vllm/pull/48293" class="project-link" target="_blank" rel="noopener noreferrer">
+                View pull request
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              </a>
+            </div>
+          </article>
 
-        <article class="project-card reveal" data-category="apps">
-          <div class="project-top"></div>
-          <div class="project-body">
+          <article class="project-card" data-category="apps" data-reveal data-spotlight="light">
             <div class="project-meta">
               <span class="project-date">2026</span>
               <span class="project-cat">Full-Stack</span>
@@ -446,16 +470,15 @@
               <li>Developed a JavaFX (Java 17) desktop application for shared-living coordination — room setup, chore tracking, expense balancing — with layered model/core/UI architecture, Maven tooling, and JUnit 5 coverage of core manager logic.</li>
               <li>Engineered a dual-persistence layer integrating Firebase Firestore via REST with transparent local JSON fallback (Jackson), preserving full functionality offline or on cloud failure.</li>
             </ul>
-            <a href="https://github.com/Gavin-Morris-04/CoHabit" class="project-link" target="_blank" rel="noopener noreferrer">
-              View on GitHub
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-            </a>
-          </div>
-        </article>
+            <div class="project-links">
+              <a href="https://github.com/Gavin-Morris-04/CoHabit" class="project-link" target="_blank" rel="noopener noreferrer">
+                View on GitHub
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              </a>
+            </div>
+          </article>
 
-        <article class="project-card reveal" data-category="ml">
-          <div class="project-top"></div>
-          <div class="project-body">
+          <article class="project-card" data-category="ml" data-reveal data-spotlight="light">
             <div class="project-meta">
               <span class="project-date">2026</span>
               <span class="project-cat">ML & AI</span>
@@ -467,229 +490,243 @@
               <li>Applied roofline model analysis to classify kernels as compute-bound (GEMM) vs memory-bound (Softmax, LayerNorm) by arithmetic intensity and quantified the remaining gap to hand-tuned BLAS, attributing it to SIMD auto-vectorization limits.</li>
               <li>Engineered a rigorous benchmarking harness with median-based timing, JIT warmup control, single-thread isolation for fair kernel comparison, and block-size sweeps, producing reproducible CSV results and performance plots.</li>
             </ul>
-            <a href="https://github.com/Gavin-Morris-04/Inference-Kernel-Optimization-Lab" class="project-link" target="_blank" rel="noopener noreferrer">
-              View on GitHub
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-            </a>
-          </div>
-        </article>
+            <div class="project-links">
+              <a href="https://github.com/Gavin-Morris-04/Inference-Kernel-Optimization-Lab" class="project-link" target="_blank" rel="noopener noreferrer">
+                View on GitHub
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              </a>
+            </div>
+          </article>
+        </div>
       </div>
     </section>
 
     <!-- Skills -->
-    <section id="skills" class="section section-wide">
-      <div class="section-header center reveal">
-        <span class="section-label">Expertise</span>
-        <h2 class="section-title">Skills</h2>
-      </div>
+    <section id="skills" class="section">
+      <div class="container">
+        <div class="sec-head">
+          <p class="eyebrow">Expertise</p>
+          <h2 class="sec-title" data-split>Skills</h2>
+        </div>
 
-      <div class="skills-grid stagger">
-        <div class="skill-group reveal">
-          <h3>Client & Solutions Delivery</h3>
-          <div class="skill-tags">
-            <span class="skill-tag">Client acquisition</span>
-            <span class="skill-tag">Requirements gathering</span>
-            <span class="skill-tag">Stakeholder collaboration</span>
-            <span class="skill-tag">Deployment</span>
-            <span class="skill-tag">Ongoing support</span>
-            <span class="skill-tag">Troubleshooting</span>
-            <span class="skill-tag">Salesforce CRM</span>
+        <div class="skills-grid">
+          <div class="skill-group" data-reveal>
+            <h3>Client & Solutions Delivery</h3>
+            <div class="skill-tags">
+              <span class="skill-tag">Client acquisition</span>
+              <span class="skill-tag">Requirements gathering</span>
+              <span class="skill-tag">Stakeholder collaboration</span>
+              <span class="skill-tag">Deployment</span>
+              <span class="skill-tag">Ongoing support</span>
+              <span class="skill-tag">Troubleshooting</span>
+              <span class="skill-tag">Salesforce CRM</span>
+            </div>
           </div>
-        </div>
-        <div class="skill-group reveal">
-          <h3>ML & AI</h3>
-          <div class="skill-tags">
-            <span class="skill-tag">Triton</span>
-            <span class="skill-tag">CUDA (PTX)</span>
-            <span class="skill-tag">ROCm</span>
-            <span class="skill-tag">GPU kernel optimization</span>
-            <span class="skill-tag">LLM inference</span>
-            <span class="skill-tag">Transformers</span>
-            <span class="skill-tag">PyTorch</span>
-            <span class="skill-tag">LLM integration (Groq API)</span>
-            <span class="skill-tag">Stable Diffusion</span>
-            <span class="skill-tag">Hugging Face Diffusers</span>
+          <div class="skill-group" data-reveal>
+            <h3>ML & AI</h3>
+            <div class="skill-tags">
+              <span class="skill-tag">Triton</span>
+              <span class="skill-tag">CUDA (PTX)</span>
+              <span class="skill-tag">ROCm</span>
+              <span class="skill-tag">GPU kernel optimization</span>
+              <span class="skill-tag">LLM inference</span>
+              <span class="skill-tag">Transformers</span>
+              <span class="skill-tag">PyTorch</span>
+              <span class="skill-tag">LLM integration (Groq API)</span>
+              <span class="skill-tag">Stable Diffusion</span>
+              <span class="skill-tag">Hugging Face Diffusers</span>
+            </div>
           </div>
-        </div>
-        <div class="skill-group reveal">
-          <h3>Systems & Performance</h3>
-          <div class="skill-tags">
-            <span class="skill-tag">Roofline modeling</span>
-            <span class="skill-tag">Memory-bandwidth analysis</span>
-            <span class="skill-tag">Latency/p99 profiling</span>
-            <span class="skill-tag">Micro-batching</span>
-            <span class="skill-tag">Slurm/HPC</span>
+          <div class="skill-group" data-reveal>
+            <h3>Systems & Performance</h3>
+            <div class="skill-tags">
+              <span class="skill-tag">Roofline modeling</span>
+              <span class="skill-tag">Memory-bandwidth analysis</span>
+              <span class="skill-tag">Latency/p99 profiling</span>
+              <span class="skill-tag">Micro-batching</span>
+              <span class="skill-tag">Slurm/HPC</span>
+            </div>
           </div>
-        </div>
-        <div class="skill-group reveal">
-          <h3>Infrastructure & Tools</h3>
-          <div class="skill-tags">
-            <span class="skill-tag">Python</span>
-            <span class="skill-tag">SQL</span>
-            <span class="skill-tag">Docker</span>
-            <span class="skill-tag">Kubernetes</span>
-            <span class="skill-tag">Git/GitHub</span>
-            <span class="skill-tag">REST APIs</span>
-            <span class="skill-tag">Cloud GPU deployment (RunPod/Vast.ai)</span>
-            <span class="skill-tag">C#</span>
-            <span class="skill-tag">Java</span>
-            <span class="skill-tag">SwiftUI</span>
-            <span class="skill-tag">Blazor</span>
-            <span class="skill-tag">Firebase</span>
-            <span class="skill-tag">Railway</span>
-            <span class="skill-tag">Microsoft TFS</span>
-            <span class="skill-tag">YAML pipelines</span>
+          <div class="skill-group" data-reveal>
+            <h3>Infrastructure & Tools</h3>
+            <div class="skill-tags">
+              <span class="skill-tag">Python</span>
+              <span class="skill-tag">SQL</span>
+              <span class="skill-tag">Docker</span>
+              <span class="skill-tag">Kubernetes</span>
+              <span class="skill-tag">Git/GitHub</span>
+              <span class="skill-tag">REST APIs</span>
+              <span class="skill-tag">Cloud GPU deployment (RunPod/Vast.ai)</span>
+              <span class="skill-tag">C#</span>
+              <span class="skill-tag">Java</span>
+              <span class="skill-tag">SwiftUI</span>
+              <span class="skill-tag">Blazor</span>
+              <span class="skill-tag">Firebase</span>
+              <span class="skill-tag">Railway</span>
+              <span class="skill-tag">Microsoft TFS</span>
+              <span class="skill-tag">YAML pipelines</span>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
     <!-- Certifications -->
-    <section id="certifications" class="section section-wide">
-      <div class="section-header center reveal">
-        <span class="section-label">Credentials</span>
-        <h2 class="section-title">Certifications</h2>
-      </div>
+    <section id="certifications" class="section band">
+      <div class="container">
+        <div class="sec-head">
+          <p class="eyebrow">Credentials</p>
+          <h2 class="sec-title" data-split>Certifications</h2>
+        </div>
 
-      <div class="cert-list stagger">
-        <div class="cert-item reveal">
-          <span class="cert-issuer">IBM</span>
-          <p class="cert-name">Generative AI Engineering Professional Certificate</p>
-          <p class="cert-credential">Credential ID: EAMKPE6N4UHX</p>
-        </div>
-        <div class="cert-item reveal">
-          <span class="cert-issuer">Anthropic</span>
-          <p class="cert-name">AI Fluency: Framework &amp; Foundations</p>
-          <p class="cert-credential">Credential ID: 7hykoutix9vb</p>
-        </div>
-        <div class="cert-item reveal">
-          <span class="cert-issuer">IBM</span>
-          <p class="cert-name">Full Stack Developer Professional Certificate</p>
-          <p class="cert-credential">Credential ID: 3UBKQ00NGCIA</p>
-        </div>
-        <div class="cert-item reveal">
-          <span class="cert-issuer">Wharton</span>
-          <p class="cert-name">Foundations &amp; Applications of Financial Technology</p>
-          <p class="cert-credential">Credential ID: A9CABJKOSLQ3</p>
-        </div>
-        <div class="cert-item reveal">
-          <span class="cert-issuer">Salesforce Trailhead</span>
-          <p class="cert-name">Learn CRM Fundamentals for Lightning Experience</p>
-          <p class="cert-credential">Trail, 5 modules &middot; <a href="https://trailhead.salesforce.com/content/learn/trails/crm-essentials-lightning-experience" target="_blank" rel="noopener noreferrer">View trail</a></p>
+        <div class="cert-list">
+          <div class="cert-item" data-reveal>
+            <span class="cert-issuer">IBM</span>
+            <p class="cert-name">Generative AI Engineering Professional Certificate</p>
+            <p class="cert-credential">Credential ID: EAMKPE6N4UHX</p>
+          </div>
+          <div class="cert-item" data-reveal>
+            <span class="cert-issuer">Anthropic</span>
+            <p class="cert-name">AI Fluency: Framework &amp; Foundations</p>
+            <p class="cert-credential">Credential ID: 7hykoutix9vb</p>
+          </div>
+          <div class="cert-item" data-reveal>
+            <span class="cert-issuer">IBM</span>
+            <p class="cert-name">Full Stack Developer Professional Certificate</p>
+            <p class="cert-credential">Credential ID: 3UBKQ00NGCIA</p>
+          </div>
+          <div class="cert-item" data-reveal>
+            <span class="cert-issuer">Wharton</span>
+            <p class="cert-name">Foundations &amp; Applications of Financial Technology</p>
+            <p class="cert-credential">Credential ID: A9CABJKOSLQ3</p>
+          </div>
+          <div class="cert-item" data-reveal>
+            <span class="cert-issuer">Salesforce Trailhead</span>
+            <p class="cert-name">Learn CRM Fundamentals for Lightning Experience</p>
+            <p class="cert-credential">Trail, 5 modules &middot; <a href="https://trailhead.salesforce.com/content/learn/trails/crm-essentials-lightning-experience" target="_blank" rel="noopener noreferrer">View trail</a></p>
+          </div>
         </div>
       </div>
     </section>
 
     <!-- Campus Involvement -->
-    <section id="involvement" class="section section-wide">
-      <div class="section-header reveal">
-        <span class="section-label">Leadership</span>
-        <h2 class="section-title">Campus involvement</h2>
-        <p class="section-desc">Leadership, service, and technical community engagement at LSU.</p>
-      </div>
+    <section id="involvement" class="section">
+      <div class="container">
+        <div class="sec-head">
+          <p class="eyebrow">Leadership</p>
+          <h2 class="sec-title" data-split>Campus involvement</h2>
+          <p class="sec-desc" data-reveal>Leadership, service, and technical community engagement at LSU.</p>
+        </div>
 
-      <div class="involve-grid stagger">
-        <article class="involve-card reveal">
-          <div class="involve-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-          </div>
-          <h3 class="involve-org">Student Technology Fee Committee</h3>
-          <p class="involve-role">Student Representative</p>
-          <p class="involve-desc">One of 10 voting members who decided how to allocate a $7 million budget for campus technology resources.</p>
-        </article>
+        <div class="involve-grid">
+          <article class="involve-card" data-reveal>
+            <div class="involve-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" focusable="false"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+            </div>
+            <h3 class="involve-org">Student Technology Fee Committee</h3>
+            <p class="involve-role">Student Representative</p>
+            <p class="involve-desc">One of 10 voting members who decided how to allocate a $7 million budget for campus technology resources.</p>
+          </article>
 
-        <article class="involve-card reveal">
-          <div class="involve-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-          </div>
-          <h3 class="involve-org">LSU Student Government</h3>
-          <p class="involve-role">Assistant Director of Technology, Innovation, and Modernization</p>
-          <p class="involve-desc">Driving technology initiatives and modernization efforts for student government operations and campus-facing solutions.</p>
-        </article>
+          <article class="involve-card" data-reveal>
+            <div class="involve-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" focusable="false"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <h3 class="involve-org">LSU Student Government</h3>
+            <p class="involve-role">Assistant Director of Technology, Innovation, and Modernization</p>
+            <p class="involve-desc">Driving technology initiatives and modernization efforts for student government operations and campus-facing solutions.</p>
+          </article>
 
-        <article class="involve-card reveal">
-          <div class="involve-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
-          </div>
-          <h3 class="involve-org">Artificial Intelligence Club</h3>
-          <p class="involve-role">Student Member</p>
-          <p class="involve-desc">Engaging with peers on AI research, projects, and emerging technologies in machine learning.</p>
-        </article>
+          <article class="involve-card" data-reveal>
+            <div class="involve-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" focusable="false"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+            </div>
+            <h3 class="involve-org">Artificial Intelligence Club</h3>
+            <p class="involve-role">Student Member</p>
+            <p class="involve-desc">Engaging with peers on AI research, projects, and emerging technologies in machine learning.</p>
+          </article>
 
-        <article class="involve-card reveal">
-          <div class="involve-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-          </div>
-          <h3 class="involve-org">Tau Kappa Epsilon</h3>
-          <p class="involve-role">Social Chairman — Executive Board</p>
-          <p class="involve-desc">Serving as Social Chairman on the Executive Board, organizing events and fostering brotherhood within the fraternity.</p>
-        </article>
+          <article class="involve-card" data-reveal>
+            <div class="involve-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" focusable="false"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            </div>
+            <h3 class="involve-org">Tau Kappa Epsilon</h3>
+            <p class="involve-role">Social Chairman — Executive Board</p>
+            <p class="involve-desc">Serving as Social Chairman on the Executive Board, organizing events and fostering brotherhood within the fraternity.</p>
+          </article>
 
-        <article class="involve-card reveal">
-          <div class="involve-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
-          </div>
-          <h3 class="involve-org">LSU Companion Animal Alliance</h3>
-          <p class="involve-role">Student Volunteer</p>
-          <p class="involve-desc">Volunteering to support companion animal care and welfare initiatives on campus and in the community.</p>
-        </article>
+          <article class="involve-card" data-reveal>
+            <div class="involve-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" focusable="false"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+            </div>
+            <h3 class="involve-org">LSU Companion Animal Alliance</h3>
+            <p class="involve-role">Student Volunteer</p>
+            <p class="involve-desc">Volunteering to support companion animal care and welfare initiatives on campus and in the community.</p>
+          </article>
+        </div>
       </div>
     </section>
 
     <!-- Contact -->
-    <section id="contact" class="section">
-      <div class="section-header center reveal">
-        <span class="section-label">Connect</span>
-        <h2 class="section-title">Let's talk</h2>
-        <p class="section-desc">I'm looking for full-time solutions engineering, presales, and AI implementation roles starting after I graduate in May 2027. I'm open to Houston, Austin, New Orleans, or remote.</p>
-      </div>
+    <section id="contact" class="section contact theme-night">
+      <div class="container">
+        <div class="sec-head">
+          <p class="eyebrow">Connect</p>
+          <h2 class="sec-title" data-split>Let's talk</h2>
+          <p class="sec-desc" data-reveal>I'm looking for full-time solutions engineering, presales, and AI implementation roles starting after I graduate in May 2027. I'm open to Houston, Austin, New Orleans, or remote.</p>
+        </div>
 
-      <div class="contact-grid reveal">
-        <a href="mailto:gmorriscs@gmail.com" class="contact-card">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-          <p class="contact-type">Email</p>
-          <p class="contact-val">gmorriscs@gmail.com</p>
-        </a>
-        <a href="tel:+15042228798" class="contact-card">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-          <p class="contact-type">Phone</p>
-          <p class="contact-val">(504) 222-8798</p>
-        </a>
-        <a href="https://www.linkedin.com/in/gmorr32" class="contact-card" target="_blank" rel="noopener noreferrer">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
-          <p class="contact-type">LinkedIn</p>
-          <p class="contact-val">linkedin.com/in/gmorr32</p>
-        </a>
-        <a href="https://github.com/Gavin-Morris-04" class="contact-card" target="_blank" rel="noopener noreferrer">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
-          <p class="contact-type">GitHub</p>
-          <p class="contact-val">github.com/Gavin-Morris-04</p>
-        </a>
-      </div>
+        <div class="contact-grid">
+          <a href="mailto:gmorriscs@gmail.com" class="contact-card" data-reveal>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            <p class="contact-type">Email</p>
+            <p class="contact-val">gmorriscs@gmail.com</p>
+            <span class="contact-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" focusable="false"><path d="M7 17L17 7M8 7h9v9"/></svg></span>
+          </a>
+          <a href="tel:+15042228798" class="contact-card" data-reveal>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            <p class="contact-type">Phone</p>
+            <p class="contact-val">(504) 222-8798</p>
+            <span class="contact-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" focusable="false"><path d="M7 17L17 7M8 7h9v9"/></svg></span>
+          </a>
+          <a href="https://www.linkedin.com/in/gmorr32" class="contact-card" target="_blank" rel="noopener noreferrer" data-reveal>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+            <p class="contact-type">LinkedIn</p>
+            <p class="contact-val">linkedin.com/in/gmorr32</p>
+            <span class="contact-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" focusable="false"><path d="M7 17L17 7M8 7h9v9"/></svg></span>
+          </a>
+          <a href="https://github.com/Gavin-Morris-04" class="contact-card" target="_blank" rel="noopener noreferrer" data-reveal>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+            <p class="contact-type">GitHub</p>
+            <p class="contact-val">github.com/Gavin-Morris-04</p>
+            <span class="contact-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" focusable="false"><path d="M7 17L17 7M8 7h9v9"/></svg></span>
+          </a>
+        </div>
 
-      <div style="text-align: center; margin-top: 2.5rem;" class="reveal">
-        <a href="mailto:gmorriscs@gmail.com" class="btn btn-primary">
-          Email me
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-        </a>
+        <div class="contact-cta" data-reveal>
+          <a href="mailto:gmorriscs@gmail.com" class="btn btn-primary btn-lg" data-magnet>
+            Email me
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </a>
+        </div>
       </div>
     </section>
   </main>
 
-  <footer class="footer">
-    <p>&copy; 2026 Gavin Morris &middot; Baton Rouge, LA</p>
-    <p class="footer-links">
-      <a href="mailto:gmorriscs@gmail.com">Email</a>
-      <a href="https://www.linkedin.com/in/gmorr32" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-      <a href="https://github.com/Gavin-Morris-04" target="_blank" rel="noopener noreferrer">GitHub</a>
-      <a href="case-study.html">Case study</a>
-    </p>
+  <footer class="footer theme-night">
+    <div class="container footer-inner">
+      <p>&copy; 2026 Gavin Morris &middot; Baton Rouge, LA</p>
+      <p class="footer-links">
+        <a href="mailto:gmorriscs@gmail.com">Email</a>
+        <a href="https://www.linkedin.com/in/gmorr32" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <a href="https://github.com/Gavin-Morris-04" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a href="case-study.html">Case study</a>
+      </p>
+    </div>
   </footer>
 
   <button type="button" class="back-top" id="back-top" aria-label="Back to top">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="18 15 12 9 6 15"/></svg>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
   </button>
-
-  <script src="main.js"></script>
 </body>
 </html>
