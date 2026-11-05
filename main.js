@@ -401,8 +401,6 @@
       }
     }
 
-    // TargetCursor: corner brackets that lock onto links and buttons.
-    RB.targetCursor({ targetSelector: "a, button", color: "#ffffff", size: 34, cornerSize: 10, thickness: 2, padding: 7 });
   }
 
   // Section labels: the text decodes (GSAP ScrambleText) while the hairline rule draws in.

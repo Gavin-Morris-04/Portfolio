@@ -1150,26 +1150,6 @@ html:not(.motion) .exp-card::before {
 .vp-word { display: inline-block; white-space: nowrap; }
 .vp-letter { display: inline-block; transform-origin: 50% 80%; }
 
-/* TargetCursor */
-.target-cursor {
-  position: fixed;
-  inset: 0;
-  z-index: 600;
-  pointer-events: none;
-  mix-blend-mode: difference;
-  opacity: 0;
-}
-.target-cursor__corner {
-  position: absolute;
-  top: 0;
-  left: 0;
-  box-sizing: border-box;
-  border-style: solid;
-  border-color: var(--target-cursor-color, #fff);
-  transform-origin: 0 0;
-  will-change: transform;
-}
-
 /* Lines that draw in */
 .motion .eyebrow,
 .motion .hero-grid,

@@ -5,7 +5,7 @@
  * 4dc7b5b7772e1217c8fb8d2a7aa074302180e5b4:
  *   Backgrounds/DotGrid, TextAnimations/SplitText, TextAnimations/ScrollReveal,
  *   TextAnimations/CountUp, Components/SpotlightCard, Animations/Magnet,
- *   Components/TiltedCard, TextAnimations/VariableProximity, Animations/TargetCursor
+ *   Components/TiltedCard, TextAnimations/VariableProximity
  * The React hooks were replaced with plain functions that take a DOM element; the motion
  * math is kept from the originals. SplitText and ScrollReveal use GSAP, like the originals.
  * CountUp's "count" mode uses a GSAP tween instead of motion/react's animate().
@@ -1167,107 +1167,7 @@ void main() {
     return { letters };
   }
 
-  /* ======================================================================
-   * TargetCursor (Animations/TargetCursor) — corner brackets that follow the pointer, spin
-   * when idle and lock onto links and buttons. The native cursor stays visible.
-   * ==================================================================== */
-  function targetCursor(options) {
-    const o = Object.assign(
-      { targetSelector: "a, button", size: 36, cornerSize: 10, thickness: 2, padding: 6, spinDuration: 2.4, color: "#ffffff" },
-      options
-    );
-    if (reduced()) return null;
-    if (global.matchMedia && !global.matchMedia("(hover: hover) and (pointer: fine)").matches) return null;
-
-    const root = document.createElement("div");
-    root.className = "target-cursor";
-    root.setAttribute("aria-hidden", "true");
-    root.style.setProperty("--target-cursor-color", o.color);
-    const corners = [0, 90, 180, 270].map(() => {
-      const c = document.createElement("span");
-      c.className = "target-cursor__corner";
-      c.style.width = c.style.height = `${o.cornerSize}px`;
-      c.style.borderWidth = `${o.thickness}px 0 0 ${o.thickness}px`;
-      root.appendChild(c);
-      return c;
-    });
-    document.body.appendChild(root);
-
-    const spring = (s, goal, k, d, dt) => {
-      for (let i = 0; i < 2; i++) { s.v += (k * (goal - s.x) - d * s.v) * (dt / 2); s.x += s.v * (dt / 2); }
-    };
-    const cx = { x: 0, v: 0 }, cy = { x: 0, v: 0 }, hw = { x: o.size / 2, v: 0 }, hh = { x: o.size / 2, v: 0 };
-    const turn = { x: 0, v: 0 }, presence = { x: 0, v: 0 };
-    const pointer = { x: 0, y: 0, inside: false, seen: false };
-    let target = null;
-    let spin = 0;
-    let raf = 0;
-    let last = 0;
-
-    const tick = (now) => {
-      raf = 0;
-      const dt = clamp((now - last) / 1000 || 0.016, 0.001, 0.05);
-      last = now;
-      let gx = pointer.x, gy = pointer.y, gw = o.size / 2, gh = o.size / 2, gTurn;
-      if (target && !document.contains(target)) target = null;
-      if (target) {
-        const r = target.getBoundingClientRect();
-        gx = r.left + r.width / 2;
-        gy = r.top + r.height / 2;
-        gw = r.width / 2 + o.padding;
-        gh = r.height / 2 + o.padding;
-        gTurn = Math.round(turn.x / 90) * 90;
-      } else {
-        spin += (360 / o.spinDuration) * dt;
-        gTurn = spin;
-      }
-      if (!pointer.seen) { cx.x = gx; cy.x = gy; pointer.seen = true; }
-      const k = target ? 260 : 900, d = target ? 30 : 60;
-      spring(cx, gx, k, d, dt);
-      spring(cy, gy, k, d, dt);
-      spring(hw, gw, 300, 32, dt);
-      spring(hh, gh, 300, 32, dt);
-      if (target) { spring(turn, gTurn, 260, 30, dt); spin = turn.x; }
-      else { turn.x = spin; turn.v = 0; }
-      spring(presence, pointer.inside ? 1 : 0, 200, 28, dt);
-
-      // Each bracket moves to the next corner slot every quarter turn, so a box locked onto a
-      // target always lines up with the target's width and height.
-      const quarter = Math.round(turn.x / 90);
-      const residual = turn.x - quarter * 90;
-      const rad = (residual * Math.PI) / 180;
-      const cos = Math.cos(rad), sin = Math.sin(rad);
-      const slots = [[-1, -1], [1, -1], [1, 1], [-1, 1]];
-      corners.forEach((corner, i) => {
-        const slot = (((i + quarter) % 4) + 4) % 4;
-        const px = slots[slot][0] * hw.x, py = slots[slot][1] * hh.x;
-        const x = cx.x + px * cos - py * sin;
-        const y = cy.x + px * sin + py * cos;
-        corner.style.transform = `translate3d(${x.toFixed(2)}px, ${y.toFixed(2)}px, 0) rotate(${(slot * 90 + residual).toFixed(2)}deg)`;
-      });
-      root.style.opacity = clamp01(presence.x).toFixed(3);
-      const moving = Math.abs(gx - cx.x) + Math.abs(gy - cy.x) + Math.abs(gw - hw.x) + Math.abs(gh - hh.x) > 0.3 || Math.abs(presence.v) > 0.01;
-      if (pointer.inside || moving || presence.x > 0.01) raf = requestAnimationFrame(tick);
-      else last = 0;
-    };
-    const wake = () => { if (!raf) { last = performance.now(); raf = requestAnimationFrame(tick); } };
-
-    global.addEventListener("pointermove", (e) => {
-      if (e.pointerType !== "mouse") return;
-      pointer.x = e.clientX;
-      pointer.y = e.clientY;
-      pointer.inside = true;
-      const hit = e.target instanceof Element ? e.target.closest(o.targetSelector) : null;
-      target = hit && !hit.closest("[hidden]") ? hit : null;
-      wake();
-    }, { passive: true });
-    document.documentElement.addEventListener("pointerleave", () => { pointer.inside = false; target = null; wake(); });
-    global.addEventListener("blur", () => { pointer.inside = false; wake(); });
-    global.addEventListener("scroll", () => { if (target) wake(); }, { passive: true });
-    return { root };
-  }
-
   global.ReactBits = {
-    dotGrid, splitText, scrollReveal, countUp, spotlightCard, magnet, tiltedCard, variableProximity, targetCursor,
+    dotGrid, splitText, scrollReveal, countUp, spotlightCard, magnet, tiltedCard, variableProximity,
   };
 })(window);
