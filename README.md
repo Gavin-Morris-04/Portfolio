@@ -18,14 +18,22 @@ Everything is static files served straight from the `main` branch; there is no b
 
 | Library | Version | Files |
 | --- | --- | --- |
-| [GSAP](https://github.com/greensock/GSAP) (core, ScrollTrigger, SplitText, Flip) | 3.15.0 | `assets/vendor/gsap-3.15.0/` |
+| [GSAP](https://github.com/greensock/GSAP) (core, ScrollTrigger, SplitText, Flip, ScrambleText) | 3.15.0 | `assets/vendor/gsap-3.15.0/` |
 | [Lenis](https://github.com/darkroomengineering/lenis) | 1.3.27 | `assets/vendor/lenis-1.3.27/` |
 | [React Bits](https://github.com/DavidHDev/react-bits) | commit `4dc7b5b` | ported in `effects.js` |
 
 React Bits ships React components, so the ones used here were ported to plain functions:
 DotGrid (hero background), SplitText (headline and section-title reveals), ScrollReveal
 (featured-work statement), CountUp (headline numbers), SpotlightCard (project and featured
-cards) and Magnet (primary buttons). Their license is in `assets/vendor/react-bits/LICENSE.md`.
+cards), Magnet (primary buttons), TiltedCard (featured cards), VariableProximity ("Let's talk")
+and TargetCursor (bracket cursor on links and buttons). Their license is in
+`assets/vendor/react-bits/LICENSE.md`.
+
+Other motion, all GSAP: a curtain page transition between the two pages, section labels that
+decode with ScrambleText while their rule draws in, shaded and dark sections that open out from a
+rounded inset panel on large screens, card grids that lean with Lenis scroll velocity, and the hero
+name drifting with the pointer and splitting apart on scroll. Pointer-only effects (cursor, tilt,
+proximity, magnet) are skipped on touch devices.
 
 ## Motion and accessibility
 

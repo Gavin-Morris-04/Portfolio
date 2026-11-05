@@ -4,7 +4,8 @@
  * Ported from React Bits (https://github.com/DavidHDev/react-bits) at commit
  * 4dc7b5b7772e1217c8fb8d2a7aa074302180e5b4:
  *   Backgrounds/DotGrid, TextAnimations/SplitText, TextAnimations/ScrollReveal,
- *   TextAnimations/CountUp, Components/SpotlightCard, Animations/Magnet
+ *   TextAnimations/CountUp, Components/SpotlightCard, Animations/Magnet,
+ *   Components/TiltedCard, TextAnimations/VariableProximity, Animations/TargetCursor
  * The React hooks were replaced with plain functions that take a DOM element; the motion
  * math is kept from the originals. SplitText and ScrollReveal use GSAP, like the originals.
  * CountUp's "count" mode uses a GSAP tween instead of motion/react's animate().
@@ -990,5 +991,283 @@ void main() {
     return { el };
   }
 
-  global.ReactBits = { dotGrid, splitText, scrollReveal, countUp, spotlightCard, magnet };
+  /* ======================================================================
+   * TiltedCard (Components/TiltedCard) — spring 3D tilt toward the pointer, lift and glare
+   * The pointer is measured on `frame` (untransformed); the tilt is applied to `body`.
+   * ==================================================================== */
+  const springStep = (state, key, target, omega, zeta, dt) => {
+    const v = `v${key}`;
+    const steps = Math.max(1, Math.ceil(dt / (1 / 240)));
+    const h = dt / steps;
+    for (let i = 0; i < steps; i++) {
+      state[v] += (omega * omega * (target - state[key]) - 2 * zeta * omega * state[v]) * h;
+      state[key] += state[v] * h;
+    }
+    const settled = Math.abs(target - state[key]) < 0.001 && Math.abs(state[v]) < 0.01;
+    if (settled) { state[key] = target; state[v] = 0; }
+    return !settled;
+  };
+
+  function tiltedCard(frame, body, options) {
+    const o = Object.assign({ rotateAmplitude: 12, scaleOnHover: 1.05, smoothness: 0.6, glare: 0.5 }, options);
+    if (!frame || !body || reduced()) return null;
+    if (global.matchMedia && !global.matchMedia("(hover: hover) and (pointer: fine)").matches) return null;
+    const amplitude = clamp(o.rotateAmplitude, 0, 60);
+    const omega = 20 * Math.pow(0.2, clamp01(o.smoothness));
+    const zeta = 1 - 0.3 * clamp01(o.smoothness);
+    const state = { rx: 0, vrx: 0, ry: 0, vry: 0, lift: 0, vlift: 0 };
+    const pointer = { nx: 0, ny: 0, inside: false };
+    let focused = false;
+    let raf = 0;
+    let last = 0;
+
+    const glare = document.createElement("span");
+    glare.className = "tilt-glare";
+    glare.setAttribute("aria-hidden", "true");
+    body.appendChild(glare);
+
+    const tick = (now) => {
+      raf = 0;
+      const dt = clamp((now - last) / 1000 || 0, 0, 0.05);
+      last = now;
+      const engaged = pointer.inside;
+      let busy = false;
+      busy = springStep(state, "rx", engaged ? -pointer.ny * amplitude : 0, omega, zeta, dt) || busy;
+      busy = springStep(state, "ry", engaged ? pointer.nx * amplitude : 0, omega, zeta, dt) || busy;
+      busy = springStep(state, "lift", engaged || focused ? 1 : 0, omega, Math.max(zeta, 0.85), dt) || busy;
+      const scale = 1 + (o.scaleOnHover - 1) * state.lift;
+      const resting = !state.rx && !state.ry && scale === 1;
+      body.style.transform = resting ? "" :
+        `perspective(1000px) rotateX(${state.rx.toFixed(3)}deg) rotateY(${state.ry.toFixed(3)}deg) scale(${scale.toFixed(4)})`;
+      const reach = Math.max(amplitude, 1);
+      body.style.setProperty("--tc-gx", `${(50 + (state.ry / reach) * 46).toFixed(2)}%`);
+      body.style.setProperty("--tc-gy", `${(50 - (state.rx / reach) * 46).toFixed(2)}%`);
+      const energy = Math.min(1, Math.hypot(state.rx, state.ry) / reach);
+      body.style.setProperty("--tc-glare", (o.glare * Math.max(state.lift * 0.5, energy)).toFixed(3));
+      if (busy) raf = requestAnimationFrame(tick);
+    };
+    const wake = () => {
+      if (raf) return;
+      last = performance.now();
+      raf = requestAnimationFrame(tick);
+    };
+    const track = (event) => {
+      const rect = frame.getBoundingClientRect();
+      pointer.nx = clamp((event.clientX - rect.left - rect.width / 2) / (rect.width / 2), -1, 1);
+      pointer.ny = clamp((event.clientY - rect.top - rect.height / 2) / (rect.height / 2), -1, 1);
+    };
+    frame.addEventListener("pointerenter", (e) => { if (e.pointerType !== "mouse" && e.pointerType !== "pen") return; pointer.inside = true; track(e); wake(); });
+    frame.addEventListener("pointermove", (e) => { if (e.pointerType !== "mouse" && e.pointerType !== "pen") return; pointer.inside = true; track(e); wake(); });
+    frame.addEventListener("pointerleave", () => { pointer.inside = false; wake(); });
+    frame.addEventListener("focusin", (e) => { focused = e.target.matches && e.target.matches(":focus-visible"); wake(); });
+    frame.addEventListener("focusout", () => { focused = false; wake(); });
+    return { frame };
+  }
+
+  /* ======================================================================
+   * VariableProximity (TextAnimations/VariableProximity) — letters change font-variation
+   * settings (and color) by distance from the pointer. Text content is unchanged: letters
+   * are wrapped in spans and the heading keeps an aria-label with the original text.
+   * ==================================================================== */
+  const GAUSSIAN_EDGE = Math.exp(-2);
+  const parseAxes = (settings) =>
+    new Map(settings.split(",").map((p) => p.trim()).filter(Boolean).map((p) => {
+      const [name, value] = p.split(/\s+/);
+      return [name.replace(/['"]/g, ""), parseFloat(value)];
+    }));
+  const strengthAt = (distance, radius, falloff) => {
+    if (distance >= radius) return 0;
+    const norm = 1 - distance / radius;
+    if (falloff === "exponential") return norm * norm;
+    if (falloff === "gaussian") return (Math.exp(-2 * (distance / radius) ** 2) - GAUSSIAN_EDGE) / (1 - GAUSSIAN_EDGE);
+    return norm;
+  };
+
+  function variableProximity(el, options) {
+    const o = Object.assign(
+      {
+        fromFontVariationSettings: "'wght' 400", toFontVariationSettings: "'wght' 700",
+        radius: 50, falloff: "linear", smoothing: 0.2, fromColor: "", toColor: "",
+      },
+      options
+    );
+    if (!el) return null;
+    const label = (el.textContent || "").replace(/\s+/g, " ").trim();
+    const from = parseAxes(o.fromFontVariationSettings);
+    const to = parseAxes(o.toFontVariationSettings);
+    const axes = Array.from(from.entries()).map(([axis, f]) => ({ axis, from: f, to: to.has(axis) ? to.get(axis) : f }));
+
+    el.setAttribute("aria-label", label);
+    el.textContent = "";
+    const letters = [];
+    label.split(" ").forEach((word, wi, words) => {
+      const w = document.createElement("span");
+      w.className = "vp-word";
+      w.setAttribute("aria-hidden", "true");
+      Array.from(word).forEach((ch) => {
+        const l = document.createElement("span");
+        l.className = "vp-letter";
+        l.textContent = ch;
+        l.style.fontVariationSettings = o.fromFontVariationSettings;
+        w.appendChild(l);
+        letters.push(l);
+      });
+      el.appendChild(w);
+      if (wi < words.length - 1) el.appendChild(document.createTextNode(" "));
+    });
+
+    const fine = !global.matchMedia || global.matchMedia("(hover: hover) and (pointer: fine)").matches;
+    if (!fine || reduced()) return { letters };
+
+    const pointer = { x: 0, y: 0, active: false };
+    const levels = letters.map(() => 0);
+    const targets = letters.map(() => 0);
+    const tinted = Boolean(o.fromColor || o.toColor);
+    let frame = 0;
+    let lastTime = 0;
+    const settingsAt = (lvl) => axes.map(({ axis, from: f, to: t }) => `'${axis}' ${(f + (t - f) * lvl).toFixed(1)}`).join(", ");
+
+    const measure = () => {
+      targets.fill(0);
+      if (!pointer.active) return;
+      const area = el.getBoundingClientRect();
+      const dx = Math.max(area.left - pointer.x, 0, pointer.x - area.right);
+      const dy = Math.max(area.top - pointer.y, 0, pointer.y - area.bottom);
+      if (dx * dx + dy * dy >= o.radius * o.radius) return;
+      letters.forEach((letter, i) => {
+        const r = letter.getBoundingClientRect();
+        targets[i] = strengthAt(Math.hypot(pointer.x - (r.left + r.width / 2), pointer.y - (r.top + r.height / 2)), o.radius, o.falloff);
+      });
+    };
+    const tick = (now) => {
+      frame = 0;
+      const delta = lastTime ? Math.min(now - lastTime, 64) : 16;
+      lastTime = now;
+      measure();
+      const ease = o.smoothing > 0 ? 1 - Math.exp(-delta / (o.smoothing * 400)) : 1;
+      let settling = false;
+      letters.forEach((letter, i) => {
+        let next = levels[i] + (targets[i] - levels[i]) * ease;
+        if (Math.abs(targets[i] - next) < 0.002) next = targets[i];
+        else settling = true;
+        levels[i] = next;
+        letter.style.fontVariationSettings = next === 0 ? o.fromFontVariationSettings : settingsAt(next);
+        if (tinted) {
+          letter.style.color = next === 0 ? (o.fromColor || "") :
+            `color-mix(in oklab, ${o.fromColor || "currentColor"} ${((1 - next) * 100).toFixed(1)}%, ${o.toColor || "currentColor"})`;
+        }
+      });
+      if (settling) frame = requestAnimationFrame(tick);
+      else lastTime = 0;
+    };
+    const schedule = () => { if (!frame) frame = requestAnimationFrame(tick); };
+    global.addEventListener("mousemove", (e) => { pointer.x = e.clientX; pointer.y = e.clientY; pointer.active = true; schedule(); }, { passive: true });
+    global.addEventListener("scroll", schedule, { passive: true });
+    document.documentElement.addEventListener("mouseleave", () => { pointer.active = false; schedule(); });
+    return { letters };
+  }
+
+  /* ======================================================================
+   * TargetCursor (Animations/TargetCursor) — corner brackets that follow the pointer, spin
+   * when idle and lock onto links and buttons. The native cursor stays visible.
+   * ==================================================================== */
+  function targetCursor(options) {
+    const o = Object.assign(
+      { targetSelector: "a, button", size: 36, cornerSize: 10, thickness: 2, padding: 6, spinDuration: 2.4, color: "#ffffff" },
+      options
+    );
+    if (reduced()) return null;
+    if (global.matchMedia && !global.matchMedia("(hover: hover) and (pointer: fine)").matches) return null;
+
+    const root = document.createElement("div");
+    root.className = "target-cursor";
+    root.setAttribute("aria-hidden", "true");
+    root.style.setProperty("--target-cursor-color", o.color);
+    const corners = [0, 90, 180, 270].map(() => {
+      const c = document.createElement("span");
+      c.className = "target-cursor__corner";
+      c.style.width = c.style.height = `${o.cornerSize}px`;
+      c.style.borderWidth = `${o.thickness}px 0 0 ${o.thickness}px`;
+      root.appendChild(c);
+      return c;
+    });
+    document.body.appendChild(root);
+
+    const spring = (s, goal, k, d, dt) => {
+      for (let i = 0; i < 2; i++) { s.v += (k * (goal - s.x) - d * s.v) * (dt / 2); s.x += s.v * (dt / 2); }
+    };
+    const cx = { x: 0, v: 0 }, cy = { x: 0, v: 0 }, hw = { x: o.size / 2, v: 0 }, hh = { x: o.size / 2, v: 0 };
+    const turn = { x: 0, v: 0 }, presence = { x: 0, v: 0 };
+    const pointer = { x: 0, y: 0, inside: false, seen: false };
+    let target = null;
+    let spin = 0;
+    let raf = 0;
+    let last = 0;
+
+    const tick = (now) => {
+      raf = 0;
+      const dt = clamp((now - last) / 1000 || 0.016, 0.001, 0.05);
+      last = now;
+      let gx = pointer.x, gy = pointer.y, gw = o.size / 2, gh = o.size / 2, gTurn;
+      if (target && !document.contains(target)) target = null;
+      if (target) {
+        const r = target.getBoundingClientRect();
+        gx = r.left + r.width / 2;
+        gy = r.top + r.height / 2;
+        gw = r.width / 2 + o.padding;
+        gh = r.height / 2 + o.padding;
+        gTurn = Math.round(turn.x / 90) * 90;
+      } else {
+        spin += (360 / o.spinDuration) * dt;
+        gTurn = spin;
+      }
+      if (!pointer.seen) { cx.x = gx; cy.x = gy; pointer.seen = true; }
+      const k = target ? 260 : 900, d = target ? 30 : 60;
+      spring(cx, gx, k, d, dt);
+      spring(cy, gy, k, d, dt);
+      spring(hw, gw, 300, 32, dt);
+      spring(hh, gh, 300, 32, dt);
+      if (target) { spring(turn, gTurn, 260, 30, dt); spin = turn.x; }
+      else { turn.x = spin; turn.v = 0; }
+      spring(presence, pointer.inside ? 1 : 0, 200, 28, dt);
+
+      // Each bracket moves to the next corner slot every quarter turn, so a box locked onto a
+      // target always lines up with the target's width and height.
+      const quarter = Math.round(turn.x / 90);
+      const residual = turn.x - quarter * 90;
+      const rad = (residual * Math.PI) / 180;
+      const cos = Math.cos(rad), sin = Math.sin(rad);
+      const slots = [[-1, -1], [1, -1], [1, 1], [-1, 1]];
+      corners.forEach((corner, i) => {
+        const slot = (((i + quarter) % 4) + 4) % 4;
+        const px = slots[slot][0] * hw.x, py = slots[slot][1] * hh.x;
+        const x = cx.x + px * cos - py * sin;
+        const y = cy.x + px * sin + py * cos;
+        corner.style.transform = `translate3d(${x.toFixed(2)}px, ${y.toFixed(2)}px, 0) rotate(${(slot * 90 + residual).toFixed(2)}deg)`;
+      });
+      root.style.opacity = clamp01(presence.x).toFixed(3);
+      const moving = Math.abs(gx - cx.x) + Math.abs(gy - cy.x) + Math.abs(gw - hw.x) + Math.abs(gh - hh.x) > 0.3 || Math.abs(presence.v) > 0.01;
+      if (pointer.inside || moving || presence.x > 0.01) raf = requestAnimationFrame(tick);
+      else last = 0;
+    };
+    const wake = () => { if (!raf) { last = performance.now(); raf = requestAnimationFrame(tick); } };
+
+    global.addEventListener("pointermove", (e) => {
+      if (e.pointerType !== "mouse") return;
+      pointer.x = e.clientX;
+      pointer.y = e.clientY;
+      pointer.inside = true;
+      const hit = e.target instanceof Element ? e.target.closest(o.targetSelector) : null;
+      target = hit && !hit.closest("[hidden]") ? hit : null;
+      wake();
+    }, { passive: true });
+    document.documentElement.addEventListener("pointerleave", () => { pointer.inside = false; target = null; wake(); });
+    global.addEventListener("blur", () => { pointer.inside = false; wake(); });
+    global.addEventListener("scroll", () => { if (target) wake(); }, { passive: true });
+    return { root };
+  }
+
+  global.ReactBits = {
+    dotGrid, splitText, scrollReveal, countUp, spotlightCard, magnet, tiltedCard, variableProximity, targetCursor,
+  };
 })(window);
