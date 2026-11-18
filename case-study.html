@@ -14,7 +14,7 @@
   <link rel="stylesheet" href="assets/vendor/lenis-1.3.27/lenis.css">
   <link rel="stylesheet" href="styles.css">
   <script>
-    /* Motion gate: animations only run when the visitor has not asked for reduced motion.
+    /* Animations run for every visitor, whatever their OS motion setting.
        If the animation scripts fail to load, content is un-hidden after 2.5s. */
     (function (d) {
       var h = d.documentElement;
@@ -22,7 +22,7 @@
       /* Arriving from a page transition? main.js lifts the curtain this page starts under. */
       var arriving = false;
       try { arriving = !!sessionStorage.getItem("gm-transition"); sessionStorage.removeItem("gm-transition"); } catch (e) {}
-      if (window.matchMedia && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      {
         h.classList.add("motion");
         if (arriving) h.classList.add("curtain-in");
         setTimeout(function () { if (!h.classList.contains("motion-ready")) h.classList.remove("motion", "curtain-in"); }, 2500);

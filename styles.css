@@ -45,9 +45,7 @@ html {
   text-size-adjust: 100%;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  html:not(.lenis) { scroll-behavior: smooth; }
-}
+html:not(.lenis) { scroll-behavior: smooth; }
 
 body {
   font-family: var(--font);
@@ -1427,16 +1425,4 @@ html:not(.motion) .exp-card::before {
   .table-wrap td { padding: 0.7rem 0.5rem; hyphens: auto; -webkit-hyphens: auto; }
   .table-wrap table { font-size: 0.8125rem; }
   .table-wrap thead th { letter-spacing: 0.04em; }
-}
-
-/* ======================================================
-   Reduced motion
-   ====================================================== */
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
-    animation: none !important;
-    transition: none !important;
-    scroll-behavior: auto !important;
-  }
-  .status-dot::after { display: none; }
 }

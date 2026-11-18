@@ -16,7 +16,8 @@
 (function (global) {
   "use strict";
 
-  const reduced = () => !!global.matchMedia && global.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  // Animations run the same on every OS; the reduced-motion setting is intentionally ignored.
+  const reduced = () => false;
   const clamp = (v, min, max) => Math.min(max, Math.max(min, v));
   const clamp01 = (v) => clamp(v, 0, 1);
 

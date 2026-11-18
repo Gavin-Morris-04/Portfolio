@@ -11,7 +11,8 @@
   const gsap = window.gsap;
   const ScrollTrigger = window.ScrollTrigger;
   const hasGSAP = !!(gsap && ScrollTrigger);
-  const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  // Animations run the same on every OS; the reduced-motion setting is intentionally ignored.
+  const prefersReduced = false;
   // "motion" is set in <head> and removed by a fail-safe if scripts were too slow to arrive.
   const motionOK = hasGSAP && !prefersReduced && root.classList.contains("motion");
 
