@@ -885,6 +885,13 @@ html:not(.motion) .exp-card::before {
   font-size: clamp(1.4rem, 2.2vw, 1.75rem);
   letter-spacing: -0.035em;
 }
+.project-role {
+  margin: -0.4rem 0 0.85rem;
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+}
 .project-why {
   padding-left: 1rem;
   border-left: 2px solid var(--accent);
